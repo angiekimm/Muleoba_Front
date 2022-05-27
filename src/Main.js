@@ -1,5 +1,12 @@
+import "./Main.css";
+import Header from "./components/Header";
+
 function Main() {
-  return <h1>물어봐</h1>;
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 }
 
 export default Main;
