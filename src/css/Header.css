@@ -1,15 +1,19 @@
 .header {
-  padding: 20px 0;
+  padding: 25px 0;
   box-shadow: 0 2px 28px 0 rgba(0 0 0 /6%);
+  height : 100px;
+  display: flex;
+  align-items: center;
 }
 
 .header_flex {
   display: flex;
+  width : 1000px;
   justify-content: space-between;
 }
 
-.header .container {
-  align-items: center;
+.container{
+  flex-direction: row;
 }
 
 .header_left {
@@ -19,8 +23,12 @@
   align-items: center;
 }
 
-.header_logo {
-  margin-top: 4px;
+.header_logo_box {
+  margin: 4px 13px 0 0;
+}
+
+.header_logo{
+  width : 180px;
 }
 
 .header_searchBar {
@@ -87,4 +95,20 @@
   height: 30px;
   align-items: center;
   display: flex;
+}
+
+.header_alarm_box{
+  margin : 10px 0 0 0;
+  display: flex;
+  border-color: black;
+  border-radius: 20px;
+  width: 500px;
+  height: 500px;
+  background-color: rgb(241, 239, 255);
+}
+
+.header_alarm_bar{
+  width: 1000px;
+  display: flex;
+  justify-content: right;
 }
