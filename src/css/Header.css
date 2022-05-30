@@ -4,6 +4,7 @@
   height : 100px;
   display: flex;
   align-items: center;
+  background-color: white;
 }
 
 .header_flex {
@@ -14,6 +15,7 @@
 
 .container{
   flex-direction: row;
+  margin: auto;
 }
 
 .header_left {
@@ -24,7 +26,7 @@
 }
 
 .header_logo_box {
-  margin: 4px 13px 0 0;
+  margin: 4px 20px 0 0;
 }
 
 .header_logo{
@@ -97,14 +99,31 @@
   display: flex;
 }
 
-.header_alarm_box{
-  margin : 10px 0 0 0;
+.header_alarm_arrow{
   display: flex;
-  border-color: black;
+  border : 1px solid;
+  border-color: rgb(201, 201, 201);
+  margin : -3px 0 0 265px;
+  width: 0px;
+  height: 0px;
+  border-bottom: 15px solid rgb(250, 250, 250);
+  border-top: 0px solid transparent;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+}
+
+.header_alarm_box{
+  margin : -2px 0 0 0;
+  display: flex;
+  z-index: 1;
+  position:relative;
+  /*border : 1px solid;
+  border-color: rgb(201, 201, 201); */
   border-radius: 20px;
-  width: 500px;
+  width: 350px;
   height: 500px;
-  background-color: rgb(241, 239, 255);
+  background-color: rgb(250, 250, 250);
+  box-shadow: 0 4px 15px -8px rgb(83, 83, 83);
 }
 
 .header_alarm_bar{

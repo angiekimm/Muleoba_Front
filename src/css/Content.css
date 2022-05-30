@@ -1,0 +1,10 @@
+.white_content{
+  width: 1000px;
+  height: 1000px;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  margin: 40px auto;
+  border-radius: 25px;
+  box-shadow: 0 8px 15px -8px rgb(83, 83, 83);
+}

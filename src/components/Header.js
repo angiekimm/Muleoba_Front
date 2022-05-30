@@ -43,7 +43,10 @@ export default function Header(){
         <div className="header_alarm_bar">
           {
               alarm ?
+              <div>
+              <div className="header_alarm_arrow"></div>
               <div className="header_alarm_box">알람</div>
+              </div>
               :null
             }
         </div>    
