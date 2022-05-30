@@ -53,13 +53,32 @@
   color: lightgray;
   margin-right: 5px;
 }
+
+.header_ranking {
+  display: flex; 
+}
+
+.header_rankingIcon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 13px;
+}
+
+.header_ranking_icon{
+  width: 28px;
+  height: 28px;
+  color:rgb(218, 205, 27);
+}
+
+
 .header_right {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 320px;
+  width: 355px;
 }
-.header_ranking {
+.header_ranking_box {
   display: flex;
   background-color: rgb(234, 234, 234);
   border-radius: 7px;
