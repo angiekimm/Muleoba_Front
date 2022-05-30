@@ -1,20 +1,14 @@
 import "../css/Main.css";
 import Header from "../components/Header";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  NavLink,
-} from "react-router-dom";
-import Welcome from "./Welcome";
+import Content from "../components/Content";
+import Footer from "../components/Footer";
 
 function Main() {
   return (
     <div>
       <Header />
-      {/* <Routes>
-        <Route path="/" element={Welcome} />
-      </Routes> */}
+      <Content />
+      <Footer />
     </div>
   );
 }
