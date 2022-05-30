@@ -1,16 +1,22 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { NavLink } from "react-router-dom";
 import "../css/Header.css";
-import "../Main.css";
 import logo from "../image/muleoba_logo.png";
-import { FaBell, FaBars, FaSearch,FaTrophy } from "react-icons/fa";
+import {
+  FaBell,
+  FaBars,
+  FaSearch,
+  FaTrophy,
+  FaWindowClose,
+} from "react-icons/fa";
 
+export default function Header() {
+  const [sidebar, setSidebar] = useState(false);
+  const showSidebar = () => setSidebar(!sidebar);
 
-
-
-export default function Header(){
   const [alarm, setAalarm] = useState(false);
 
-  function onClickalarm(){
+  function onClickalarm() {
     setAalarm(true);
   }
 
@@ -18,44 +24,71 @@ export default function Header(){
     <div className="header">
       <div className="container ">
         <div className="header_flex">
-        <div className="header_left">
-          <div className="header_logo_box">
-            <img src={logo} className="header_logo"/>
-          </div>
-          <div className="header_searchBar">
-            <input type="text" placeholder="물품 검색" />
-            <FaSearch className="header_searchIcon" />
-          </div>
-        </div>
-        <div className="header_right">
-          <div className="header_ranking">
-            <div className="header_rankingIcon">
-             <FaTrophy className="header_ranking_icon" />
+          <div className="header_left">
+            <div className="header_logo_box">
+              <NavLink to="/">
+                <img src={logo} className="header_logo" />
+              </NavLink>
             </div>
-            <div className="header_ranking_box">
-            <div className="header_rankingNumber">3</div>
-            <div className="header_rankingNickname">의왕시피바다</div>
+            <div className="header_searchBar">
+              <input type="text" placeholder="물품 검색" />
+              <FaSearch className="header_searchIcon" />
             </div>
           </div>
-          <div className="header_bell">
-            <FaBell className="header_bellIcon" onClick={() => setAalarm(!alarm)}/>
+          <div className="header_right">
+            <div className="header_ranking">
+              <div className="header_rankingIcon">
+                <FaTrophy className="header_ranking_icon" />
+              </div>
+              <div className="header_ranking_box">
+                <div className="header_rankingNumber">3</div>
+                <div className="header_rankingNickname">의왕시피바다</div>
+              </div>
+            </div>
+            <div className="header_bell">
+              <FaBell
+                className="header_bellIcon"
+                onClick={() => setAalarm(!alarm)}
+              />
+            </div>
+            <div className="header_menuBar">
+              <NavLink to="">
+                <FaBars className="header_barIcon" onClick={showSidebar} />
+              </NavLink>
+            </div>
           </div>
-          <div className="header_menuBar">
-            <FaBars className="header_barIcon" />
-          </div>
-        </div>
         </div>
         <div className="header_alarm_bar">
-          {
-              alarm ?
-              <div>
+          {alarm ? (
+            <div>
               <div className="header_alarm_arrow"></div>
               <div className="header_alarm_box">알람</div>
-              </div>
-              :null
-            }
-        </div>    
+            </div>
+          ) : null}
+        </div>
       </div>
+      <nav className={sidebar ? "header_sideMenu active" : "header_sideMenu"}>
+        <ul className="header_sideMenu_items">
+          <li className="header_sideMenu_toggle">
+            <NavLink to="#">
+              <FaWindowClose
+                className="header_closeIcon"
+                onClick={showSidebar}
+              />
+            </NavLink>
+          </li>
+          <li className="header_sideMenu_text">
+            <NavLink to="/" onClick={showSidebar}>
+              Home
+            </NavLink>
+          </li>
+          <li className="header_sideMenu_text">
+            <NavLink to="/mypage" onClick={showSidebar}>
+              마이페이지
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
-};
+}
