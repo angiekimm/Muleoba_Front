@@ -10,10 +10,6 @@ import { FaBell, FaBars, FaSearch,FaTrophy } from "react-icons/fa";
 export default function Header(){
   const [alarm, setAalarm] = useState(false);
 
-  function onClickalarm(){
-    setAalarm(true);
-  }
-
   return (
     <div className="header">
       <div className="container ">
@@ -46,7 +42,7 @@ export default function Header(){
         </div>
         </div>
         <div className="header_alarm_bar">
-          {
+            {
               alarm ?
               <div>
               <div className="header_alarm_arrow"></div>
