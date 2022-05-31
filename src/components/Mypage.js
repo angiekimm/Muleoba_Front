@@ -1,6 +1,6 @@
 import {  BrowserRouter as Router, Routes, Route, NavLink, useParams } from "react-router-dom";
 import React, { useState, useEffect, useRef } from "react";
-import Mylist from "./Mylist.js";
+import Mylist from "./Mylist";
 import Mychangelist from "./Mychangelist";
 import Successlist from "./Successlist";
 import "../css/Mypage.css";
@@ -24,9 +24,9 @@ export default function Mypage() {
 
             <div className="mypage_content" >
                 <Routes>
-                  <Route path="/mypage" element={<Mylist />} />
                   <Route path="/mypage/mychangelist" element={<Mychangelist />} />
                   <Route path="/mypage/successlist" element={<Successlist />} />
+                  <Route path="/mypage" element={<Mylist />} />
                 </Routes>
             </div>
         </div>

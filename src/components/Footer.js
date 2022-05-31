@@ -1,12 +1,12 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../css/Footer.css";
-import "../Main.css";
+import "../css/Main.css";
 import logo from "../image/muleoba_footer_logo.png";
 
 
 
 
-export default function Footer(){
+export default function Footer() {
 
     return (
         <div className="footer_box">

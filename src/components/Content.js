@@ -4,7 +4,7 @@ import Mainlist from "./Mainlist";
 import Mypage from "./Mypage";
 import "../css/Header.css";
 import "../css/Content.css";
-import "../Main.css";
+import "../css/Main.css";
 
 
 
