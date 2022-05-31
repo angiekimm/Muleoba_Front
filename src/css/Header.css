@@ -110,6 +110,7 @@
   height: 25px;
   align-items: center;
   display: flex;
+  cursor:pointer;
 }
 .header_barIcon {
   width: 30px;

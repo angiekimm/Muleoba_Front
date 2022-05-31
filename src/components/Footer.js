@@ -20,12 +20,9 @@ export default function Footer(){
                 </div>
                 <hr />
                 <div className="footer_light">
-
                     서울특별시 강남대로 00길 00, 1004호<br />
                     사업자 등록번호 1234567-7654321<br /><br />
                     Copyright ⓒ 2022 Muleoba All rights reserved.
-
-
                 </div>
 
             </div>

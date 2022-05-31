@@ -36,6 +36,12 @@ export default function Mainlist() {
                 </div>
             </div>
             <hr />
+
+            <div className="mainlist_content" >
+                {
+
+                }
+            </div>
         </div>
     );
 };
