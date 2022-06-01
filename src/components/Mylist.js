@@ -4,6 +4,7 @@ import "../css/Mypage.css";
 
 export default function Mylist() {
 
+
     return (
         <div className="mylist">
             나의 리스트

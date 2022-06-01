@@ -16,3 +16,7 @@
     text-decoration: none;
     color:rgb(172, 172, 172);
 }
+
+.active .mypage_head_text_action{
+    color: black;
+}
