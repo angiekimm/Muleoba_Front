@@ -1,7 +1,7 @@
 .header {
   padding: 25px 0;
   box-shadow: 0 2px 28px 0 rgba(0 0 0 /6%);
-  height : 100px;
+  height: 100px;
   display: flex;
   align-items: center;
   background-color: white;
@@ -9,11 +9,11 @@
 
 .header_flex {
   display: flex;
-  width : 1000px;
+  width: 1000px;
   justify-content: space-between;
 }
 
-.container{
+.container {
   flex-direction: row;
   margin: auto;
 }
@@ -29,8 +29,8 @@
   margin: 4px 20px 0 0;
 }
 
-.header_logo{
-  width : 180px;
+.header_logo {
+  width: 180px;
 }
 
 .header_searchBar {
@@ -55,20 +55,20 @@
 }
 
 .header_ranking {
-  display: flex; 
+  display: flex;
 }
 
-.header_rankingIcon{
+.header_rankingIcon {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 13px;
 }
 
-.header_ranking_icon{
+.header_ranking_icon {
   width: 28px;
   height: 28px;
-  color:rgb(218, 205, 27);
+  color: rgb(218, 205, 27);
 }
 
 
@@ -78,6 +78,7 @@
   align-items: center;
   width: 355px;
 }
+
 .header_ranking_box {
   display: flex;
   background-color: rgb(234, 234, 234);
@@ -87,6 +88,7 @@
   text-align: center;
   align-items: center;
 }
+
 .header_rankingNumber {
   font-weight: bold;
   background-color: rgb(148, 80, 255);
@@ -110,7 +112,9 @@
   height: 25px;
   align-items: center;
   display: flex;
+  cursor: pointer;
 }
+
 .header_barIcon {
   width: 30px;
   height: 30px;
@@ -118,34 +122,34 @@
   display: flex;
 }
 
-.header_alarm_arrow{
+.header_alarm_arrow {
   display: flex;
-  border : 1px solid;
+  border: 1px solid;
   border-color: rgb(201, 201, 201);
-  margin : -3px 0 0 265px;
+  margin: -3px 0 0 265px;
   width: 0px;
   height: 0px;
-  border-bottom: 15px solid rgb(250, 250, 250);
+  border-bottom: 15px solid rgb(237, 230, 248);
   border-top: 0px solid transparent;
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
 }
 
-.header_alarm_box{
-  margin : -2px 0 0 0;
+.header_alarm_box {
+  margin: -2px 0 0 0;
   display: flex;
   z-index: 1;
-  position:relative;
+  position: relative;
   /*border : 1px solid;
   border-color: rgb(201, 201, 201); */
   border-radius: 20px;
   width: 350px;
-  height: 500px;
-  background-color: rgb(250, 250, 250);
+  height: 300px;
+  background-color: rgb(237, 230, 248);
   box-shadow: 0 4px 15px -8px rgb(83, 83, 83);
 }
 
-.header_alarm_bar{
+.header_alarm_bar {
   width: 1000px;
   display: flex;
   justify-content: right;

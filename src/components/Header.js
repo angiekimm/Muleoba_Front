@@ -1,24 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import "../css/Header.css";
+import "../css/Main.css";
 import logo from "../image/muleoba_logo.png";
-import {
-  FaBell,
-  FaBars,
-  FaSearch,
-  FaTrophy,
-  FaWindowClose,
-} from "react-icons/fa";
+import { FaBell, FaBars, FaSearch, FaTrophy, FaWindowClose } from "react-icons/fa";
 
 export default function Header() {
+  const [alarm, setAalarm] = useState(false);
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
-
-  const [alarm, setAalarm] = useState(false);
-
-  function onClickalarm() {
-    setAalarm(true);
-  }
 
   return (
     <div className="header">
@@ -46,10 +36,7 @@ export default function Header() {
               </div>
             </div>
             <div className="header_bell">
-              <FaBell
-                className="header_bellIcon"
-                onClick={() => setAalarm(!alarm)}
-              />
+              <FaBell className="header_bellIcon" onClick={() => setAalarm(!alarm)} />
             </div>
             <div className="header_menuBar">
               <NavLink to="">
@@ -59,12 +46,14 @@ export default function Header() {
           </div>
         </div>
         <div className="header_alarm_bar">
-          {alarm ? (
-            <div>
-              <div className="header_alarm_arrow"></div>
-              <div className="header_alarm_box">알람</div>
-            </div>
-          ) : null}
+          {
+            alarm ?
+              <div>
+                <div className="header_alarm_arrow"></div>
+                <div className="header_alarm_box">알람</div>
+              </div>
+              : null
+          }
         </div>
       </div>
       <nav className={sidebar ? "header_sideMenu active" : "header_sideMenu"}>

@@ -1,0 +1,18 @@
+.mypage{
+    margin : 40px 50px 40px 50px;
+    width: 880px;
+}
+
+.mypage_head{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.mypage_head_text{
+    font-size: 28px;
+    font-weight: bold;
+    display: flex;
+    text-decoration: none;
+    color:rgb(172, 172, 172);
+}
