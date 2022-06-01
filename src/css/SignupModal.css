@@ -1,4 +1,4 @@
-.modal_background {
+.signupModal_background {
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   display: flex;
@@ -12,7 +12,7 @@
   height: 100vh;
 }
 
-.modal_container {
+.signupModal_container {
   border-radius: 7px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -25,47 +25,54 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 500px;
-  height: 500px;
+  height: 700px;
 }
-
-.modal_container .modal_logo {
+.signupModal_logoBox {
+  display: flex;
+  justify-content: space-between;
+}
+.signupModal_container .signupModal_logo {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-.modal_container .modal_title {
-  display: inline-block;
-  text-align: center;
-  margin-top: 60px;
+.signupModal_logo img {
+  height: 25px;
 }
 
-.modal_closeBtn {
+.signupModal_container .signupModal_title {
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.signupModal_closeBtn {
   display: flex;
   justify-content: flex-end;
 }
 
-.modal_closeBtn button {
+.signupModal_closeBtn button {
   background-color: transparent;
   border: none;
   font-size: 25px;
   cursor: pointer;
 }
 
-.modal_container .modal_body {
+.signupModal_container .signupModal_body {
   flex: 50%;
   font-size: 1.7rem;
   text-align: center;
 }
 
-.modal_container .modal_body .modal_emailinput {
+.signupModal_container .signupModal_body .signupModal_emailinput {
   width: 250px;
   display: flex;
   align-items: center;
   margin: auto;
+  flex-direction: column;
 }
 
-.modal_container .modal_body .modal_emailinput input {
+.signupModal_container .signupModal_body .signupModal_emailinput input {
   width: 250px;
   height: 40px;
   padding: 3px;
@@ -78,14 +85,19 @@
   outline: none;
 }
 
-.modal_container .modal_body .modal_pwdinput {
+.signupModal_error {
+  font-size: 15px;
+  color: red;
+}
+
+.signupModal_container .signupModal_body .signupModal_pwdinput {
   width: 250px;
   display: flex;
   align-items: center;
   margin: auto;
 }
 
-.modal_container .modal_body .modal_pwdinput input {
+.signupModal_container .signupModal_body .signupModal_pwdinput input {
   width: 250px;
   height: 40px;
   padding: 3px;
@@ -98,7 +110,7 @@
   outline: none;
 }
 
-.modal_pwdIconCover {
+.signupModal_pwdIconCover {
   background-color: rgb(234, 234, 234);
   height: 40px;
   margin-top: 20px;
@@ -106,25 +118,14 @@
   border: 1px solid rgb(234, 234, 234);
 }
 
-.modal_pwdIcon {
+.signupModal_pwdIcon {
   width: 20px;
   height: 25px;
   margin-right: 5px;
   color: rgb(113, 113, 113);
 }
 
-.modal_logininfo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 13px;
-  width: 50%;
-  margin: auto;
-  margin-top: 5px;
-  color: rgb(79, 79, 79);
-}
-
-.modal_signupBtn {
+.signupModal_signupBtn {
   border: none;
   background-color: white;
   color: rgb(79, 79, 79);
@@ -133,14 +134,14 @@
   cursor: pointer;
 }
 
-.modal_container .modal_btn {
+.signupModal_container .signupModal_btn {
   flex: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.modal_container .modal_btn button {
+.signupModal_container .signupModal_btn button {
   width: 250px;
   height: 45px;
   border: none;
@@ -149,4 +150,29 @@
   border-radius: 8px;
   font-size: 20px;
   cursor: pointer;
+}
+
+.signupModal_container .signupModal_disabled {
+  flex: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signupModal_container .signupModal_disabled button {
+  width: 250px;
+  height: 45px;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: not-allowed;
+  background-color: rgb(166, 166, 166);
+}
+
+.signupModal_selectbox {
+  display: flex;
+  justify-content: space-between;
+  width: 250px;
+  margin: auto;
 }

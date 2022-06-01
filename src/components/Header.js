@@ -27,7 +27,7 @@ export default function Header() {
           <div className="header_left">
             <div className="header_logo_box">
               <NavLink to="/">
-                <img src={logo} className="header_logo" />
+                <img src={logo} className="header_logo" alt="logo" />
               </NavLink>
             </div>
             <div className="header_searchBar">

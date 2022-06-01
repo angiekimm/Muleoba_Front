@@ -1,0 +1,22 @@
+{
+  "states": [
+    { "value": "default", "name": "시/도" },
+    { "value": "Gyeonggi-do", "name": "경기도" },
+    { "value": "Incheon", "name": "인천광역시" },
+    { "value": "Daejeon", "name": "대전광역시" },
+    { "value": "Daegu", "name": "대구광역시" },
+    { "value": "Ulsan", "name": "울산광역시" },
+    { "value": "Jeonnam", "name": "전라남도" },
+    { "value": "Jeonbuk", "name": "전라북도" },
+    { "value": "Chungcheongnam-do", "name": "충청남도" },
+    { "value": "Chungcheongbuk-do", "name": "충청북도" },
+    { "value": "Jeju", "name": "제주특별자치도" },
+    { "value": "Sejong", "name": "세종특별자치시" },
+    { "value": "Gwangju", "name": "광주광역시" },
+    { "value": "Busan", "name": "부산광역시" },
+    { "value": "Gyeongbuk", "name": "경상북도" },
+    { "value": "Gyeongnam", "name": "경상남도" },
+    { "value": "Gangwon-do ", "name": "강원도" },
+    { "value": "Seoul", "name": "서울특별시" }
+  ]
+}

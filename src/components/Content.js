@@ -4,5 +4,7 @@ import "../css/Content.css";
 import "../css/Main.css";
 
 export default function Content() {
-  return <div className="white_content"></div>;
+  return <div className="white_content">
+    
+  </div>;
 }
