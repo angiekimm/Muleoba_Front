@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "../css/SignupModal.css";
 import logo from "../image/muleoba_logo.png";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import SelectBox from "./SelectBox";
 import data from "../db/data.json";
 import axios from "axios";
-import { useCallback } from "react";
 
 export default function SignupModal({ closeModal, loginModal }) {
   const [email, setEmail] = useState("");
