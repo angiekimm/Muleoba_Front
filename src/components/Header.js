@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef} from "react";
 import { NavLink } from "react-router-dom";
 import "../css/Header.css";
 import "../css/Main.css";
@@ -6,18 +6,36 @@ import logo from "../image/muleoba_logo.png";
 import { FaBell, FaBars, FaSearch, FaTrophy, FaWindowClose } from "react-icons/fa";
 
 export default function Header() {
-  const [alarm, setAalarm] = useState(false);
+  //const alarmRef = useRef(null);
+  const [alarm, setAlarm] = useState(false);
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
 
+
+  /* 외부 영역을 클릭했을 때 알람창이 닫히도록 
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        alarmRef.current &&
+        !alarmRef.current.contains(event.target)
+      ) {
+        setAlarm(false); 
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [alarmRef]);
+*/
   return (
     <div className="header">
       <div className="container ">
         <div className="header_flex">
           <div className="header_left">
             <div className="header_logo_box">
-              <NavLink to="/">
-                <img src={logo} className="header_logo" alt="logo" />
+              <NavLink to="/main">
+                <img src={logo} className="header_logo" />
               </NavLink>
             </div>
             <div className="header_searchBar">
@@ -36,7 +54,7 @@ export default function Header() {
               </div>
             </div>
             <div className="header_bell">
-              <FaBell className="header_bellIcon" onClick={() => setAalarm(!alarm)} />
+              <FaBell className="header_bellIcon" onClick={() => setAlarm(!alarm)} />
             </div>
             <div className="header_menuBar">
               <NavLink to="">

@@ -10,8 +10,8 @@ export default function Content() {
   return (
     <div className="white_content">
       <Routes>
-        <Route path="/main" element={<Mainlist />} />
-        <Route path="/mypage/*" element={<Mypage />} />
+        <Route exact path="/" element={<Mainlist />}/>
+        <Route path="/mypage/*" element={<Mypage />}/>
       </Routes>
     </div>
   );

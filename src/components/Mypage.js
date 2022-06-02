@@ -10,23 +10,29 @@ export default function Mypage() {
     return (
         <div className="mypage">
             <div className="mypage_head">
-                <NavLink to="/mypage" className="mypage_head_text">
+                <NavLink to="/main/mypage/mylist" className="mypage_head_text">
+                    <div className="mypage_head_text_action">
                     나의 물품
+                    </div>
                 </NavLink>
-                <NavLink to="/mypage/mychangelist" className="mypage_head_text">
+                <NavLink to="/main/mypage/mychangelist" className="mypage_head_text">
+                    <div className="mypage_head_text_action">
                     나의 교환신청 물품
+                    </div>
                 </NavLink>
-                <NavLink to="/mypage/successlist" className="mypage_head_text">
+                <NavLink to="/main/mypage/successlist" className="mypage_head_text">
+                    <div className="mypage_head_text_action">
                     교환완료 물품
+                    </div>
                 </NavLink>
             </div>
             <hr />
 
             <div className="mypage_content" >
                 <Routes>
-                  <Route path="/mypage/mychangelist" element={<Mychangelist />} />
-                  <Route path="/mypage/successlist" element={<Successlist />} />
-                  <Route path="/mypage" element={<Mylist />} />
+                  <Route exact path="/mylist" element={<Mylist />} />
+                  <Route exact path="/mychangelist" element={<Mychangelist />} />
+                  <Route exact path="/successlist" element={<Successlist />} />
                 </Routes>
             </div>
         </div>
