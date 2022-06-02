@@ -5,9 +5,6 @@ import "../css/Main.css";
 import logo from "../image/muleoba_logo.png";
 import { FaBell, FaBars, FaSearch, FaTrophy, FaWindowClose } from "react-icons/fa";
 
-
-
-
 export default function Header() {
   //const alarmRef = useRef(null);
   const [alarm, setAlarm] = useState(false);
@@ -101,4 +98,4 @@ export default function Header() {
       </nav>
     </div>
   );
-};
+}

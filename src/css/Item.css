@@ -1,0 +1,7 @@
+.item_preview {
+  display: flex;
+}
+.item_previewImg {
+  width: 200px;
+  height: 200px;
+}

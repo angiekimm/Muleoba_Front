@@ -154,7 +154,6 @@
   display: flex;
   justify-content: right;
 }
-
 .header_sideMenu {
   background-color: white;
   border: 0.1px solid lightgray;
@@ -184,7 +183,6 @@
   justify-content: end;
   align-items: center;
 }
-
 .header_closeIcon {
   width: 30px;
   height: 30px;

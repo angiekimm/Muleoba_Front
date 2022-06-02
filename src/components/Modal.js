@@ -2,8 +2,21 @@ import React, { useState, useEffect } from "react";
 import "../css/Modal.css";
 import logo from "../image/muleoba_logo.png";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
+import axios from "axios";
 
-export default function Modal({ closeModal }) {
+export default function Modal({ closeModal, signupModal }) {
+  // back으로 email, pw 보내서 사용자 확인. return값으로 뭘 받아야하지? 사용자가 맞다면, 토큰값?
+  async function checkUser() {
+    await axios
+      .get("/handemore/todo", { params: { email, pw } })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
 
@@ -70,11 +83,21 @@ export default function Modal({ closeModal }) {
           <div className="modal_logininfo">
             <div>아이디 찾기 /&nbsp;</div>
             <div>비밀번호 찾기 /&nbsp;</div>
-            <div>회원가입</div>
+            <div>
+              <button
+                className="modal_signupBtn"
+                onClick={() => {
+                  closeModal(false);
+                  signupModal(true);
+                }}
+              >
+                회원가입
+              </button>
+            </div>
           </div>
         </div>
         <div className="modal_btn">
-          <button onClick={() => {}}>로그인</button>
+          <button onClick={checkUser}>로그인</button>
         </div>
       </div>
     </div>
