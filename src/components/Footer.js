@@ -14,8 +14,11 @@ export default function Footer() {
           <div className="footer_boldtext">이용약관</div>
           <div className="footer_boldtext">회사소개</div>
         </div>
+        <br />
         <hr />
+        <br />
         <div className="footer_light">
+
           서울특별시 강남대로 00길 00, 1004호
           <br />
           사업자 등록번호 1234567-7654321

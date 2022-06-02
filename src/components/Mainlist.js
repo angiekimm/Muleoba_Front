@@ -9,19 +9,26 @@ export default function Mainlist() {
     const uID = useSelector((state) => state.uID);
 
     const [lists, setLists] = useState([]);
+    const [pages, setPages] = useState(9);
     const [category, setCategory] = useState(null);
     const [user, setUser] = useState([]);
 
     useEffect(() => {
         getList();
         getUser();
-    }, [uID, category]);
+    }, [uID,pages]);
+
+    useEffect(() => {
+        setPages(9);
+        getList();
+    }, [category]);
 
     async function getList() {
         await axios
             .get("/muleoba/mainList", { params: { uID, category } })
             .then((response) => {
-                setLists(response.data);
+                setLists(response.data.slice(0,pages));
+                console.log(pages);
                 console.log(uID);
                 console.log(category);
                 console.log(response.data);
@@ -30,7 +37,7 @@ export default function Mainlist() {
                 console.log(error)
             })
     }
-
+    
     async function getUser() {
         await axios
             .get("/muleoba/user", { params: { uID } })
@@ -43,6 +50,12 @@ export default function Mainlist() {
                 console.log(error)
             })
     }
+
+    const onClickPlusPage = (e) => {
+        console.log(pages);
+        setPages(pages + 9);
+        getList();
+    };
 
     const onChangeCate = (e) => {
         setCategory(
@@ -112,6 +125,9 @@ export default function Mainlist() {
                         })
                         : null
                 }
+            </div>
+            <div className="mainlist_plus_box" onClick={(e) => onClickPlusPage(e)}>
+                더보기
             </div>
         </div>
     );

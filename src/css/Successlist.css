@@ -1,10 +1,10 @@
 /* 스크롤바 설정*/
-.mainlist_content::-webkit-scrollbar{
+.successlist_content::-webkit-scrollbar{
     width: 6px;
 }
 
 /* 스크롤바 막대 설정*/
-.mainlist_content::-webkit-scrollbar-thumb{
+.successlist_content::-webkit-scrollbar-thumb{
     height: 17%;
     background-color: rgba(0,0,0,0);
     /* 스크롤바 둥글게 설정    */
@@ -12,61 +12,22 @@
 }
 
 /* 스크롤바 뒷 배경 설정*/
-.mainlist_content::-webkit-scrollbar-track{
+.successlist_content::-webkit-scrollbar-track{
     background-color: rgba(0,0,0,0);
 }
 
-.mainlist{
-    margin : 40px 50px 40px 50px;
+.successlist{
     width: 880px;
 }
 
-.mainlist_head{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-}
-
-.mainlist_head_title{
-    display: flex;
-}
-
-.mainlist_head_text{
-    display: flex;
-    align-items: flex-end;
-    font-size: 28px;
-    font-weight: bold;
-    margin-right: 20px;
-}
-
-.mainlist_head_area{
-    display: flex;
-    align-items: flex-end;
-    color: rgb(141, 141, 141);
-    margin-bottom: 3px;
-}
-
-.mainlist_head_cate{
-    height: 30px;
-    border: none;
-    background-color: rgb(248, 248, 248);
-    border-radius: 10px;
-}
-
-.mainlist_head_cate_box{
-    display: flex;
-    align-items: flex-end;
-    margin-bottom: 3px;
-}
-
-.mainlist_content{    
+.successlist_content{    
     display: flex;
     flex-wrap: wrap;
     height: 830px;
     overflow-y: scroll;
 }
 
-.mainlist_detailbox{
+.successlist_detailbox{
     display: flex;
     justify-content: center;
     background-color: rgb(248, 245, 255);
@@ -76,7 +37,7 @@
     margin : 20px 20.6px;
 }
 
-.mainlist_detail_photo{
+.successlist_detail_photo{
     display: flex;
     margin-top: 10px;
     background-color: rgb(226, 221, 236);
@@ -84,16 +45,16 @@
     height: 150px;
 }
 
-.mainlist_detail_text{
+.successlist_detail_text{
     margin-top: 10px;
 }
 
-.mainlist_detail_cate{
+.successlist_detail_cate{
     color :rgb(141, 141, 141);
     font-size: 15px;
 }
 
-.mainlist_detail_item{
+.successlist_detail_item{
     font-size: 18px;
     font-weight: bold;
     height: 60px;
@@ -106,12 +67,12 @@
     text-overflow:ellipsis;
 }
 
-.mainlist_detail_requestnum_box{
+.successlist_detail_requestnum_box{
     display: flex;
     justify-content: right;
 }
 
-.mainlist_detail_requestnum{
+.successlist_detail_requestnum{
     background-color: rgb(148, 80, 255);
     width:90px;
     height: 35px;
@@ -123,13 +84,13 @@
     font-weight: bold;
 }
 
-.mainlist_detail_requesticon{
+.successlist_detail_requesticon{
     width: 23px;
     height: 23px;
     margin-right: 8px;
 }
 
-.mainlist_plus_box{
+.successlist_plus_box{
     margin-top: 20px;
     display: flex;
     justify-content: center;
