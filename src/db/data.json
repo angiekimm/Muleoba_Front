@@ -1,6 +1,6 @@
 {
   "states": [
-    { "value": "default", "name": "시/도" },
+    { "value": false, "name": "시/도" },
     { "value": "Gyeonggi-do", "name": "경기도" },
     { "value": "Incheon", "name": "인천광역시" },
     { "value": "Daejeon", "name": "대전광역시" },

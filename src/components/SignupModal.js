@@ -47,7 +47,7 @@ export default function SignupModal({ closeModal, loginModal }) {
 
   // 지역: 시/도 선택에 따른 시/군/구 선택지 변경
   useEffect(() => {
-    setCity("default");
+    setCity(false);
     if (state === "Seoul")
       setCityList([
         { value: false, name: "시/군/구" },
@@ -150,7 +150,10 @@ export default function SignupModal({ closeModal, loginModal }) {
         { value: "Jung-gu", name: "중구" },
       ]);
     else if (state === "Sejong")
-      setCityList([{ value: "Sejong", name: "세종시" }]);
+      setCityList([
+        { value: false, name: "시/군/구" },
+        { value: "Sejong", name: "세종시" },
+      ]);
     else if (state === "Gyeonggi-do")
       setCityList([
         { value: false, name: "시/군/구" },
@@ -378,8 +381,14 @@ export default function SignupModal({ closeModal, loginModal }) {
   };
 
   useEffect(() => {
-    setAddress(state + " " + city);
-  }, [state, city]);
+    if (state && city) {
+      setAddress(state + " " + city);
+    }
+  }, [city]);
+
+  useEffect(() => {
+    console.log(address);
+  }, [address]);
 
   // 회원가입
   async function registerUser() {
