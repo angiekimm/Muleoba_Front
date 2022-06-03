@@ -21,7 +21,7 @@
   padding: 25px;
 
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 500px;
@@ -56,12 +56,14 @@
   border: none;
   font-size: 25px;
   cursor: pointer;
+  color: rgb(82, 82, 82);
 }
 
 .signupModal_container .signupModal_body {
   flex: 50%;
   font-size: 1.7rem;
   text-align: center;
+  margin-top: 10px;
 }
 
 .signupModal_container .signupModal_body .signupModal_emailinput {

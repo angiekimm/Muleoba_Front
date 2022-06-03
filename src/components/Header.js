@@ -1,16 +1,21 @@
-import React, { useState, useEffect, useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import "../css/Header.css";
 import "../css/Main.css";
 import logo from "../image/muleoba_logo.png";
-import { FaBell, FaBars, FaSearch, FaTrophy, FaWindowClose } from "react-icons/fa";
+import {
+  FaBell,
+  FaBars,
+  FaSearch,
+  FaTrophy,
+  FaWindowClose,
+} from "react-icons/fa";
 
 export default function Header() {
   //const alarmRef = useRef(null);
   const [alarm, setAlarm] = useState(false);
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
-
 
   /* 외부 영역을 클릭했을 때 알람창이 닫히도록 
   useEffect(() => {
@@ -54,7 +59,10 @@ export default function Header() {
               </div>
             </div>
             <div className="header_bell">
-              <FaBell className="header_bellIcon" onClick={() => setAlarm(!alarm)} />
+              <FaBell
+                className="header_bellIcon"
+                onClick={() => setAlarm(!alarm)}
+              />
             </div>
             <div className="header_menuBar">
               <NavLink to="">
@@ -64,14 +72,12 @@ export default function Header() {
           </div>
         </div>
         <div className="header_alarm_bar">
-          {
-            alarm ?
-              <div>
-                <div className="header_alarm_arrow"></div>
-                <div className="header_alarm_box">알람</div>
-              </div>
-              : null
-          }
+          {alarm ? (
+            <div>
+              <div className="header_alarm_arrow"></div>
+              <div className="header_alarm_box">알람</div>
+            </div>
+          ) : null}
         </div>
       </div>
       <nav className={sidebar ? "header_sideMenu active" : "header_sideMenu"}>
@@ -90,7 +96,7 @@ export default function Header() {
             </NavLink>
           </li>
           <li className="header_sideMenu_text">
-            <NavLink to="/mypage" onClick={showSidebar}>
+            <NavLink to="/main/mypage/mylist" onClick={showSidebar}>
               마이페이지
             </NavLink>
           </li>

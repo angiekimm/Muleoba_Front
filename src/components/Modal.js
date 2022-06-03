@@ -1,24 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "../css/Modal.css";
 import logo from "../image/muleoba_logo.png";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import axios from "axios";
 
 export default function Modal({ closeModal, signupModal }) {
-  // back으로 email, pw 보내서 사용자 확인. return값으로 뭘 받아야하지? 사용자가 맞다면, 토큰값?
-  async function checkUser() {
-    await axios
-      .get("/handemore/todo", { params: { email, pw } })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-
   const [email, setEmail] = useState("");
-  const [pw, setPw] = useState("");
+  const [password, setPassword] = useState("");
 
   const [pwdType, setPwdType] = useState({
     type: "password",
@@ -33,6 +21,22 @@ export default function Modal({ closeModal, signupModal }) {
       return { type: "password", visible: false };
     });
   };
+
+  // useEffect(() => {
+  //   console.log(email, password);
+  // }, [[password]]);
+
+  async function checkUser() {
+    await axios
+      .post("/muleoba/login", { email: email, password: password })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   return (
     <div className="modal_background">
       <div className="modal_container">
@@ -67,9 +71,9 @@ export default function Modal({ closeModal, signupModal }) {
             <input
               type={pwdType.type}
               placeholder="비밀번호"
-              value={pw}
+              value={password}
               onChange={(e) => {
-                setPw(e.target.value);
+                setPassword(e.target.value);
               }}
             />
             <span onClick={handlePwdType} className="modal_pwdIconCover">

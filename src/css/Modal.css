@@ -21,7 +21,7 @@
   padding: 25px;
 
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 500px;
@@ -50,6 +50,7 @@
   border: none;
   font-size: 25px;
   cursor: pointer;
+  color: rgb(82, 82, 82);
 }
 
 .modal_container .modal_body {
@@ -63,6 +64,7 @@
   display: flex;
   align-items: center;
   margin: auto;
+  flex-direction: column;
 }
 
 .modal_container .modal_body .modal_emailinput input {
@@ -76,6 +78,11 @@
   border-radius: 7px;
   color: black;
   outline: none;
+}
+
+.modal_error {
+  font-size: 13px;
+  color: red;
 }
 
 .modal_container .modal_body .modal_pwdinput {

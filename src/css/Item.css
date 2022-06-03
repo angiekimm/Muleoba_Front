@@ -1,7 +1,128 @@
+.item_container {
+  /* background-color: black; */
+  width: 800px;
+  height: 500px;
+  margin-top: 100px;
+}
+
+.item hr {
+  border: none;
+  height: 1px;
+  background: lightgray;
+}
+.item_uploadContainer {
+  display: flex;
+  margin-bottom: 20px;
+}
+.item_upload {
+  background-color: rgb(234, 234, 234);
+  width: 75px;
+  height: 65px;
+  padding: 5px;
+  border-radius: 15px;
+  cursor: pointer;
+  margin: auto 20px auto 50px;
+}
+.item_uploadIcon {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+.item_upload .item_camera {
+  margin: 0px auto 0px auto;
+  width: 30px;
+  height: 30px;
+  color: rgb(157, 157, 157);
+  /* background-color: black; */
+}
+.item_upload input {
+  display: none;
+  justify-content: center;
+}
+.item_upload span {
+  font-size: 12px;
+  text-align: center;
+  /* background-color: black; */
+}
 .item_preview {
   display: flex;
 }
 .item_previewImg {
-  width: 200px;
-  height: 200px;
+  width: 115px;
+  height: 115px;
+  border-radius: 10px;
+  margin-left: 5px;
+}
+
+.item_body input {
+  outline: none;
+  border: none;
+  font-size: 17px;
+  color: rgb(81, 81, 81);
+  font-family: sans-serif;
+}
+
+.item_itemName {
+  height: 70px;
+  display: flex;
+}
+
+.item_itemName input {
+  width: 500px;
+}
+
+.item_label {
+  width: 150px;
+  margin: auto 0px auto 30px;
+  color: rgb(114, 114, 114);
+}
+
+.item_itemCategory {
+  display: flex;
+  height: 80px;
+}
+.item_content {
+  height: 350px;
+}
+.item_content .item_label {
+  margin: 15px 0px auto 30px;
+}
+textarea {
+  width: 750px;
+  height: 270px;
+  border: none;
+  margin-top: 40px;
+  margin-left: 30px;
+  outline: none;
+  font-size: 17px;
+  color: rgb(56, 56, 56);
+  font-family: sans-serif;
+  resize: none;
+}
+.item_btn {
+  width: 320px;
+  /* background-color: black; */
+  margin: 20px 0px auto auto;
+}
+.item_btn .item_cancelBtn {
+  width: 150px;
+  height: 45px;
+  border: none;
+  background-color: rgb(232, 232, 232);
+  color: rgb(44, 44, 44);
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.item_btn .item_submitBtn {
+  width: 150px;
+  height: 45px;
+  border: none;
+  background-color: rgb(148, 80, 255);
+  color: white;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
 }
