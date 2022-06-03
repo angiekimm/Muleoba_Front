@@ -5,13 +5,7 @@ import { useSelector } from 'react-redux';
 import "../css/Header.css";
 import "../css/Main.css";
 import logo from "../image/muleoba_logo.png";
-import {
-  FaBell,
-  FaBars,
-  FaSearch,
-  FaTrophy,
-  FaWindowClose,
-} from "react-icons/fa";
+import { FaBell, FaBars, FaSearch, FaTrophy, FaWindowClose } from "react-icons/fa";
 
 
 
@@ -131,10 +125,7 @@ export default function Header() {
               </div>
             </div>
             <div className="header_bell">
-              <FaBell
-                className="header_bellIcon"
-                onClick={() => setAlarm(!alarm)}
-              />
+            <FaBell className="header_bellIcon" onClick={() => setAlarm(!alarm)} />
             </div>
             <div className="header_menuBar">
                 <FaBars className="header_barIcon" onClick={() => setSidebar(!sidebar)} />
@@ -142,12 +133,14 @@ export default function Header() {
           </div>
         </div>
         <div className="header_alarm_bar">
-          {alarm ? (
-            <div>
-              <div className="header_alarm_arrow"></div>
-              <div className="header_alarm_box">알람</div>
-            </div>
-          ) : null}
+        {
+            alarm ?
+              <div>
+                <div className="header_alarm_arrow"></div>
+                <div className="header_alarm_box">알람</div>
+              </div>
+              : null
+          }
         </div>
       </div>
       <nav className={sidebar ? "header_sideMenu active" : "header_sideMenu"}>
