@@ -69,7 +69,6 @@ export default function Header() {
   newsTicker(2300); */
 
 
-
   /* 외부 영역을 클릭했을 때 알람창이 닫히도록 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -126,7 +125,7 @@ export default function Header() {
               </div>
             </div>
             <div className="header_bell">
-              <FaBell className="header_bellIcon" onClick={() => setAlarm(!alarm)} />
+            <FaBell className="header_bellIcon" onClick={() => setAlarm(!alarm)} />
             </div>
             <div className="header_menuBar">
                 <FaBars className="header_barIcon" onClick={() => setSidebar(!sidebar)} />
@@ -134,7 +133,7 @@ export default function Header() {
           </div>
         </div>
         <div className="header_alarm_bar">
-          {
+        {
             alarm ?
               <div>
                 <div className="header_alarm_arrow"></div>

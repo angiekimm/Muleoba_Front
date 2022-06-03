@@ -8,15 +8,18 @@ import axios from "axios";
 
 export default function SignupModal({ closeModal, loginModal }) {
   const [email, setEmail] = useState("");
-  const [pw, setPw] = useState("");
+  const [password, setPassword] = useState("");
   const [pw2, setPw2] = useState("");
   const [name, setName] = useState("");
-  const [nickname, setNickname] = useState("");
+  const [nickName, setNickName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
+  const [address, setAddress] = useState("");
   const [cityList, setCityList] = useState([
     { value: false, name: "시/군/구" },
   ]);
+  const [flag, setFlag] = useState(false);
 
   //오류메세지 상태저장
   const [pwMsg, setPwMsg] = useState("");
@@ -28,27 +31,12 @@ export default function SignupModal({ closeModal, loginModal }) {
   const [isPw, setIsPw] = useState(false);
   const [isNickname, setIsNickname] = useState(false);
 
-  // 이메일
-  const onChangeEmail = useCallback((e) => {
-    const emailRegex =
-      /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-    const emailCurrent = e.target.value;
-    setEmail(emailCurrent);
-
-    if (!emailRegex.test(emailCurrent)) {
-      setEmailMsg("이메일은 123@muleoba.com 과 같은 형식으로 적어주세요.");
-    } else {
-      setEmailMsg("");
-      setIsEmail(true);
-    }
-  });
-
   // 비밀번호 확인
   const onChangePw = useCallback((e) => {
     const pw2Current = e.target.value;
     setPw2(pw2Current);
 
-    if (pw === pw2Current) {
+    if (password === pw2Current) {
       setPwMsg("");
       setIsPw(true);
     } else {
@@ -57,24 +45,9 @@ export default function SignupModal({ closeModal, loginModal }) {
     }
   });
 
-  async function registerUser() {
-    await axios
-      .get("/handemore/todo", {
-        params: { email, pw, name, nickname, state, city },
-      })
-      .then((response) => {
-        console.log(response.data);
-        // 로그인 페이지로 이동
-        closeModal(false);
-        loginModal(true);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-
+  // 지역: 시/도 선택에 따른 시/군/구 선택지 변경
   useEffect(() => {
-    setCity("default");
+    setCity(false);
     if (state === "Seoul")
       setCityList([
         { value: false, name: "시/군/구" },
@@ -177,7 +150,10 @@ export default function SignupModal({ closeModal, loginModal }) {
         { value: "Jung-gu", name: "중구" },
       ]);
     else if (state === "Sejong")
-      setCityList([{ value: "Sejong", name: "세종시" }]);
+      setCityList([
+        { value: false, name: "시/군/구" },
+        { value: "Sejong", name: "세종시" },
+      ]);
     else if (state === "Gyeonggi-do")
       setCityList([
         { value: false, name: "시/군/구" },
@@ -369,7 +345,7 @@ export default function SignupModal({ closeModal, loginModal }) {
       ]);
   }, [state]);
 
-  //지역을 설정하는 부분
+  //지역을 설정
   const handleChangeState = (e) => {
     setState(e.target.value);
   };
@@ -377,6 +353,7 @@ export default function SignupModal({ closeModal, loginModal }) {
     setCity(e.target.value);
   };
 
+  // 비밀번호 보이기/숨기기 선택
   const [pwdType, setPwdType] = useState({
     type: "password",
     visible: false,
@@ -402,6 +379,117 @@ export default function SignupModal({ closeModal, loginModal }) {
       return { type: "password", visible: false };
     });
   };
+
+  useEffect(() => {
+    if (state && city) {
+      setAddress(state + " " + city);
+    }
+  }, [city]);
+
+  useEffect(() => {
+    console.log(address);
+  }, [address]);
+
+  // 회원가입
+  async function registerUser() {
+    await axios
+      .post("/muleoba/signup", {
+        email: email,
+        password: password,
+        name: name,
+        nickName: nickName,
+        phoneNumber: phoneNumber,
+        address: address,
+      })
+      .then((response) => {
+        console.log(response.data);
+        if (response.data === 1) {
+          // 로그인 페이지로 이동
+          closeModal(false);
+          loginModal(true);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  // 닉네임 중복확인
+  const onChangeNickName = useCallback((e) => {
+    const nickNameCurrent = e.target.value;
+    setNickName(nickNameCurrent);
+  });
+
+  useEffect(() => {
+    if (nickName) {
+      checkNickName();
+    }
+  }, [nickName]);
+
+  useEffect(() => {
+    if (!isNickname) {
+      setNicknameMsg("중복된 닉네임입니다.");
+    } else {
+      setNicknameMsg("");
+    }
+  }, [isNickname]);
+
+  // 닉네임 중복확인
+  async function checkNickName() {
+    await axios
+      .get("/muleoba/check/nickname", {
+        params: { nickName },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setIsNickname(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  // 이메일
+  const onChangeEmail = useCallback((e) => {
+    const emailRegex =
+      /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    const emailCurrent = e.target.value;
+    setEmail(emailCurrent);
+
+    if (!emailRegex.test(emailCurrent)) {
+      setEmailMsg("이메일은 123@muleoba.com 과 같은 형식으로 적어주세요.");
+      setIsEmail(false);
+    } else {
+      checkEmail();
+    }
+  });
+
+  useEffect(() => {
+    if (email.length > 6) {
+      checkEmail();
+    }
+  }, [email]);
+
+  // 이메일 중복확인
+  async function checkEmail() {
+    await axios
+      .get("/muleoba/check/email", {
+        params: { email },
+      })
+      .then((response) => {
+        console.log(response.data);
+        if (response.data) {
+          setIsEmail(response.data);
+          setEmailMsg("");
+        } else {
+          setEmailMsg("존재하는 이메일입니다.");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   return (
     <div className="signupModal_background">
       <div className="signupModal_container">
@@ -438,9 +526,9 @@ export default function SignupModal({ closeModal, loginModal }) {
             <input
               type={pwdType.type}
               placeholder="비밀번호"
-              value={pw}
+              value={password}
               onChange={(e) => {
-                setPw(e.target.value);
+                setPassword(e.target.value);
               }}
             />
             <span onClick={handlePwdType} className="signupModal_pwdIconCover">
@@ -483,9 +571,20 @@ export default function SignupModal({ closeModal, loginModal }) {
             <input
               type="text"
               placeholder="닉네임"
-              value={nickname}
+              value={nickName}
+              onChange={onChangeNickName}
+            />
+            {nickName && (
+              <span className="signupModal_error">{nicknameMsg}</span>
+            )}
+          </div>
+          <div className="signupModal_emailinput">
+            <input
+              type="text"
+              placeholder="핸드폰번호"
+              value={phoneNumber}
               onChange={(e) => {
-                setNickname(e.target.value);
+                setPhoneNumber(e.target.value);
               }}
             />
           </div>
@@ -504,7 +603,15 @@ export default function SignupModal({ closeModal, loginModal }) {
         </div>
         <div
           className={
-            !(isEmail && isPw && name && nickname && state && city)
+            !(
+              isEmail &&
+              isPw &&
+              name &&
+              isNickname &&
+              state &&
+              city &&
+              phoneNumber
+            )
               ? "signupModal_disabled"
               : "signupModal_btn"
           }
@@ -512,7 +619,17 @@ export default function SignupModal({ closeModal, loginModal }) {
           <button
             type="submit"
             onClick={registerUser}
-            disabled={!(isEmail && isPw && name && nickname && city && state)}
+            disabled={
+              !(
+                isEmail &&
+                isPw &&
+                name &&
+                isNickname &&
+                city &&
+                state &&
+                phoneNumber
+              )
+            }
           >
             회원가입
           </button>
