@@ -1,6 +1,6 @@
 {
   "states": [
-    { "value": "default", "name": "시/도" },
+    { "value": false, "name": "시/도" },
     { "value": "Gyeonggi-do", "name": "경기도" },
     { "value": "Incheon", "name": "인천광역시" },
     { "value": "Daejeon", "name": "대전광역시" },
@@ -21,10 +21,10 @@
   ],
   "category": [
     { "value": "default", "name": "선택" },
-    { "value": "fashion", "name": "패션의류/잡화/뷰티" },
+    { "value": "fashion", "name": "패션의류/뷰티" },
     { "value": "family", "name": "출산/유아용품" },
     { "value": "food", "name": "식품" },
-    { "value": "house", "name": "주방용품/생활용품" },
+    { "value": "house", "name": "주방/생활용품" },
     { "value": "interior", "name": "홈인테리어" },
     { "value": "digital", "name": "가전디지털" },
     { "value": "sports", "name": "스포츠/레저" },
