@@ -1,5 +1,4 @@
 .item_container {
-  /* background-color: black; */
   width: 800px;
   height: 500px;
   margin-top: 100px;
@@ -33,7 +32,6 @@
   width: 30px;
   height: 30px;
   color: rgb(157, 157, 157);
-  /* background-color: black; */
 }
 .item_upload input {
   display: none;
@@ -42,7 +40,6 @@
 .item_upload span {
   font-size: 12px;
   text-align: center;
-  /* background-color: black; */
 }
 .item_preview {
   display: flex;
@@ -69,6 +66,8 @@
 
 .item_itemName input {
   width: 500px;
+  height: 50px;
+  margin: auto auto auto 0px;
 }
 
 .item_label {
@@ -125,4 +124,18 @@ textarea {
   border-radius: 8px;
   font-size: 20px;
   cursor: pointer;
+}
+
+/* .Toastify__toast-container {
+  position: fixed;
+  height: 400px;
+} */
+
+:root {
+  --toastify-toast-width: 350px;
+  --toastify-toast-background: #000;
+  --toastify-toast-min-height: 64px;
+  --toastify-toast-max-height: 800px;
+  --toastify-font-family: sans-serif;
+  --toastify-text-color-dark: #fff;
 }

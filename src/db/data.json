@@ -20,7 +20,7 @@
     { "value": "서울특별시", "name": "서울특별시" }
   ],
   "category": [
-    { "value": "default", "name": "선택" },
+    { "value": false, "name": "선택" },
     { "value": "패션의류/잡화", "name": "패션의류/잡화" },
     { "value": "뷰티", "name": "뷰티" },
     { "value": "출산/유아동", "name": "출산/유아동" },

@@ -5,16 +5,24 @@ import "../css/Item.css";
 import SelectBox from "./SelectBox";
 import data from "../db/data.json";
 import { FaTrashAlt, FaCamera } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Item() {
   const uID = useSelector((state) => state.uID);
+
+  const iID = "1";
+  const naviate = useNavigate();
 
   const [category, setCategory] = useState("");
   const [itemName, setItemName] = useState("");
   const [content, setContent] = useState("");
   const [showImages, setShowImages] = useState([]);
 
+  let formData = new FormData(); // formData 객체를 생성한다.
+
+  // 이미지 업로드
   const handleAddImages = (e) => {
     const imageLists = e.target.files;
     let imageUrlLists = [];
@@ -30,17 +38,13 @@ export default function Item() {
     setShowImages(imageUrlLists);
   };
 
-  // const handleDeleteImage = (index) => {
-  //   setShowImages(showImages.filter((_, id) => id !== index));
-  // };
-
+  // 게시물 등록
   const onSubmit = async (e) => {
     e.preventDefault();
     e.persist();
 
     // 이미지 저장
-    let files = e.target.file.files;
-    let formData = new FormData(); // formData 객체를 생성한다.
+    let files = e.target.profile_files.files;
     const filesLength = files.length > 5 ? 5 : files.length;
 
     for (let i = 0; i < filesLength; i++) {
@@ -52,64 +56,115 @@ export default function Item() {
       itemName: itemName,
       category: category,
       content: content,
+      itemID: iID, // 수정할때
+      // uId: uID,
     };
-    formData.append("data", JSON.stringify(dataSet));
+    formData.append(
+      "data",
+      new Blob([JSON.stringify(dataSet)], { type: "application/json" })
+    ); // JSON 형식으로 파싱 후 추가
 
-    async function uploadItem() {
-      //formData 확인하기
-      for (let value of formData.values()) {
-        console.log(value);
-      }
-
-      await axios
-        .post(
-          "/muleoba/uploadItem",
-          {
-            formData: formData,
-          },
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        )
+    for (let value of formData.values()) {
+      console.log(value);
+    }
+    if (!iID) {
+      const uploadItem = await axios({
+        method: "POST",
+        url: "/muleoba/uploadItem",
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        data: formData,
+      })
         .then((response) => {
           console.log(response.data);
+          toast.success("물품 등록 완료!", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            progress: undefined,
+          });
+          window.setTimeout(() => {
+            naviate("/main/mypage/mylist");
+          }, 2000);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      const updateItem = await axios({
+        method: "POST",
+        url: "/muleoba/updateItem",
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        data: formData,
+      })
+        .then((response) => {
+          console.log(response.data);
+          toast.success("물품 수정 완료!", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+          });
+          window.setTimeout(() => {
+            naviate("/main"); // 상세페이지로 이동
+          }, 2000);
         })
         .catch((error) => {
           console.error(error);
         });
     }
-
-    uploadItem();
-
-    // const uploadItem = await axios({
-    //   method: "POST",
-    //   url: "/muleoba/uploadItem",
-    //   mode: "cors",
-    //   headers: {
-    //     "Content-Type": "multipart/form-data",
-    //   },
-    //   data: formData,
-    // })
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
   };
 
+  // 카테고리 저장
   const handleChangeCategory = (e) => {
     setCategory(e.target.value);
   };
 
+  // 카메라 이미지 클릭 시 파일 업로드 창 띄우기
   const selectFile = useRef("");
+
+  // iId가 같이 넘어온다면 데이터 불러와서 보여주고, 없다면 등록페이지
+  useEffect(() => {
+    if (iID) {
+      getItemInfo();
+      // iId에 해당하는 사진, 내용을 불러오기
+      async function getItemInfo() {
+        await axios
+          .get("/muleoba/getItem", {
+            params: { iID },
+          })
+          .then((response) => {
+            console.log(response.data);
+            // 데이터 저장
+            // setShowImages();
+            setItemName(response.data.item);
+            setCategory(response.data.category);
+            setContent(response.data.content);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    }
+  }, []);
+  useEffect(() => {
+    console.log("category: ", category);
+  }, []);
 
   return (
     <div className="item">
+      <ToastContainer theme="dark" />
       <div className="item_container">
-        <form onSubmit={onSubmit} encType="multipart/form-data">
+        <form
+          onSubmit={(e) => {
+            onSubmit(e);
+          }}
+          encType="multipart/form-data"
+        >
           <div className="item_uploadContainer">
             <div
               className="item_upload"
@@ -121,7 +176,7 @@ export default function Item() {
                   type="file"
                   id="file"
                   name="profile_files"
-                  multiple
+                  multiple="multiple"
                   accept="image/*"
                   ref={selectFile}
                   onChange={handleAddImages}
@@ -133,7 +188,6 @@ export default function Item() {
               {showImages.map((image, index) => (
                 <div key={index}>
                   <img src={image} alt="item" className="item_previewImg" />
-                  {/* <FaTrashAlt onClick={() => handleDeleteImage(index)} /> */}
                 </div>
               ))}
             </div>
@@ -149,6 +203,7 @@ export default function Item() {
                 maxLength="30"
                 autoFocus
                 placeholder="물품명을 입력하세요."
+                defaultValue={itemName}
                 onChange={(e) => {
                   setItemName(e.target.value);
                 }}
@@ -161,7 +216,7 @@ export default function Item() {
               </div>
               <SelectBox
                 address={data.category}
-                defaultValue="default"
+                defaultValue={category}
                 handleChangeState={handleChangeCategory}
               />
             </div>
@@ -174,6 +229,7 @@ export default function Item() {
                 cols="5"
                 rows="5"
                 placeholder="물품에 대해 간단히 소개해주세요."
+                defaultValue={content}
                 onChange={(e) => {
                   setContent(e.target.value);
                 }}
@@ -186,7 +242,7 @@ export default function Item() {
               <button className="item_cancelBtn">취소</button>
             </NavLink>
             <button type="submit" className="item_submitBtn">
-              등록
+              {iID ? "수정" : "등록"}
             </button>
           </div>
         </form>
