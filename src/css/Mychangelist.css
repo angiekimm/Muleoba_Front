@@ -1,0 +1,220 @@
+/* 스크롤바 설정*/
+.mychangelist_content::-webkit-scrollbar{
+    width: 6px;
+}
+
+/* 스크롤바 막대 설정*/
+.mychangelist_content::-webkit-scrollbar-thumb{
+    height: 17%;
+    background-color: rgba(0,0,0,0);
+    /* 스크롤바 둥글게 설정    */
+    border-radius: 10px;    
+}
+
+/* 스크롤바 뒷 배경 설정*/
+.mychangelist_content::-webkit-scrollbar-track{
+    background-color: rgba(0,0,0,0);
+}
+
+.mychangelist{
+    width: 880px;
+}
+
+.mychangelist_content{    
+    display: flex;
+    flex-wrap: wrap;
+    height: 830px;
+    overflow-y: scroll;
+    justify-content: center;
+}
+
+.mychangelist_content_detail{
+    display: flex;
+    flex-direction: column;
+}
+
+.mychangelist_two_box{
+    display: flex;
+}
+
+.mychangelist_arrow_box{
+    display: flex;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+.mychangelist_arrow{
+    width: 40px;
+    height: 40px;
+    color: rgba(154, 149, 187, 0.699);
+}
+
+.mychangelist_cancel_box{
+    display: flex;
+    width: 60px;
+    justify-content: right;
+    align-items: center;
+}
+
+.mychangelist_cancel_box_icon{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    border: 2px solid rgb(150, 150, 150);
+    cursor: pointer;
+}
+
+.mychangelist_cancel{
+    width: 30px;
+    height: 30px;
+    color: rgb(189, 189, 189);
+}
+
+.mychangelist_detailbox{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(248, 245, 255);
+    border-radius: 15px;
+    width: 250px;
+    height: 300px;
+    margin : 20px 20.6px;
+}
+
+.mychangelist_detail_photo{
+    display: flex;
+    margin-top: 10px;
+    background-color: rgb(226, 221, 236);
+    width: 200px;
+    height: 150px;
+}
+
+.mychangelist_detail_text{
+    margin-top: 10px;
+}
+
+.mychangelist_detail_cate{
+    color :rgb(141, 141, 141);
+    font-size: 15px;
+}
+
+.mychangelist_detail_item{
+    font-size: 18px;
+    font-weight: bold;
+    height: 60px;
+    width:200px;
+    white-space: normal;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.mychangelist_detail_requestnum_box{
+    display: flex;
+    justify-content: right;
+}
+
+.mychangelist_detail_requestnum{
+    background-color: rgb(148, 80, 255);
+    width:90px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+.mychangelist_detail_requesticon{
+    width: 23px;
+    height: 23px;
+    margin-right: 8px;
+}
+
+.mychangelist_plus_box{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    height: 37px;
+    background-color: rgb(219, 217, 235);
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    color: rgb(39, 23, 49);
+    cursor: pointer;
+}
+
+
+
+
+
+.mychangelist_detailbox_two{
+    display: flex;
+    justify-content: center;
+    background-color: #f0f3ff;
+    border-radius: 15px;
+    width: 250px;
+    height: 300px;
+    margin : 20px 20.6px;
+}
+
+.mychangelist_detail_photo_two{
+    display: flex;
+    margin-top: 10px;
+    background-color: rgb(214, 216, 240);
+    width: 200px;
+    height: 150px;
+}
+
+.mychangelist_detail_text_two{
+    margin-top: 10px;
+}
+
+.mychangelist_detail_cate_two{
+    color :rgb(141, 141, 141);
+    font-size: 15px;
+}
+
+.mychangelist_detail_item_two{
+    font-size: 18px;
+    font-weight: bold;
+    height: 60px;
+    width:200px;
+    white-space: normal;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.mychangelist_detail_requestnum_box_two{
+    display: flex;
+    justify-content: right;
+}
+
+.mychangelist_detail_requestnum_two{
+    background-color: rgb(92, 80, 255);
+    width:90px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+.mychangelist_detail_requesticon_two{
+    width: 23px;
+    height: 23px;
+    margin-right: 8px;
+}
