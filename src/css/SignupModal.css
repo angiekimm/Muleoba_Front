@@ -178,3 +178,9 @@
   width: 250px;
   margin: auto;
 }
+
+/* 팝업 알림창 */
+.Toastify__toast-container {
+  width: 350px;
+  font-size: large;
+}
