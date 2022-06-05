@@ -1,3 +1,21 @@
+/* 스크롤바 설정*/
+.header_alarm_inner::-webkit-scrollbar{
+  width: 6px;
+}
+
+/* 스크롤바 막대 설정*/
+.header_alarm_inner::-webkit-scrollbar-thumb{
+  height: 17%;
+  background-color: rgba(188, 165, 230, 0.5);
+  /* 스크롤바 둥글게 설정    */
+  border-radius: 10px;    
+}
+
+/* 스크롤바 뒷 배경 설정*/
+.header_alarm_inner::-webkit-scrollbar-track{
+  background-color: rgba(0,0,0,0);
+}
+
 .header {
   padding: 25px 0;
   box-shadow: 0 2px 28px 0 rgba(0 0 0 /6%);
@@ -5,6 +23,10 @@
   display: flex;
   align-items: center;
   background-color: white;
+/*   position: fixed;
+  top: 0;
+  left: 0;
+  right: 0; */
 }
 
 .header_flex {
@@ -117,46 +139,45 @@
   justify-content: center;
 }
 
+.header_bell{
+  border-radius: 30px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: rgb(244, 233, 255);
+}
+
 .header_bellIcon {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  display: flex;
+  color: rgb(181, 136, 255);
+}
+
+.header_barIcon {
+  width: 33px;
+  height: 32px;
   align-items: center;
   display: flex;
   cursor: pointer;
 }
 
-.header_barIcon {
-  width: 30px;
-  height: 30px;
-  align-items: center;
-  display: flex;
-}
-
-.header_alarm_arrow {
-  display: flex;
-  border: 1px solid;
-  border-color: rgb(201, 201, 201);
-  margin: -3px 0 0 260px;
-  width: 0px;
-  height: 0px;
-  border-bottom: 15px solid rgb(245, 239, 255);
-  border-top: 0px solid transparent;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-}
-
 .header_alarm_box {
-  margin: -2px 0 0 0;
-  display: flex;
+  margin: 2px 53px 0 0;
   z-index: 1;
   position: relative;
-  /*border : 1px solid;
-  border-color: rgb(201, 201, 201); */
-  border-radius: 20px;
+  border : 1px solid;
+  border-color: rgb(63, 63, 63);
+  border-radius: 15px;
   width: 350px;
-  height: 300px;
-  background-color: rgb(254, 253, 255);
+  height: 220px;
+  background-color: rgb(255, 255, 255);
   box-shadow: 0 4px 15px -8px rgb(83, 83, 83);
+  overflow : hidden;
 }
 
 .header_alarm_bar {
@@ -164,7 +185,37 @@
   display: flex;
   justify-content: right;
 }
+
+.header_alarm_header{
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(240, 240, 240);
+  height: 30px;
+  font-size: 14px;
+}
+
+.header_alarm_header_left{
+  display: flex;
+  margin : 3px 0 0 10px; 
+}
+
+.header_alarm_header_right{
+  display: flex;
+  margin : 3px 3px 0 0;
+  color: rgb(104, 104, 104);
+}
+
+.header_alarm_header_delete{
+  margin: 0 7px 0 7px;
+}
+
+.header_alarm_inner{
+  margin : 3px 10px;
+  overflow-y: scroll;
+}
+
 .header_sideMenu {
+  z-index: 1;
   background-color: white;
   border: 0.1px solid lightgray;
   width: 300px;
@@ -196,6 +247,7 @@
 .header_closeIcon {
   width: 30px;
   height: 30px;
+  cursor: pointer;
 }
 
 .header_sideMenu_text {

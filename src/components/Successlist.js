@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { FaRegHandPaper } from "react-icons/fa";
+import logo from "../image/muleoba_success_logo.png";
 import "../css/Mypage.css";
 import "../css/Successlist.css";
 
@@ -13,13 +14,13 @@ export default function Successlist() {
 
     useEffect(() => {
         getList();
-    }, [uID,pages]);
+    }, [uID, pages]);
 
     async function getList() {
         await axios
             .get("/muleoba/successlist", { params: { uID } })
             .then((response) => {
-                setLists(response.data.slice(0,pages));
+                setLists(response.data.slice(0, pages));
                 console.log(pages);
                 console.log(uID);
                 console.log(response.data);
@@ -47,19 +48,26 @@ export default function Successlist() {
                                         <div className="successlist_detail_photo">
                                         </div>
                                         <div className="successlist_detail_text">
+
                                             <div className="successlist_detail_cate">
                                                 {list.category}
                                             </div>
                                             <div className="successlist_detail_item">
                                                 {list.item}
-                                            </div>    
+                                            </div>
                                         </div>
                                         <div className="successlist_detail_requestnum_box">
                                             <div className="successlist_detail_requestnum">
-                                                <FaRegHandPaper className="successlist_detail_requesticon"/>
+                                                <FaRegHandPaper className="successlist_detail_requesticon" />
                                                 {list.requestNum}
                                             </div>
-                                        </div>    
+                                        </div>
+                                    </div>
+                                    <div className="successlist_detail_stamp_box">
+                                        {/* <img src={logo} className="successlist_detail_stamp" /> */}
+                                        <div className="successlist_detail_stamp">
+                                            거래완료
+                                        </div>
                                     </div>
                                 </div>
                             )

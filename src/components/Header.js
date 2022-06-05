@@ -17,10 +17,30 @@ export default function Header() {
   const [alarm, setAlarm] = useState(false);
   const [sidebar, setSidebar] = useState(false);
   const [rank, setRank] = useState([])
-  
-  
+
+  const modalRef = useRef();
+
   //const showSidebar = () => setSidebar(!sidebar);
 
+
+
+  const onClickAlarmInform = (e) => {
+    getAlarm();
+  };
+
+  async function getAlarm() {
+    await axios
+      .get("/muleoba/alarm")
+      .then((response) => {
+
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  /*거래 최다 닉네임 랭킹*/
   async function fetchRank() {
     await axios
       .get("/muleoba/bestuser")
@@ -37,54 +57,56 @@ export default function Header() {
     fetchRank();
     var i = 1;
 
-    window.setInterval(function(){
+    window.setInterval(function () {
       document.getElementById("header_ranking_textbox").style.transitionDuration = "400ms";
-      document.getElementById("header_ranking_textbox").style.marginTop = (i*-2.19) + "em";
+      document.getElementById("header_ranking_textbox").style.marginTop = (i * -2.19) + "em";
 
       i++;
-      i%=5;
-      
-    },2500);
+      i %= 5;
+
+    }, 2500);
   }, [])
-  
 
-
-/*   const newsTicker = (timer) => {
-    const ranking = document.querySelector('.header_ranking_textbox');
-  
-    window.setInterval(() => {
-      ranking.style.transitionDuration = "500ms";
-      ranking.style.marginTop = "0px";
-  
-      window.setTimeout(() => {
-        ranking.style.transitionDuration = "500ms";
-        ranking.style.marginTop = "-137px";
-        
-        
-      }, 800)
-  
-    }, timer)
-  }
-  
-  newsTicker(2300); */
-
-
-  /* 외부 영역을 클릭했을 때 알람창이 닫히도록 
+  /*외부영역 클릭 감지*/
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (
-        alarmRef.current &&
-        !alarmRef.current.contains(event.target)
-      ) {
-        setAlarm(false); 
+    document.addEventListener('mousedown', clickModalOutside);
+      return () => {
+      document.removeEventListener('mousedown', clickModalOutside);
+    };
+  });
+
+  const clickModalOutside = e => {
+    headerMenu(e);
+    var target = e.target;
+
+    if (target == e.currentTarget.querySelector('.header_alarm_box')) {
+      return;
+    }
+    var divtags = e.currentTarget.querySelector('.header_alarm_box').querySelectorAll('div');
+    for (var i = 0; i < divtags.length; i++) {
+      if (divtags[i] == target) {
+        return;
       }
     }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [alarmRef]);
-*/
+    setAlarm(false);
+  };
+
+  const headerMenu = e => {
+    var target = e.target;
+
+    if (target == e.currentTarget.querySelector('.header_sideMenu')) {
+      return;
+    }
+    var menudivtags = e.currentTarget.querySelector('.header_sideMenu').querySelectorAll("div");
+    for (var i = 0; i < menudivtags.length; i++) {
+      if (menudivtags[i] == target) {
+        return;
+      }
+    }
+    setSidebar(false);
+  };
+
+
   return (
     <div className="header">
       <div className="container ">
@@ -116,7 +138,7 @@ export default function Header() {
                             <div className="header_rank">
                               {rank}
                             </div>
-                          </div>  
+                          </div>
                         </div>
                       )
                     })
@@ -124,44 +146,62 @@ export default function Header() {
                 }
               </div>
             </div>
-            <div className="header_bell">
-            <FaBell className="header_bellIcon" onClick={() => setAlarm(!alarm)} />
+            <div className="header_bell" onClick={() => setAlarm(!alarm)} >
+              <FaBell className="header_bellIcon" />
             </div>
             <div className="header_menuBar">
-                <FaBars className="header_barIcon" onClick={() => setSidebar(!sidebar)} />
+              <FaBars className="header_barIcon" onClick={() => setSidebar(!sidebar)} />
             </div>
           </div>
         </div>
         <div className="header_alarm_bar">
-        {
+          {
             alarm ?
               <div>
-                <div className="header_alarm_arrow"></div>
-                <div className="header_alarm_box">알람</div>
+                <div className="header_alarm_box" onClick={() => onClickAlarmInform()}>
+
+                  <div className="header_alarm_header">
+                    <div className="header_alarm_header_left">
+                      전체알림
+                    </div>
+                    <div className="header_alarm_header_right">
+                      <div className="header_alarm_header_delete">
+                        전체삭제
+                      </div>
+                      |
+                      <div className="header_alarm_header_delete">
+                        읽은 알림 삭제
+                      </div>
+                    </div>
+                  </div>
+                  <div className="header_alarm_inner">
+                    알람
+                  </div>
+                </div>
               </div>
               : null
           }
         </div>
       </div>
       <nav className={sidebar ? "header_sideMenu active" : "header_sideMenu"}>
-        <ul className="header_sideMenu_items">
-          <li className="header_sideMenu_toggle">
-              <FaWindowClose
-                className="header_closeIcon"
-                onClick={() => setSidebar(!sidebar)}
-              />   
-          </li>
-          <li className="header_sideMenu_text">
+        <div className="header_sideMenu_items">
+          <div className="header_sideMenu_toggle">
+            <FaWindowClose
+              className="header_closeIcon"
+              onClick={() => setSidebar(!sidebar)}
+            />
+          </div>
+          <div className="header_sideMenu_text">
             <NavLink to="/" onClick={() => setSidebar(!sidebar)}>
-              Home
+              <div>Home</div>
             </NavLink>
-          </li>
-          <li className="header_sideMenu_text">
+          </div>
+          <div className="header_sideMenu_text">
             <NavLink to="/main/mypage/mylist" onClick={() => setSidebar(!sidebar)}>
-              마이페이지
+              <div>마이페이지</div>
             </NavLink>
-          </li>
-        </ul>
+          </div>
+        </div>
       </nav>
     </div>
   );

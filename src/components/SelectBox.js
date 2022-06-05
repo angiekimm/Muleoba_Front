@@ -1,4 +1,3 @@
-import { unstable_useId } from "@mui/material";
 import React from "react";
 import "../css/SelectBox.css";
 import uuid from "react-uuid";
