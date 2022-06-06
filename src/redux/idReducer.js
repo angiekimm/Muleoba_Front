@@ -1,7 +1,9 @@
-function reducer(currentState, action) {
+
+
+export default function idreducer(currentState, action) {
     if (currentState === undefined) {
       return {
-        uID: '1'
+        uID: '2'
       };
     }
     const newState = { ...currentState };
@@ -10,5 +12,3 @@ function reducer(currentState, action) {
     }
     return newState;
   }
-
-  export default reducer;

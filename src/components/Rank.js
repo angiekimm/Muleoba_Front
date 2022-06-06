@@ -3,11 +3,11 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import "../css/Header.css";
 import "../css/Main.css";
-
+import {uID} from "../redux/idReducer";
 
 export default function Rank() {
 
-  const uID = useSelector((state) => state.uID);
+  const uID = useSelector((state) => state.idReducer.uID);
 
   const [rank, setRank] = useState([])
 

@@ -4,9 +4,10 @@ import axios from 'axios';
 import { FaRegHandPaper } from "react-icons/fa";
 import "../css/Mypage.css";
 import "../css/Mylist.css";
+import {uID} from "../redux/idReducer";
 
 export default function Mylist() {
-    const uID = useSelector((state) => state.uID);
+    const uID = useSelector((state) => state.idReducer.uID);
 
     const [lists, setLists] = useState([]);
     const [pages, setPages] = useState(9);

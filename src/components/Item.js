@@ -8,9 +8,10 @@ import { FaTrashAlt, FaCamera } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {uID} from "../redux/idReducer";
 
 export default function Item() {
-  const uID = useSelector((state) => state.uID);
+  const uID = useSelector((state) => state.idReducer.uID);
 
   const iID = "1";
   const naviate = useNavigate();

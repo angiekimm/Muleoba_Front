@@ -5,10 +5,10 @@ import { FaRegHandPaper } from "react-icons/fa";
 import "../css/Mypage.css";
 import "../css/Mychangelist.css";
 import { FaArrowCircleRight, FaTimes } from "react-icons/fa";
-
+import {uID} from "../redux/idReducer";
 
 export default function Mychangelist() {
-    const uID = useSelector((state) => state.uID);
+    const uID = useSelector((state) => state.idReducer.uID);
 
     const [lists, setLists] = useState([]);
     const [responselists, setresponseLists] = useState([]);
