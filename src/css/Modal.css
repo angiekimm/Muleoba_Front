@@ -105,6 +105,11 @@
   outline: none;
 }
 
+.modal_error {
+  font-size: 13px;
+  color: red;
+}
+
 .modal_pwdIconCover {
   background-color: rgb(234, 234, 234);
   height: 40px;
@@ -140,7 +145,8 @@
   cursor: pointer;
 }
 
-.modal_container .modal_btn {
+.modal_container .modal_btn,
+.modal_container .modal_disabled {
   flex: 30%;
   display: flex;
   justify-content: center;
@@ -156,4 +162,21 @@
   border-radius: 8px;
   font-size: 20px;
   cursor: pointer;
+}
+
+.modal_container .modal_disabled button {
+  width: 250px;
+  height: 45px;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: not-allowed;
+  background-color: rgb(166, 166, 166);
+}
+
+/* 팝업 알림창 */
+.Toastify__toast-container {
+  width: 350px;
+  font-size: large;
 }

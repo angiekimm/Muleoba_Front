@@ -1,12 +1,34 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import "../css/Modal.css";
 import logo from "../image/muleoba_logo.png";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Modal({ closeModal, signupModal }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const [emailMsg, setEmailMsg] = useState("");
+  const [isEmail, setIsEmail] = useState(false);
+
+  const onChangeEmail = useCallback((e) => {
+    const emailRegex =
+      /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    const emailCurrent = e.target.value;
+    setEmail(emailCurrent);
+
+    if (!emailRegex.test(emailCurrent)) {
+      setEmailMsg("123@muleoba.com 형식으로 적어주세요");
+      setIsEmail(false);
+    } else {
+      setIsEmail(true);
+      setEmailMsg("");
+    }
+  });
 
   const [pwdType, setPwdType] = useState({
     type: "password",
@@ -31,6 +53,15 @@ export default function Modal({ closeModal, signupModal }) {
       .post("/muleoba/login", { email: email, password: password })
       .then((response) => {
         console.log(response.data);
+        if (response.data === 1) {
+          navigate("/main");
+        } else {
+          toast.error("이메일과 비밀번호를 확인해주세요.", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+          });
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -39,6 +70,7 @@ export default function Modal({ closeModal, signupModal }) {
 
   return (
     <div className="modal_background">
+      <ToastContainer className="Toastify__toast-container" theme="dark" />
       <div className="modal_container">
         <div className="modal_closeBtn">
           <button
@@ -58,14 +90,13 @@ export default function Modal({ closeModal, signupModal }) {
         <div className="modal_body">
           <div className="modal_emailinput">
             <input
-              type="text"
+              type="email"
               placeholder="이메일"
               autoFocus
               value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
+              onChange={onChangeEmail}
             />
+            {email && <span className="modal_error">{emailMsg}</span>}
           </div>
           <div className="modal_pwdinput">
             <input
@@ -100,8 +131,12 @@ export default function Modal({ closeModal, signupModal }) {
             </div>
           </div>
         </div>
-        <div className="modal_btn">
-          <button onClick={checkUser}>로그인</button>
+        <div
+          className={!(isEmail && password) ? "modal_disabled" : "modal_btn"}
+        >
+          <button onClick={checkUser} disabled={!(isEmail && password)}>
+            로그인
+          </button>
         </div>
       </div>
     </div>

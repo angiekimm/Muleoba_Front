@@ -1,5 +1,7 @@
+import { unstable_useId } from "@mui/material";
 import React from "react";
 import "../css/SelectBox.css";
+import uuid from "react-uuid";
 
 export default function SelectBox({
   address,
@@ -7,7 +9,12 @@ export default function SelectBox({
   handleChangeState,
 }) {
   return (
-    <select className="selectbox_container" onChange={handleChangeState}>
+    <select
+      className="selectbox_container"
+      key={uuid()}
+      value={defaultValue}
+      onChange={handleChangeState}
+    >
       {address.map((item) => (
         <option
           key={item.value}
