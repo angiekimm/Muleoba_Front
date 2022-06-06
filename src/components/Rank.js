@@ -25,19 +25,19 @@ export default function Rank() {
 
   useEffect(() => {
     fetchRank();
+    var i = 1;
+  
+    window.setInterval(function(){
+      document.getElementById("header_ranking_textbox").style.transitionDuration = "400ms";
+      document.getElementById("header_ranking_textbox").style.marginTop = (i*-2.13) + "em";
+  
+      i++;
+      i%=5;
+       
+    },2500);
   }, [])
 
  
-  var i = 1;
-
-  window.setInterval(function(){
-    document.getElementById("header_ranking_textbox").style.transitionDuration = "400ms";
-    document.getElementById("header_ranking_textbox").style.marginTop = (i*-2.13) + "em";
-
-    i++;
-    i%=5;
-     
-  },2500);
 
 
   return (
