@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import "../css/SignupModal.css";
 import logo from "../image/muleoba_logo.png";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import SelectBox from "./SelectBox";
 import data from "../db/data.json";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function SignupModal({ closeModal, loginModal }) {
   const [email, setEmail] = useState("");
@@ -19,7 +22,7 @@ export default function SignupModal({ closeModal, loginModal }) {
   const [cityList, setCityList] = useState([
     { value: false, name: "시/군/구" },
   ]);
-  const [flag, setFlag] = useState(false);
+  const navigate = useNavigate();
 
   //오류메세지 상태저장
   const [pwMsg, setPwMsg] = useState("");
@@ -386,10 +389,6 @@ export default function SignupModal({ closeModal, loginModal }) {
     }
   }, [city]);
 
-  useEffect(() => {
-    console.log(address);
-  }, [address]);
-
   // 회원가입
   async function registerUser() {
     await axios
@@ -404,9 +403,16 @@ export default function SignupModal({ closeModal, loginModal }) {
       .then((response) => {
         console.log(response.data);
         if (response.data === 1) {
-          // 로그인 페이지로 이동
-          closeModal(false);
-          loginModal(true);
+          toast.success("회원 가입 완료!", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+          });
+          window.setTimeout(() => {
+            // 로그인 모달로 이동
+            closeModal(false);
+            loginModal(true);
+          }, 2000);
         }
       })
       .catch((error) => {
@@ -492,6 +498,7 @@ export default function SignupModal({ closeModal, loginModal }) {
 
   return (
     <div className="signupModal_background">
+      <ToastContainer className="Toastify__toast-container" theme="dark" />{" "}
       <div className="signupModal_container">
         <div className="signupModal_logoBox">
           <div className="signupModal_logo">
@@ -507,7 +514,6 @@ export default function SignupModal({ closeModal, loginModal }) {
             </button>
           </div>
         </div>
-
         <div className="signupModal_title">
           <h1>회원가입</h1>
         </div>
@@ -591,12 +597,12 @@ export default function SignupModal({ closeModal, loginModal }) {
           <div className="signupModal_selectbox">
             <SelectBox
               address={data.states}
-              defaultValue={false}
+              defaultValue={state}
               handleChangeState={handleChangeState}
             />
             <SelectBox
               address={cityList}
-              defaultValue={false}
+              defaultValue={city}
               handleChangeState={handleChangeCity}
             />
           </div>
