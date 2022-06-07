@@ -1,0 +1,315 @@
+.welcome_navbar {
+  padding: 25px 0;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+}
+
+.welcome_navbar_container {
+  flex-direction: row;
+  margin: auto;
+}
+
+.welcome_navbar_flex {
+  display: flex;
+  width: 1000px;
+  justify-content: space-between;
+}
+
+.welcome_navbar_left {
+  display: flex;
+  justify-content: space-between;
+  width: 420px;
+  align-items: center;
+}
+
+.welcome_navbar_logo_box {
+  margin: 4px 20px 0 0;
+}
+
+.welcome_navbar_logo {
+  width: 180px;
+}
+
+.welcome_navbar_right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
+}
+.welcome_navbar_login,
+.welcome_navbar_about {
+  cursor: pointer;
+  color: white;
+  font-size: 25px;
+}
+
+.welcome_main {
+  width: 100%;
+  margin-top: -100px;
+  background-size: cover;
+  align-items: center;
+  overflow-x: hidden;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  background-position: center;
+  /* min-height: 1200px; */
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("../image/welcome1.jpg");
+}
+
+.welcome_area {
+  color: white;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 250px;
+}
+
+.welcome_area h1 {
+  font-size: 80px;
+  word-spacing: 15px;
+  line-height: 75px;
+}
+
+.welcome_area h2 {
+  margin-top: 50px;
+  font-size: 50px;
+  font-weight: normal;
+}
+
+.welcome_area h4 {
+  font-weight: normal;
+  font-size: 25px;
+}
+.welcome_modal_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 80px;
+  width: 320px;
+  height: 70px;
+  border: none;
+  background-color: rgb(148, 80, 255);
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+.welcome_arrowBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.welcome_mouseIcon {
+  width: 70px;
+  height: 80px;
+  color: white;
+  margin-top: 10px;
+}
+.welcome_scrollDown {
+  margin-top: 110px;
+}
+
+.welcome_container1 {
+  width: 100%;
+  min-height: 1000px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  text-align: left;
+}
+.welcome_background1 {
+  background-color: whitesmoke;
+}
+.welcome_background1 .text {
+  margin-top: -300px;
+}
+.welcome_background1 .text h1 {
+  font-size: 100px;
+  word-spacing: 15px;
+  line-height: 120px;
+}
+.welcome_background1 .text p {
+  font-size: 30px;
+  margin-top: 50px;
+}
+
+.welcome_container1 img {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  object-fit: contain;
+  object-position: center;
+  align-self: center;
+
+  margin-top: 450px;
+  max-width: 100%;
+  height: 350px;
+}
+
+.welcome_container1 .image {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+  object-fit: contain;
+}
+
+.text {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: center;
+  align-content: center;
+  /* background-color: black; */
+}
+.text p {
+  font-size: 1.5rem;
+  margin-top: 30px;
+}
+
+.text h1 {
+  font-size: 5.125rem;
+}
+.text_purple {
+  color: rgb(148, 80, 255);
+}
+.text_white {
+  color: white;
+}
+
+.welcome_background2 {
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("../image/factory.jpg");
+}
+
+.welcome_background2 img {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  object-fit: contain;
+  object-position: center;
+  align-self: center;
+
+  max-width: 100%;
+  height: 900px;
+  margin-top: -300px;
+}
+
+.welcome_background2 .image {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+  object-fit: contain;
+}
+.welcome_background2 .text {
+  align-items: flex-end;
+}
+.welcome_background2 .text h1 {
+  font-size: 100px;
+  word-spacing: 15px;
+  line-height: 90px;
+}
+.welcome_background2 .text_white p {
+  margin-top: 100px;
+  text-align: right;
+  font-size: 25px;
+}
+
+.welcome_background3 {
+  min-height: 900px;
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    url("../image/amazon.jpg");
+  margin-bottom: -50px;
+}
+
+.welcome_area3 {
+  color: black;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: -330px;
+}
+
+.welcome_area3 h1 {
+  font-size: 80px;
+  word-spacing: 15px;
+  line-height: 70px;
+}
+
+.welcome_background3 .welcome_modal_btn{
+  margin-top: 50px;
+}
+
+@media (min-width: 250px) and (max-width: 980px) {
+  .welcome {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .welcome_container1 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .welcome_area h1 {
+    font-size: 40px;
+    line-height: 60px;
+  }
+
+  .welcome_area h3 {
+    margin-top: 10px;
+  }
+
+  .welcome_container1 img {
+    width: 70%;
+  }
+  .welcome_navbar {
+    padding: 0;
+  }
+
+  h4 {
+    color: white;
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .text h1 {
+    font-size: 2rem;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .text p {
+    font-size: 1.2rem;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}

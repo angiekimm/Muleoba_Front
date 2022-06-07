@@ -1,4 +1,3 @@
-import { unstable_useId } from "@mui/material";
 import React from "react";
 import "../css/SelectBox.css";
 import uuid from "react-uuid";
@@ -8,6 +7,7 @@ export default function SelectBox({
   defaultValue,
   handleChangeState,
 }) {
+  
   return (
     <select
       className="selectbox_container"
