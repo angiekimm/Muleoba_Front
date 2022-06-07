@@ -5,9 +5,9 @@ export function setPosts(searchdata) {
     }
 };
 
-export function setID(data) {
+export function setID(uid) {
     return {
     type: "SET_ID",
-    payload: data
+    payload: uid
     }
 };

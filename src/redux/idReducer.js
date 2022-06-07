@@ -1,7 +1,18 @@
+const initState = {
+  uID: '',
+};
 
 
-export default function idreducer(currentState, action) {
-    if (currentState === undefined) {
+export default function idreducer(currentState = initState, action) {
+
+  switch (action.type) {
+    case "SET_ID":
+      return { ...currentState ,uID: action.payload };
+    default:
+      return currentState;
+  }
+
+/*     if (currentState === undefined) {
       return {
         uID: '2'
       };
@@ -10,5 +21,5 @@ export default function idreducer(currentState, action) {
     if (action.type === 'LOGOUT') {
       newState.uID = 'none';
     }
-    return newState;
+    return newState; */
   }

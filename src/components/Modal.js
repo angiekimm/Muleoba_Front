@@ -6,8 +6,16 @@ import { FaEyeSlash, FaEye } from "react-icons/fa";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { connect } from "react-redux";
+import { setID } from "../redux/Action";
 
-export default function Modal({ closeModal, signupModal }) {
+const mapDispatchToProps = dispatch => {
+  return {
+    setID: uid => dispatch(setID(uid)),
+  };
+};
+
+function Modal({ closeModal, signupModal, setID }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -70,6 +78,7 @@ export default function Modal({ closeModal, signupModal }) {
       .post("/muleoba/login", { email: email, password: password })
       .then((response) => {
         console.log(response.data);
+        setID(response.data);
         if (response.data) {
           navigate("/main");
         } else {
@@ -159,3 +168,5 @@ export default function Modal({ closeModal, signupModal }) {
     </div>
   );
 }
+
+export default connect(null, mapDispatchToProps)(Modal);

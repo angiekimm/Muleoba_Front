@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useSelector } from 'react-redux';
 import Footer from "../components/Footer";
 import Modal from "../components/Modal";
 import SignupModal from "../components/SignupModal";
@@ -10,6 +11,9 @@ import bubble from "../image/bubble.jpg";
 import graph from "../image/graph.jpg";
 
 export default function Welcome() {
+
+  const uID = useSelector((state) => state.idReducer.uID);
+
   const [openModal, setOpenModal] = useState(false);
   const [openSignUpModal, setOpenSignUpModal] = useState(false);
 
