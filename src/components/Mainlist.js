@@ -146,6 +146,7 @@ function Mainlist({searchData}) {
                         ? lists.map((list) => {
                             return (
                                 <div className="mainlist_detailbox" key={list.item}>
+                                    <NavLink to={`detail/${list.iid}`} style={{textDecoration: 'none',color: "black"}}>
                                     <div className="mainlist_detail">
                                         <div className="mainlist_detail_photo">
                                         </div>
@@ -164,6 +165,7 @@ function Mainlist({searchData}) {
                                             </div>
                                         </div>
                                     </div>
+                                    </NavLink>
                                 </div>
                             )
                         })
