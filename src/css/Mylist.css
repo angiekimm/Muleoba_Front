@@ -44,6 +44,9 @@
     width: 200px;
     height: 150px;
 }
+.mylist_detail_photo img {
+    margin: 0 auto 0 auto;
+  }
 
 .mylist_detail_text{
     margin-top: 10px;

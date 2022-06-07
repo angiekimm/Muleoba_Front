@@ -1,23 +1,28 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
-import axios from 'axios';
-import { useSelector,useDispatch } from 'react-redux';
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 import "../css/Header.css";
 import "../css/Main.css";
 import logo from "../image/muleoba_logo.png";
-import { FaBell, FaBars, FaSearch, FaTrophy, FaWindowClose } from "react-icons/fa";
+import {
+  FaBell,
+  FaBars,
+  FaSearch,
+  FaTrophy,
+  FaWindowClose,
+} from "react-icons/fa";
 import { setPosts } from "../redux/Action";
 import { connect } from "react-redux";
-import {uID} from "../redux/idReducer";
+import { uID } from "../redux/idReducer";
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    setPosts: search => dispatch(setPosts(search)),
+    setPosts: (search) => dispatch(setPosts(search)),
   };
 };
 
-function Header({setPosts}) {
-
+function Header({ setPosts }) {
   const uID = useSelector((state) => state.idReducer.uID);
 
   //const alarmRef = useRef(null);
@@ -34,34 +39,34 @@ function Header({setPosts}) {
     getAlarm();
   };
 
-  async function searchHandler(){
+  async function searchHandler() {
     await axios
-    .post("/muleoba/searchitem", {
-      uID : uID,
-      searchString : input
-    })
-    .then((response) => {
-      console.log(response.data);
-      setPosts(response.data);
-      setInput("");
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+      .post("/muleoba/searchitem", {
+        uID: uID,
+        searchString: input,
+      })
+      .then((response) => {
+        console.log(response.data);
+        setPosts(response.data);
+        setInput("");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   async function getAlarm() {
     await axios
       .post("/muleoba/get/alarm/list", {
-        uID : uID
+        uID: uID,
       })
       .then((response) => {
         setInalarm(response.data);
         console.log(response.data);
       })
       .catch((error) => {
-        console.log(error)
-      })
+        console.log(error);
+      });
   }
 
   /*거래 최다 닉네임 랭킹*/
@@ -74,10 +79,10 @@ function Header({setPosts}) {
         console.log(uID);
       })
       .catch((error) => {
-        console.log(error)
-      })
+        console.log(error);
+      });
   }
-  
+
   async function onClickisRead(alarmNum) {
     await axios
       .get("/muleoba/alarm/isRead", { params: { alarmNum } })
@@ -85,8 +90,8 @@ function Header({setPosts}) {
         console.log(response.data);
       })
       .catch((error) => {
-        console.log(error)
-      })
+        console.log(error);
+      });
   }
 
   async function onClickAlarmAlldelete() {
@@ -96,8 +101,8 @@ function Header({setPosts}) {
         console.log(response.data);
       })
       .catch((error) => {
-        console.log(error)
-      })
+        console.log(error);
+      });
   }
 
   async function onClickAlarmSelectdelete() {
@@ -107,8 +112,8 @@ function Header({setPosts}) {
         console.log(response.data);
       })
       .catch((error) => {
-        console.log(error)
-      })
+        console.log(error);
+      });
   }
 
   useEffect(() => {
@@ -117,31 +122,35 @@ function Header({setPosts}) {
     var i = 1;
 
     window.setInterval(function () {
-      document.getElementById("header_ranking_textbox").style.transitionDuration = "400ms";
-      document.getElementById("header_ranking_textbox").style.marginTop = (i * -2.19) + "em";
+      document.getElementById(
+        "header_ranking_textbox"
+      ).style.transitionDuration = "400ms";
+      document.getElementById("header_ranking_textbox").style.marginTop =
+        i * -2.19 + "em";
 
       i++;
       i %= 5;
-
     }, 2500);
-  }, [])
+  }, []);
 
   /*외부영역 클릭 감지*/
   useEffect(() => {
-    document.addEventListener('mousedown', clickModalOutside);
+    document.addEventListener("mousedown", clickModalOutside);
     return () => {
-      document.removeEventListener('mousedown', clickModalOutside);
+      document.removeEventListener("mousedown", clickModalOutside);
     };
   });
 
-  const clickModalOutside = e => {
+  const clickModalOutside = (e) => {
     headerMenu(e);
     var target = e.target;
 
-    if (target == e.currentTarget.querySelector('.header_alarm_box')) {
+    if (target == e.currentTarget.querySelector(".header_alarm_box")) {
       return;
     }
-    var divtags = e.currentTarget.querySelector('.header_alarm_box').querySelectorAll('div');
+    var divtags = e.currentTarget
+      .querySelector(".header_alarm_box")
+      .querySelectorAll("div");
     for (var i = 0; i < divtags.length; i++) {
       if (divtags[i] == target) {
         return;
@@ -150,13 +159,15 @@ function Header({setPosts}) {
     setAlarm(false);
   };
 
-  const headerMenu = e => {
+  const headerMenu = (e) => {
     var target = e.target;
 
-    if (target == e.currentTarget.querySelector('.header_sideMenu')) {
+    if (target == e.currentTarget.querySelector(".header_sideMenu")) {
       return;
     }
-    var menudivtags = e.currentTarget.querySelector('.header_sideMenu').querySelectorAll("div");
+    var menudivtags = e.currentTarget
+      .querySelector(".header_sideMenu")
+      .querySelectorAll("div");
     for (var i = 0; i < menudivtags.length; i++) {
       if (menudivtags[i] == target) {
         return;
@@ -172,7 +183,7 @@ function Header({setPosts}) {
   }
 
   function onKeyPress(e) {
-    if(e.key == 'Enter'){
+    if (e.key == "Enter") {
       searchHandler();
     }
   }
@@ -188,9 +199,16 @@ function Header({setPosts}) {
               </NavLink>
             </div>
             <div className="header_searchBar">
-              <input type="text" required={true} value={input} onKeyPress={onKeyPress} onChange={changeText} placeholder="물품 검색" />
-              <div onClick={() => searchHandler() }>
-              <FaSearch className="header_searchIcon" />
+              <input
+                type="text"
+                required={true}
+                value={input}
+                onKeyPress={onKeyPress}
+                onChange={changeText}
+                placeholder="물품 검색"
+              />
+              <div onClick={() => searchHandler()}>
+                <FaSearch className="header_searchIcon" />
               </div>
             </div>
           </div>
@@ -199,129 +217,137 @@ function Header({setPosts}) {
               <div className="header_rankingIcon">
                 <FaTrophy className="header_ranking_icon" />
               </div>
-              <div className="header_ranking_box"  >
-                {
-                  rank
-                    ? rank.map((rank, index) => {
+              <div className="header_ranking_box">
+                {rank
+                  ? rank.map((rank, index) => {
                       return (
-                        <div className="header_ranking_textbox" id="header_ranking_textbox" key={rank}>
-                          <div className="header_rankingNumber">{index + 1}</div>
+                        <div
+                          className="header_ranking_textbox"
+                          id="header_ranking_textbox"
+                          key={rank}
+                        >
+                          <div className="header_rankingNumber">
+                            {index + 1}
+                          </div>
                           <div className="header_rankingNickname">
-                            <div className="header_rank">
-                              {rank}
-                            </div>
+                            <div className="header_rank">{rank}</div>
                           </div>
                         </div>
-                      )
+                      );
                     })
-                    : null
-                }
+                  : null}
               </div>
             </div>
-            <div className="header_bell" onClick={() => setAlarm(!alarm)} >
+            <div className="header_bell" onClick={() => setAlarm(!alarm)}>
               <FaBell className="header_bellIcon" />
             </div>
             <div className="header_menuBar">
-              <FaBars className="header_barIcon" onClick={() => setSidebar(!sidebar)} />
+              <FaBars
+                className="header_barIcon"
+                onClick={() => setSidebar(!sidebar)}
+              />
             </div>
           </div>
         </div>
         <div className="header_alarm_bar">
-          {
-            alarm ?
-              <div>
-                <div className="header_alarm_box" onClick={() => onClickAlarmInform()}>
-
-                  <div className="header_alarm_header">
-                    <div className="header_alarm_header_left">
-                      전체알림
+          {alarm ? (
+            <div>
+              <div
+                className="header_alarm_box"
+                onClick={() => onClickAlarmInform()}
+              >
+                <div className="header_alarm_header">
+                  <div className="header_alarm_header_left">전체알림</div>
+                  <div className="header_alarm_header_right">
+                    <div
+                      className="header_alarm_header_delete"
+                      onClick={() => onClickAlarmAlldelete()}
+                    >
+                      전체삭제
                     </div>
-                    <div className="header_alarm_header_right">
-                      <div className="header_alarm_header_delete" onClick={() => onClickAlarmAlldelete()}>
-                        전체삭제
-                      </div>
-                      |
-                      <div className="header_alarm_header_delete" onClick={() => onClickAlarmSelectdelete()}>
-                        읽은 알림 삭제
-                      </div>
+                    |
+                    <div
+                      className="header_alarm_header_delete"
+                      onClick={() => onClickAlarmSelectdelete()}
+                    >
+                      읽은 알림 삭제
                     </div>
-                  </div>
-                  <div className="header_alarm_inner">
-                    {
-                      inalarm
-                        ? inalarm.map((inalarm, index) => {
-                          return (
-                            <div className="header_alarm_inner_box" key={index}>
-                              {inalarm.isRead == true ? 
-                              <div onClick={() => onClickisRead(inalarm.alarmNum)}>
-                              <div className="header_alarm_inner_firstline">
-                                <div className="header_alarm_inner_title">
-                                  거래요청
-                                </div>
-                                <div className="header_alarm_inner_my">
-                                  나의
-                                </div>
-                                <div className="header_alarm_inner_myitem">
-                                  {inalarm.itemName}
-                                </div>
-                              </div>
-                              <div className="header_alarm_inner_secondline">
-                                <div className="header_alarm_inner_applynickname">
-                                  '{inalarm.requestNickName}'
-                                </div>
-                                <div className="header_alarm_inner_my">
-                                  님의
-                                </div>
-                                <div className="header_alarm_inner_applyitem">
-                                {inalarm.requestItem}
-                                </div>
-                                <div className="header_alarm_inner_date">
-                                  | {inalarm.timeAl}
-                                </div>
-                              </div>
-                              <hr />
-                              </div>
-                              :
-                              <div className="header_alarm_isread">
-                              <div className="header_alarm_inner_firstline">
-                                <div className="header_alarm_inner_title">
-                                  거래요청
-                                </div>
-                                <div className="header_alarm_inner_my_isread">
-                                  나의
-                                </div>
-                                <div className="header_alarm_inner_myitem">
-                                  {inalarm.itemName}
-                                </div>
-                              </div>
-                              <div className="header_alarm_inner_secondline">
-                                <div className="header_alarm_inner_applynickname_isread">
-                                  '{inalarm.requestNickName}'
-                                </div>
-                                <div className="header_alarm_inner_my_isread">
-                                  님의
-                                </div>
-                                <div className="header_alarm_inner_applyitem_isread">
-                                {inalarm.requestItem}
-                                </div>
-                                <div className="header_alarm_inner_date_isread">
-                                  | {inalarm.timeAl}
-                                </div>
-                              </div>
-                              <hr />
-                              </div>
-                            }
-                            </div>
-                          )
-                        })
-                        : null
-                    }
-
                   </div>
                 </div>
+                <div className="header_alarm_inner">
+                  {inalarm
+                    ? inalarm.map((inalarm, index) => {
+                        return (
+                          <div className="header_alarm_inner_box" key={index}>
+                            {inalarm.isRead == true ? (
+                              <div
+                                onClick={() => onClickisRead(inalarm.alarmNum)}
+                              >
+                                <div className="header_alarm_inner_firstline">
+                                  <div className="header_alarm_inner_title">
+                                    거래요청
+                                  </div>
+                                  <div className="header_alarm_inner_my">
+                                    나의
+                                  </div>
+                                  <div className="header_alarm_inner_myitem">
+                                    {inalarm.itemName}
+                                  </div>
+                                </div>
+                                <div className="header_alarm_inner_secondline">
+                                  <div className="header_alarm_inner_applynickname">
+                                    '{inalarm.requestNickName}'
+                                  </div>
+                                  <div className="header_alarm_inner_my">
+                                    님의
+                                  </div>
+                                  <div className="header_alarm_inner_applyitem">
+                                    {inalarm.requestItem}
+                                  </div>
+                                  <div className="header_alarm_inner_date">
+                                    | {inalarm.timeAl}
+                                  </div>
+                                </div>
+                                <hr />
+                              </div>
+                            ) : (
+                              <div className="header_alarm_isread">
+                                <div className="header_alarm_inner_firstline">
+                                  <div className="header_alarm_inner_title">
+                                    거래요청
+                                  </div>
+                                  <div className="header_alarm_inner_my_isread">
+                                    나의
+                                  </div>
+                                  <div className="header_alarm_inner_myitem">
+                                    {inalarm.itemName}
+                                  </div>
+                                </div>
+                                <div className="header_alarm_inner_secondline">
+                                  <div className="header_alarm_inner_applynickname_isread">
+                                    '{inalarm.requestNickName}'
+                                  </div>
+                                  <div className="header_alarm_inner_my_isread">
+                                    님의
+                                  </div>
+                                  <div className="header_alarm_inner_applyitem_isread">
+                                    {inalarm.requestItem}
+                                  </div>
+                                  <div className="header_alarm_inner_date_isread">
+                                    | {inalarm.timeAl}
+                                  </div>
+                                </div>
+                                <hr />
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })
+                    : null}
+                </div>
               </div>
-              : null
-          }
+            </div>
+          ) : null}
         </div>
       </div>
       <nav className={sidebar ? "header_sideMenu active" : "header_sideMenu"}>
@@ -333,18 +359,22 @@ function Header({setPosts}) {
             />
           </div>
           <div className="header_sideMenu_text">
-            <NavLink to="/" onClick={() => setSidebar(!sidebar)}>
-              <div>Home</div>
+            <NavLink to="/main" onClick={() => setSidebar(!sidebar)}>
+              <div>Main</div>
             </NavLink>
           </div>
           <div className="header_sideMenu_text">
-            <NavLink to="/main/mypage/mylist" onClick={() => setSidebar(!sidebar)}>
+            <NavLink
+              to="/main/mypage/mylist"
+              onClick={() => setSidebar(!sidebar)}
+            >
               <div>마이페이지</div>
             </NavLink>
           </div>
+
           <div className="header_sideMenu_text">
-            <NavLink to="/main" onClick={() => setSidebar(!sidebar)}>
-              <div>Main</div>
+            <NavLink to="/" onClick={() => setSidebar(!sidebar)}>
+              <div>로그아웃</div>
             </NavLink>
           </div>
         </div>
