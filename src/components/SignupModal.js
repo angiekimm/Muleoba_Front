@@ -496,6 +496,24 @@ export default function SignupModal({ closeModal, loginModal }) {
       });
   }
 
+  // 외부영역 감지
+  useEffect(() => {
+    document.addEventListener("mousedown", clickModalOutside);
+    return () => {
+      document.removeEventListener("mousedown", clickModalOutside);
+    };
+  });
+
+  const clickModalOutside = (e) => {
+    var target = e.target;
+
+    if (target == e.currentTarget.querySelector(".signupModal_background")) {
+      closeModal(false);
+      return;
+    }
+  };
+
+
   return (
     <div className="signupModal_background">
       <ToastContainer className="Toastify__toast-container" theme="dark" />{" "}

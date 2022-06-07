@@ -20,29 +20,6 @@ export default function Welcome() {
   };
 
   // 외부영역 감지
-  useEffect(() => {
-    document.addEventListener("mousedown", clickModalOutside);
-    return () => {
-      document.removeEventListener("mousedown", clickModalOutside);
-    };
-  });
-
-  const clickModalOutside = (e) => {
-    var target = e.target;
-
-    if (target == e.currentTarget.querySelector(".selectbox_container")) {
-      return;
-    }
-    var divtags = e.currentTarget
-      .querySelector(".selectbox_container")
-      .querySelectorAll("div");
-    for (var i = 0; i < divtags.length; i++) {
-      if (divtags[i] == target) {
-        return;
-      }
-    }
-    setOpenModal(false);
-  };
 
   return (
     <div className="welcome">
@@ -106,7 +83,7 @@ export default function Welcome() {
             <br />
             품질은 좋지만 더이상 필요하지 않는 물품을 교환하고 나누고 다시 쓰며
             <br />
-            누구나 환경보호에 동참할 수 있는 사용 친화 서비스를 구현하고자 한다
+            누구나 환경보호에 동참할 수 있는 사용 친화 서비스를 제공합니다.
             <br />
           </p>
         </div>
@@ -122,11 +99,22 @@ export default function Welcome() {
           <img src={food} />
         </div>
         <div className="text text_white">
-          <h1>예시 와 제목의</h1>
+          <h1>물어바, 우리가</h1>
           <br />
-          <h1 className="text_purple">아름다운 조화</h1>
+          <h1 className="text_purple">기대하는 세상</h1>
           <p>
-            우리가 흔히 일상생활 속에서 사용하는 물건들 때문에 <br />
+            필요하지 않은 물품과 원하는 물품을 물물교환함으로써,
+            <br />
+            버려지는 쓰레기를 줄여 환경을 보호할 수 있고
+            <br /> 사용자의 꼭 필요하지 않는 소비 감소를 기대합니다.
+            <br />
+            <br />
+            <br />
+            데이터 분석을 통해 사용자에게 랭킹 서비스를 제공하면서,
+            <br />
+            사용자에게 사용친화적인 인터페이스를 제공하고 <br />
+            환경보호에 대한 의지를 높여줍니다.
+            {/* 우리가 흔히 일상생활 속에서 사용하는 물건들 때문에 <br />
             환경이 오염되고 있다는 사실을 알고 있을까? <br />
             나도 모르는 사이에 우리가 살고 있는 토양과 바다를 오염시키고 있었던
             것이다.
@@ -140,7 +128,7 @@ export default function Welcome() {
             환경, 자연 파괴로 인한 부작용은 곳곳에서 나타나고 있고 이로 인해
             <br />
             우리 생존까지도 위협받고 있는 상황에서 이를 타계하고자 곳곳에서
-            방안을 모색하고 있다.
+            방안을 모색하고 있다. */}
             <br />
           </p>
           <br />
@@ -169,7 +157,7 @@ export default function Welcome() {
 
       {/* 로그인 및 회원가입 모달창 */}
       {openModal && (
-        <Modal closeModal={setOpenModal} signupModal={setOpenSignUpModal} clickModalOutside={clickModalOutside}/>
+        <Modal closeModal={setOpenModal} signupModal={setOpenSignUpModal} />
       )}
       {openSignUpModal && (
         <SignupModal

@@ -13,7 +13,7 @@ import {uID} from "../redux/idReducer";
 export default function Item() {
   const uID = useSelector((state) => state.idReducer.uID);
 
-  const iID = "1"; // itemID 구현하면 이 줄 삭제
+  const iID = ""; // itemID 구현하면 이 줄 삭제
   const naviate = useNavigate();
 
   const [category, setCategory] = useState("");
@@ -78,7 +78,7 @@ export default function Item() {
         data: formData,
       })
         .then((response) => {
-          console.log(response.data);
+          console.log("등록완료 후", response.data);
           toast.success("물품 등록 완료!", {
             position: "top-center",
             autoClose: 2000,

@@ -48,12 +48,29 @@ export default function Modal({ closeModal, signupModal }) {
   //   console.log(email, password);
   // }, [[password]]);
 
+  // 외부 영역 감지
+  useEffect(() => {
+    document.addEventListener("mousedown", clickModalOutside);
+    return () => {
+      document.removeEventListener("mousedown", clickModalOutside);
+    };
+  });
+
+  const clickModalOutside = (e) => {
+    var target = e.target;
+
+    if (target == e.currentTarget.querySelector(".modal_background")) {
+      closeModal(false);
+      return;
+    }
+  };
+
   async function checkUser() {
     await axios
       .post("/muleoba/login", { email: email, password: password })
       .then((response) => {
         console.log(response.data);
-        if (response.data === 1) {
+        if (response.data) {
           navigate("/main");
         } else {
           toast.error("이메일과 비밀번호를 확인해주세요.", {
