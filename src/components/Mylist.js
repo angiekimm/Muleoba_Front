@@ -40,10 +40,11 @@ export default function Mylist() {
     <div className="mylist">
       <div className="mylist_content">
         {lists
-          ? lists.map((list) => {
-              let address = "/img/" + list.photo;
+          ? lists.map((list, index) => {
+              let first_photo = list.photo.split(" ");
+              let address = "/img/" + first_photo[0];
               return (
-                <div className="mylist_detailbox" key={list.item}>
+                <div className="mylist_detailbox" key={index}>
                   <div className="mylist_detail">
                     <div className="mylist_detail_photo">
                       <img src={address} />

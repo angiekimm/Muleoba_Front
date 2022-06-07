@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 import Footer from "../components/Footer";
 import Modal from "../components/Modal";
 import SignupModal from "../components/SignupModal";
@@ -8,10 +8,9 @@ import logo from "../image/muleoba_logo.png";
 import { FaAngleRight } from "react-icons/fa";
 import { CgMouse } from "react-icons/cg";
 import bubble from "../image/bubble.jpg";
-import graph from "../image/graph.jpg";
+import graph from "../image/main_graph.png";
 
 export default function Welcome() {
-
   const uID = useSelector((state) => state.idReducer.uID);
 
   const [openModal, setOpenModal] = useState(false);

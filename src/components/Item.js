@@ -14,7 +14,7 @@ export default function Item() {
   const uID = useSelector((state) => state.idReducer.uID);
 
   const iID = ""; // itemID 구현하면 이 줄 삭제
-  const naviate = useNavigate();
+  const navigate = useNavigate();
 
   const [category, setCategory] = useState("");
   const [itemName, setItemName] = useState("");
@@ -88,7 +88,7 @@ export default function Item() {
             progress: undefined,
           });
           window.setTimeout(() => {
-            naviate("/main/mypage/mylist");
+            navigate("/main/mypage/mylist");
           }, 2000);
         })
         .catch((error) => {
@@ -111,7 +111,7 @@ export default function Item() {
             hideProgressBar: true,
           });
           window.setTimeout(() => {
-            naviate("/main"); // 상세페이지로 이동
+            navigate("/main"); // 상세페이지로 이동
           }, 2000);
         })
         .catch((error) => {
