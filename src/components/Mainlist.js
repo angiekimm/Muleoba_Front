@@ -140,6 +140,7 @@ function Mainlist({ searchData }) {
           ? lists.map((list) => {
               let address = "/img/" + list.photo;
               return (
+                <NavLink to={`detail/${list.iid}`} style={{textDecoration: 'none',color: "black"}}>
                 <div className="mainlist_detailbox" key={list.item}>
                   <div className="mainlist_detail">
                     <div className="mainlist_detail_photo">
@@ -159,6 +160,7 @@ function Mainlist({ searchData }) {
                     </div>
                   </div>
                 </div>
+                </NavLink>
               );
             })
           : null}
