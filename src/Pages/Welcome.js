@@ -6,7 +6,7 @@ import "./../css/Welcome.css";
 import logo from "../image/muleoba_logo.png";
 import { FaAngleRight } from "react-icons/fa";
 import { CgMouse } from "react-icons/cg";
-import food from "../image/food.jpg";
+import bubble from "../image/bubble.jpg";
 import graph from "../image/graph.jpg";
 
 export default function Welcome() {
@@ -96,7 +96,7 @@ export default function Welcome() {
         <br />
         <br />
         <div className="image">
-          <img src={food} />
+          <img src={bubble} />
         </div>
         <div className="text text_white">
           <h1>물어바, 우리가</h1>
