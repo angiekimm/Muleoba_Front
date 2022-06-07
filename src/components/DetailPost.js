@@ -72,7 +72,7 @@ export default function DetailPost() {
                             {items.nickName}
                         </div>
                         <div className="detailpost_item_area">
-                            경기도 의왕시
+                        {items.address}
                         </div>
                     </div>
                 </div>
