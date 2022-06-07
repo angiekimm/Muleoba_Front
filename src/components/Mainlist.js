@@ -140,30 +140,34 @@ function Mainlist({ searchData }) {
           ? lists.map((list) => {
               let address = "/img/" + list.photo;
               return (
-                <NavLink
-                  to={`detail/${list.iid}`}
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  <div className="mainlist_detailbox" key={list.item}>
-                    <div className="mainlist_detail">
-                      <div className="mainlist_detail_photo">
-                        <img src={address} />
-                      </div>
-                      <div className="mainlist_detail_text">
-                        <div className="mainlist_detail_cate">
-                          {list.category}
+                <div key={list.item}>
+                  <NavLink
+                    to={`detail/${list.iid}`}
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    <div className="mainlist_detailbox">
+                      <div className="mainlist_detail">
+                        <div className="mainlist_detail_photo">
+                          <img src={address} />
                         </div>
-                        <div className="mainlist_detail_item">{list.item}</div>
-                      </div>
-                      <div className="mainlist_detail_requestnum_box">
-                        <div className="mainlist_detail_requestnum">
-                          <FaRegHandPaper className="mainlist_detail_requesticon" />
-                          {list.requestNum}
+                        <div className="mainlist_detail_text">
+                          <div className="mainlist_detail_cate">
+                            {list.category}
+                          </div>
+                          <div className="mainlist_detail_item">
+                            {list.item}
+                          </div>
+                        </div>
+                        <div className="mainlist_detail_requestnum_box">
+                          <div className="mainlist_detail_requestnum">
+                            <FaRegHandPaper className="mainlist_detail_requesticon" />
+                            {list.requestNum}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </NavLink>
+                  </NavLink>
+                </div>
               );
             })
           : null}

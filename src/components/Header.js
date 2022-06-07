@@ -85,7 +85,7 @@ function Header({ setPosts }) {
 
   async function onClickisRead(alarmNum) {
     await axios
-      .get("/muleoba/alarm/isRead", { params: { alarmNum } })
+      .get("/muleoba/alarm/isread", { params: { alarmNum } })
       .then((response) => {
         console.log(response.data);
       })
