@@ -77,6 +77,39 @@ function Header({setPosts}) {
         console.log(error)
       })
   }
+  
+  async function onClickisRead(alarmNum) {
+    await axios
+      .get("/muleoba/alarm/isRead", { params: { alarmNum } })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  async function onClickAlarmAlldelete() {
+    await axios
+      .get("/muleoba/alarm/alldelete", { params: { uID } })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  async function onClickAlarmSelectdelete() {
+    await axios
+      .get("/muleoba/alarm/selectdelete", { params: { uID } })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
 
   useEffect(() => {
     getAlarm();
@@ -204,11 +237,11 @@ function Header({setPosts}) {
                       전체알림
                     </div>
                     <div className="header_alarm_header_right">
-                      <div className="header_alarm_header_delete">
+                      <div className="header_alarm_header_delete" onClick={() => onClickAlarmAlldelete()}>
                         전체삭제
                       </div>
                       |
-                      <div className="header_alarm_header_delete">
+                      <div className="header_alarm_header_delete" onClick={() => onClickAlarmSelectdelete()}>
                         읽은 알림 삭제
                       </div>
                     </div>
@@ -218,7 +251,9 @@ function Header({setPosts}) {
                       inalarm
                         ? inalarm.map((inalarm, index) => {
                           return (
-                            <div className="header_alarm_inner_box">
+                            <div className="header_alarm_inner_box" key={index}>
+                              {inalarm.isRead == true ? 
+                              <div onClick={() => onClickisRead(inalarm.alarmNum)}>
                               <div className="header_alarm_inner_firstline">
                                 <div className="header_alarm_inner_title">
                                   거래요청
@@ -245,6 +280,37 @@ function Header({setPosts}) {
                                 </div>
                               </div>
                               <hr />
+                              </div>
+                              :
+                              <div className="header_alarm_isread">
+                              <div className="header_alarm_inner_firstline">
+                                <div className="header_alarm_inner_title">
+                                  거래요청
+                                </div>
+                                <div className="header_alarm_inner_my_isread">
+                                  나의
+                                </div>
+                                <div className="header_alarm_inner_myitem">
+                                  {inalarm.itemName}
+                                </div>
+                              </div>
+                              <div className="header_alarm_inner_secondline">
+                                <div className="header_alarm_inner_applynickname_isread">
+                                  '{inalarm.requestNickName}'
+                                </div>
+                                <div className="header_alarm_inner_my_isread">
+                                  님의
+                                </div>
+                                <div className="header_alarm_inner_applyitem_isread">
+                                {inalarm.requestItem}
+                                </div>
+                                <div className="header_alarm_inner_date_isread">
+                                  | {inalarm.timeAl}
+                                </div>
+                              </div>
+                              <hr />
+                              </div>
+                            }
                             </div>
                           )
                         })
