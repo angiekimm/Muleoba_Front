@@ -8,7 +8,7 @@ import { FaTrashAlt, FaCamera } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {uID} from "../redux/idReducer";
+import { uID } from "../redux/idReducer";
 
 export default function Item() {
   const uID = useSelector((state) => state.idReducer.uID);
@@ -141,7 +141,7 @@ export default function Item() {
           .then((response) => {
             console.log(response.data);
             // 데이터 저장
-            // setShowImages();
+            setShowImages();
             setItemName(response.data.item);
             setCategory(response.data.category);
             setContent(response.data.content);
@@ -152,9 +152,10 @@ export default function Item() {
       }
     }
   }, []);
-  useEffect(() => {
-    console.log("category: ", category);
-  }, []);
+
+  // useEffect(() => {
+  //   console.log("category: ", category);
+  // }, []);
 
   return (
     <div className="item">
@@ -242,9 +243,21 @@ export default function Item() {
             <NavLink to="/main/mypage/mylist">
               <button className="item_cancelBtn">취소</button>
             </NavLink>
-            <button type="submit" className="item_submitBtn">
-              {iID ? "수정" : "등록"}
-            </button>
+            <div
+              className={
+                !showImages ? "item_submitBtn_disabled" : "item_submitBtn"
+              }
+            >
+              <button
+                type="submit"
+                className={
+                  !showImages ? "item_submitBtn_disabled" : "item_submitBtn"
+                }
+                disabled={!showImages}
+              >
+                {iID ? "수정" : "등록"}
+              </button>
+            </div>
           </div>
         </form>
       </div>

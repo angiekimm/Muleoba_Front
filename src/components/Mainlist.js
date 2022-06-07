@@ -138,10 +138,13 @@ function Mainlist({ searchData }) {
       <div className="mainlist_content">
         {lists
           ? lists.map((list) => {
+              let address = "/img/" + list.photo;
               return (
                 <div className="mainlist_detailbox" key={list.item}>
                   <div className="mainlist_detail">
-                    <div className="mainlist_detail_photo"></div>
+                    <div className="mainlist_detail_photo">
+                      <img src={address} />
+                    </div>
                     <div className="mainlist_detail_text">
                       <div className="mainlist_detail_cate">
                         {list.category}
