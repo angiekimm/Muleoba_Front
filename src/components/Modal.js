@@ -80,6 +80,7 @@ function Modal({ closeModal, signupModal, setID }) {
         console.log(response.data);
         setID(response.data);
         if (response.data) {
+          
           navigate("/main");
         } else {
           toast.error("이메일과 비밀번호를 확인해주세요.", {
