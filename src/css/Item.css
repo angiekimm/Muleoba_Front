@@ -102,6 +102,7 @@ textarea {
   width: 320px;
   /* background-color: black; */
   margin: 20px 0px auto auto;
+  display: flex;
 }
 .item_btn .item_cancelBtn {
   width: 150px;
@@ -120,6 +121,16 @@ textarea {
   height: 45px;
   border: none;
   background-color: rgb(148, 80, 255);
+  color: white;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.item_btn .item_submitBtn_disabled {
+  width: 150px;
+  height: 45px;
+  border: none;
+  background-color: rgb(166, 166, 166);
   color: white;
   border-radius: 8px;
   font-size: 20px;
