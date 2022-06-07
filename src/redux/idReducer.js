@@ -1,5 +1,5 @@
 const initState = {
-  uID: '',
+  uID: '1',
 };
 
 

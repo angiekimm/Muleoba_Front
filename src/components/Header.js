@@ -80,7 +80,7 @@ function Header({setPosts}) {
   
   async function onClickisRead(alarmNum) {
     await axios
-      .get("/muleoba/alarm/isRead", { params: { alarmNum } })
+      .get("/muleoba/alarm/isread", { params: { alarmNum } })
       .then((response) => {
         console.log(response.data);
       })
@@ -253,7 +253,7 @@ function Header({setPosts}) {
                           return (
                             <div className="header_alarm_inner_box" key={index}>
                               {inalarm.isRead == true ? 
-                              <div onClick={() => onClickisRead(inalarm.alarmNum)}>
+                              <div className="header_alarm_inner_isread" onClick={() => onClickisRead(inalarm.alarmNum)}>
                               <div className="header_alarm_inner_firstline">
                                 <div className="header_alarm_inner_title">
                                   거래요청

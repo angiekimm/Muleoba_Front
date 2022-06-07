@@ -5,29 +5,26 @@ import axios from 'axios';
 import { FaRegHandPaper } from "react-icons/fa";
 import "../css/Mypage.css";
 import "../css/Detailpost.css";
-import { uID } from "../redux/idReducer";
 
 export default function DetailPost() {
+
     const uID = useSelector((state) => state.idReducer.uID);
 
     const { iid } = useParams();
     console.log(iid);
     const [items, setItems] = useState([]);
     const [lists, setLists] = useState([]);
-    const [pages, setPages] = useState(9);
+    const [pages, setPages] = useState(6);
 
     useEffect(() => {
         getList();
+        getItem();
     }, [uID, pages]);
 
 
-    useEffect(() => {
-        getItem();
-    }, []);
-
     async function getItem() {
         await axios
-            .get("/muleoba/detail/" + iid)
+            .get("/muleoba/detail", { params: { iid } })
             .then((response) => {
                 setItems(response.data);
                 console.log(response.data);
@@ -40,11 +37,10 @@ export default function DetailPost() {
 
     async function getList() {
         await axios
-            .get("/muleoba/mylist", { params: { uID } })
+            .get("/muleoba/detail/request", { params: { iid } })
             .then((response) => {
                 setLists(response.data.slice(0, pages));
                 console.log(pages);
-                console.log(uID);
                 console.log(response.data);
             })
             .catch((error) => {
@@ -54,56 +50,39 @@ export default function DetailPost() {
 
     const onClickPlusPage = (e) => {
         console.log(pages);
-        setPages(pages + 9);
+        setPages(pages + 6);
         getList();
     };
 
     return (
         <div>
-            {
-                items
-                    ? items.map((item) => {
-                        return (
-                            <div>
-                                <div className="detailpost_cate">
-                                    ■ 생활가구
-                                </div>
-                                <div className="detailpost_Photo">
 
-                                </div>
-                                <div className="detailpost_Profile">
-                                    <div className="detailpost_Profile_Photo">
+                <div className="detailpost_cate">
+                    ■ {items.category}
+                </div>
+                <div className="detailpost_item_Photo">
 
-                                    </div>
-                                    <div className="detailpost_Profile_line">
-                                        <div className="detailpost_nickname">
-                                            옝꾸님
-                                        </div>
-                                        <div className="detailpost_area">
-                                            경기도 의왕시
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr />
-                                <div className="detailpost_title">
+                </div>
+                <div className="detailpost_Profile">
+                    <div className="detailpost_Profile_Photo">
 
-                                </div>
-                                <div className="detailpost_content">
-
-                                </div>
-                            </div>
-                        )
-                    })
-                    : null
-            }
-
-
-
-
-
-
-
-
+                    </div>
+                    <div className="detailpost_Profile_line">
+                        <div className="detailpost_item_nickname">
+                            {items.nickName}
+                        </div>
+                        <div className="detailpost_item_area">
+                            경기도 의왕시
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div className="detailpost_item_title">
+                    {items.item}
+                </div>
+                <div className="detailpost_item_content">
+                    {items.content}
+                </div>
 
 
             <div className="detailpost">

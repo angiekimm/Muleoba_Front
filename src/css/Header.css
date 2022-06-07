@@ -208,6 +208,11 @@
 
 .header_alarm_header_delete {
   margin: 0 7px 0 7px;
+  cursor: pointer;
+}
+
+.header_alarm_inner_isread{
+  cursor: pointer;
 }
 
 .header_alarm_inner {
