@@ -23,7 +23,8 @@
   display: flex;
   align-items: center;
   background-color: white;
-  /*   position: fixed;
+  width : 100%;
+/*   position: fixed;
   top: 0;
   left: 0;
   right: 0; */
@@ -173,7 +174,7 @@
   border: 1px solid;
   border-color: rgb(63, 63, 63);
   border-radius: 15px;
-  width: 350px;
+  width: 380px;
   height: 220px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 4px 15px -8px rgb(83, 83, 83);
@@ -181,7 +182,7 @@
 }
 
 .header_alarm_bar {
-  width: 1000px;
+  width: 100%;
   display: flex;
   justify-content: right;
 }
@@ -212,6 +213,62 @@
 .header_alarm_inner {
   margin: 3px 10px;
   overflow-y: scroll;
+  height : 180px;
+}
+
+.header_alarm_inner_firstline{
+  display: flex;
+}
+
+.header_alarm_inner_title{
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.header_alarm_inner_my{
+  margin-right: 10px;
+  color :rgb(119, 119, 119);
+}
+
+.header_alarm_inner_myitem{
+  width : 230px;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.header_alarm_inner_secondline{
+  display: flex;
+  color :rgb(119, 119, 119);
+  width : 350px;
+  white-space:nowrap;
+  margin-bottom: 5px;
+}
+
+.header_alarm_inner_applynickname{
+  color :rgb(131, 87, 201);
+  width : auto;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.header_alarm_inner_applyitem{
+  color :rgb(131, 87, 201);
+  width : auto;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.header_alarm_inner_date{
+  display: flex;
+  justify-content: right;
+  color :rgb(105, 105, 105);
+  font-size: 13px;
+  align-items: flex-end;
+  width : 79px;
+  white-space:nowrap;
 }
 
 .header_sideMenu {

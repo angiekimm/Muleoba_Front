@@ -5,9 +5,10 @@ import { FaRegHandPaper } from "react-icons/fa";
 import logo from "../image/muleoba_success_logo.png";
 import "../css/Mypage.css";
 import "../css/Successlist.css";
+import {uID} from "../redux/idReducer";
 
 export default function Successlist() {
-    const uID = useSelector((state) => state.uID);
+    const uID = useSelector((state) => state.idReducer.uID);
 
     const [lists, setLists] = useState([]);
     const [pages, setPages] = useState(9);

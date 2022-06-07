@@ -3,11 +3,11 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import "../css/Header.css";
 import "../css/Main.css";
-
+import {uID} from "../redux/idReducer";
 
 export default function Rank() {
 
-  const uID = useSelector((state) => state.uID);
+  const uID = useSelector((state) => state.idReducer.uID);
 
   const [rank, setRank] = useState([])
 
@@ -25,19 +25,19 @@ export default function Rank() {
 
   useEffect(() => {
     fetchRank();
+    var i = 1;
+  
+    window.setInterval(function(){
+      document.getElementById("header_ranking_textbox").style.transitionDuration = "400ms";
+      document.getElementById("header_ranking_textbox").style.marginTop = (i*-2.13) + "em";
+  
+      i++;
+      i%=5;
+       
+    },2500);
   }, [])
 
  
-  var i = 1;
-
-  window.setInterval(function(){
-    document.getElementById("header_ranking_textbox").style.transitionDuration = "400ms";
-    document.getElementById("header_ranking_textbox").style.marginTop = (i*-2.13) + "em";
-
-    i++;
-    i%=5;
-     
-  },2500);
 
 
   return (

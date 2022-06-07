@@ -1,38 +1,62 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import "../css/Header.css";
 import "../css/Main.css";
 import logo from "../image/muleoba_logo.png";
 import { FaBell, FaBars, FaSearch, FaTrophy, FaWindowClose } from "react-icons/fa";
+import { setPosts } from "../redux/Action";
+import { connect } from "react-redux";
+import {uID} from "../redux/idReducer";
 
+const mapDispatchToProps = dispatch => {
+  return {
+    setPosts: search => dispatch(setPosts(search)),
+  };
+};
 
+function Header({setPosts}) {
 
+  const uID = useSelector((state) => state.idReducer.uID);
 
-export default function Header() {
-
-  const uID = useSelector((state) => state.uID);
   //const alarmRef = useRef(null);
   const [alarm, setAlarm] = useState(false);
+  const [inalarm, setInalarm] = useState([]);
   const [sidebar, setSidebar] = useState(false);
-  const [rank, setRank] = useState([])
+  const [rank, setRank] = useState([]);
+  const [input, setInput] = useState("");
 
   const modalRef = useRef();
-
   //const showSidebar = () => setSidebar(!sidebar);
-
-
 
   const onClickAlarmInform = (e) => {
     getAlarm();
   };
 
+  async function searchHandler(){
+    await axios
+    .post("/muleoba/searchitem", {
+      uID : uID,
+      searchString : input
+    })
+    .then((response) => {
+      console.log(response.data);
+      setPosts(response.data);
+      setInput("");
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }
+
   async function getAlarm() {
     await axios
-      .get("/muleoba/alarm")
+      .post("/muleoba/get/alarm/list", {
+        uID : uID
+      })
       .then((response) => {
-
+        setInalarm(response.data);
         console.log(response.data);
       })
       .catch((error) => {
@@ -47,6 +71,7 @@ export default function Header() {
       .then((response) => {
         setRank(response.data);
         console.log(response.data);
+        console.log(uID);
       })
       .catch((error) => {
         console.log(error)
@@ -54,6 +79,7 @@ export default function Header() {
   }
 
   useEffect(() => {
+    getAlarm();
     fetchRank();
     var i = 1;
 
@@ -70,7 +96,7 @@ export default function Header() {
   /*외부영역 클릭 감지*/
   useEffect(() => {
     document.addEventListener('mousedown', clickModalOutside);
-      return () => {
+    return () => {
       document.removeEventListener('mousedown', clickModalOutside);
     };
   });
@@ -106,6 +132,17 @@ export default function Header() {
     setSidebar(false);
   };
 
+  function changeText(e) {
+    e.preventDefault();
+    setInput(e.target.value);
+    console.log(input);
+  }
+
+  function onKeyPress(e) {
+    if(e.key == 'Enter'){
+      searchHandler();
+    }
+  }
 
   return (
     <div className="header">
@@ -118,8 +155,10 @@ export default function Header() {
               </NavLink>
             </div>
             <div className="header_searchBar">
-              <input type="text" placeholder="물품 검색" />
+              <input type="text" required={true} value={input} onKeyPress={onKeyPress} onChange={changeText} placeholder="물품 검색" />
+              <div onClick={() => searchHandler() }>
               <FaSearch className="header_searchIcon" />
+              </div>
             </div>
           </div>
           <div className="header_right">
@@ -175,7 +214,43 @@ export default function Header() {
                     </div>
                   </div>
                   <div className="header_alarm_inner">
-                    알람
+                    {
+                      inalarm
+                        ? inalarm.map((inalarm, index) => {
+                          return (
+                            <div className="header_alarm_inner_box">
+                              <div className="header_alarm_inner_firstline">
+                                <div className="header_alarm_inner_title">
+                                  거래요청
+                                </div>
+                                <div className="header_alarm_inner_my">
+                                  나의
+                                </div>
+                                <div className="header_alarm_inner_myitem">
+                                  {inalarm.itemName}
+                                </div>
+                              </div>
+                              <div className="header_alarm_inner_secondline">
+                                <div className="header_alarm_inner_applynickname">
+                                  '{inalarm.requestNickName}'
+                                </div>
+                                <div className="header_alarm_inner_my">
+                                  님의
+                                </div>
+                                <div className="header_alarm_inner_applyitem">
+                                {inalarm.requestItem}
+                                </div>
+                                <div className="header_alarm_inner_date">
+                                  | {inalarm.timeAl}
+                                </div>
+                              </div>
+                              <hr />
+                            </div>
+                          )
+                        })
+                        : null
+                    }
+
                   </div>
                 </div>
               </div>
@@ -211,3 +286,5 @@ export default function Header() {
     </div>
   );
 }
+
+export default connect(null, mapDispatchToProps)(Header);
