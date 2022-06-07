@@ -9,10 +9,10 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function Item() {
+export default function Item({ itemID }) {
   const uID = useSelector((state) => state.uID);
 
-  const iID = "1";
+  const iID = "1"; // itemID 구현하면 이 줄 삭제
   const naviate = useNavigate();
 
   const [category, setCategory] = useState("");
@@ -57,7 +57,7 @@ export default function Item() {
       category: category,
       content: content,
       itemID: iID, // 수정할때
-      // uId: uID,
+      uId: uID,
     };
     formData.append(
       "data",

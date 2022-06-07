@@ -6,6 +6,7 @@ export default function SelectBox({
   address,
   defaultValue,
   handleChangeState,
+  clickModalOutside,
 }) {
   return (
     <select

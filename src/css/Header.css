@@ -1,19 +1,19 @@
 /* 스크롤바 설정*/
-.header_alarm_inner::-webkit-scrollbar{
+.header_alarm_inner::-webkit-scrollbar {
   width: 6px;
 }
 
 /* 스크롤바 막대 설정*/
-.header_alarm_inner::-webkit-scrollbar-thumb{
+.header_alarm_inner::-webkit-scrollbar-thumb {
   height: 17%;
   background-color: rgba(188, 165, 230, 0.5);
   /* 스크롤바 둥글게 설정    */
-  border-radius: 10px;    
+  border-radius: 10px;
 }
 
 /* 스크롤바 뒷 배경 설정*/
-.header_alarm_inner::-webkit-scrollbar-track{
-  background-color: rgba(0,0,0,0);
+.header_alarm_inner::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .header {
@@ -23,7 +23,7 @@
   display: flex;
   align-items: center;
   background-color: white;
-/*   position: fixed;
+  /*   position: fixed;
   top: 0;
   left: 0;
   right: 0; */
@@ -139,7 +139,7 @@
   justify-content: center;
 }
 
-.header_bell{
+.header_bell {
   border-radius: 30px;
   width: 35px;
   height: 35px;
@@ -170,14 +170,14 @@
   margin: 2px 53px 0 0;
   z-index: 1;
   position: relative;
-  border : 1px solid;
+  border: 1px solid;
   border-color: rgb(63, 63, 63);
   border-radius: 15px;
   width: 350px;
   height: 220px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 4px 15px -8px rgb(83, 83, 83);
-  overflow : hidden;
+  overflow: hidden;
 }
 
 .header_alarm_bar {
@@ -186,7 +186,7 @@
   justify-content: right;
 }
 
-.header_alarm_header{
+.header_alarm_header {
   display: flex;
   justify-content: space-between;
   background-color: rgb(240, 240, 240);
@@ -194,23 +194,23 @@
   font-size: 14px;
 }
 
-.header_alarm_header_left{
+.header_alarm_header_left {
   display: flex;
-  margin : 3px 0 0 10px; 
+  margin: 3px 0 0 10px;
 }
 
-.header_alarm_header_right{
+.header_alarm_header_right {
   display: flex;
-  margin : 3px 3px 0 0;
+  margin: 3px 3px 0 0;
   color: rgb(104, 104, 104);
 }
 
-.header_alarm_header_delete{
+.header_alarm_header_delete {
   margin: 0 7px 0 7px;
 }
 
-.header_alarm_inner{
-  margin : 3px 10px;
+.header_alarm_inner {
+  margin: 3px 10px;
   overflow-y: scroll;
 }
 
@@ -219,7 +219,7 @@
   background-color: white;
   border: 0.1px solid lightgray;
   width: 300px;
-  height: 50vh;
+  height: 30vh;
   display: flex;
   justify-content: center;
   position: fixed;

@@ -201,6 +201,11 @@ export default function Header() {
               <div>마이페이지</div>
             </NavLink>
           </div>
+          <div className="header_sideMenu_text">
+            <NavLink to="/main" onClick={() => setSidebar(!sidebar)}>
+              <div>Main</div>
+            </NavLink>
+          </div>
         </div>
       </nav>
     </div>
