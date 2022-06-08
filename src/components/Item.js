@@ -58,7 +58,7 @@ export default function Item() {
       category: category,
       content: content,
       itemID: iID, // 수정할때
-      uId: uID,
+      uuID: uID,
     };
     formData.append(
       "data",
@@ -78,7 +78,6 @@ export default function Item() {
         data: formData,
       })
         .then((response) => {
-          console.log("등록완료 후", response.data);
           toast.success("물품 등록 완료!", {
             position: "top-center",
             autoClose: 2000,
@@ -87,7 +86,7 @@ export default function Item() {
             pauseOnHover: true,
             progress: undefined,
           });
-          window.setTimeout(() => {
+          setTimeout(() => {
             navigate("/main/mypage/mylist");
           }, 2000);
         })
@@ -240,7 +239,7 @@ export default function Item() {
           </div>
           <hr />
           <div className="item_btn">
-            <NavLink to="/main/mypage/mylist">
+            <NavLink to="/main">
               <button className="item_cancelBtn">취소</button>
             </NavLink>
             <div
