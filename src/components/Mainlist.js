@@ -4,10 +4,11 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 import "../css/Mainlist.css";
 import { FaRegHandPaper, FaRegEdit } from "react-icons/fa";
+import RequestModal from "../components/RequestModal";
 import { connect } from "react-redux";
 import { uID } from "../redux/idReducer";
 import { SET_POST } from "../redux/searchReducer";
-//import { setPosts } from "../redux/Action";
+import { setPosts } from "../redux/Action";
 
 const mapStateToProps = (state) => {
   return {
@@ -15,27 +16,33 @@ const mapStateToProps = (state) => {
   };
 };
 
-function Mainlist({ searchData }) {
-  const uID = useSelector((state) => state.idReducer.uID);
 
+
+function Mainlist({ searchData, setPosts }) {
+  const uID = useSelector((state) => state.idReducer.uID);
   const [lists, setLists] = useState([]);
+  const [itemcount, setItemcount] = useState(0);
   const [pages, setPages] = useState(9);
   const [category, setCategory] = useState(null);
   const [user, setUser] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     // console.log(searchData.length);
+    setPages(9);
     getList();
     getUser();
   }, [uID]);
-
+  
   useEffect(() => {
+    //setPosts("");
     setPages(9);
     getList();
-  }, [category]);
+  }, [category]); 
 
   useEffect(() => {
     setPages(9);
+    setItemcount(searchData.length);
     setLists(searchData);
   }, [searchData]);
 
@@ -54,6 +61,7 @@ function Mainlist({ searchData }) {
       .get("/muleoba/mainList", { params: { uID, category } })
       .then((response) => {
         setLists(response.data.slice(0, pages));
+        setItemcount(response.data.length);
         // console.log(pages);
         // console.log(uID);
         // console.log(category);
@@ -86,6 +94,7 @@ function Mainlist({ searchData }) {
       setPages(pages + 9);
     } else {
       console.log("전체구역");
+      //setItemcount(0);
       getList();
       setPages(pages + 9);
     }
@@ -138,43 +147,52 @@ function Mainlist({ searchData }) {
       <div className="mainlist_content">
         {lists
           ? lists.map((list) => {
-              let address = "/img/" + list.photo;
-              return (
-                <div key={list.item}>
-                  <NavLink
-                    to={`detail/${list.iid}`}
-                    style={{ textDecoration: "none", color: "black" }}
-                  >
-                    <div className="mainlist_detailbox">
-                      <div className="mainlist_detail">
-                        <div className="mainlist_detail_photo">
-                          <img src={address} />
+            let address = "/img/" + list.photo;
+            return (
+              <div key={list.index}>
+                <NavLink to={`detail/${list.iid}`} style={{ textDecoration: "none", color: "black" }} >
+                  <div className="mainlist_detailbox">
+                    <div className="mainlist_detail">
+                      <div className="mainlist_detail_photo">
+                        <img src={address} />
+                      </div>
+                      <div className="mainlist_detail_text">
+                        <div className="mainlist_detail_cate">
+                          {list.category}
                         </div>
-                        <div className="mainlist_detail_text">
-                          <div className="mainlist_detail_cate">
-                            {list.category}
-                          </div>
-                          <div className="mainlist_detail_item">
-                            {list.item}
-                          </div>
+                        <div className="mainlist_detail_item">
+                          {list.item}
                         </div>
-                        <div className="mainlist_detail_requestnum_box">
-                          <div className="mainlist_detail_requestnum">
-                            <FaRegHandPaper className="mainlist_detail_requesticon" />
-                            {list.requestNum}
-                          </div>
+                      </div>
+                      <div className="mainlist_detail_requestnum_box">
+                        <div className="mainlist_detail_requestnum" onClick={() => { setOpenModal(true); }}>
+                          <FaRegHandPaper className="mainlist_detail_requesticon" />
+                          {list.requestNum}
                         </div>
                       </div>
                     </div>
-                  </NavLink>
-                </div>
-              );
-            })
+                  </div>
+                </NavLink>
+              </div>
+            );
+          })
           : null}
       </div>
-      <div className="mainlist_plus_box" onClick={(e) => onClickPlusPage(e)}>
+      {itemcount == 0 ? null :
+        (itemcount / pages) >= 1 ?
+          <div className="mainlist_plus_box" onClick={(e) => onClickPlusPage(e)}>
+            더보기
+          </div> : 
+          <div className="mainlist_plus_box_not" >
+            더 이상 물품이 없습니다.
+          </div>
+      }
+      {/* <div className="mainlist_plus_box" onClick={(e) => onClickPlusPage(e)}>
         더보기
-      </div>
+      </div> */}
+      {openModal && (
+        <RequestModal closeModal={setOpenModal} />
+      )}
     </div>
   );
 }

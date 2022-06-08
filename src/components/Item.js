@@ -5,7 +5,7 @@ import "../css/Item.css";
 import SelectBox from "./SelectBox";
 import data from "../db/data.json";
 import { FaTrashAlt, FaCamera } from "react-icons/fa";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { uID } from "../redux/idReducer";
@@ -13,7 +13,11 @@ import { uID } from "../redux/idReducer";
 export default function Item() {
   const uID = useSelector((state) => state.idReducer.uID);
 
-  const iID = ""; // itemID 구현하면 이 줄 삭제
+
+  const { iid } = useParams();
+  console.log(iid);
+
+  const iID = { iid }; // itemID 구현하면 이 줄 삭제
   const naviate = useNavigate();
 
   const [category, setCategory] = useState("");
@@ -57,8 +61,8 @@ export default function Item() {
       itemName: itemName,
       category: category,
       content: content,
-      itemID: iID, // 수정할때
-      uId: uID,
+      itemID: iid, // 수정할때
+      uuID: uID,
     };
     formData.append(
       "data",
@@ -68,7 +72,7 @@ export default function Item() {
     for (let value of formData.values()) {
       console.log(value);
     }
-    if (!iID) {
+    if (!iid) {
       const uploadItem = await axios({
         method: "POST",
         url: "/muleoba/uploadItem",
@@ -130,18 +134,18 @@ export default function Item() {
 
   // iId가 같이 넘어온다면 데이터 불러와서 보여주고, 없다면 등록페이지
   useEffect(() => {
-    if (iID) {
+    if (iid) {
       getItemInfo();
       // iId에 해당하는 사진, 내용을 불러오기
       async function getItemInfo() {
         await axios
           .get("/muleoba/getItem", {
-            params: { iID },
+            params: { iid },
           })
           .then((response) => {
             console.log(response.data);
             // 데이터 저장
-            setShowImages();
+            setShowImages(response.data.photo.split(" "));
             setItemName(response.data.item);
             setCategory(response.data.category);
             setContent(response.data.content);
@@ -187,11 +191,21 @@ export default function Item() {
               </div>
             </div>
             <div className="item_preview">
-              {showImages.map((image, index) => (
-                <div key={index}>
-                  <img src={image} alt="item" className="item_previewImg" />
-                </div>
-              ))}
+              {showImages
+                ? showImages.map((image, index) => {
+                  let address = "/img/" + showImages;
+                  return (
+                    <div key={index}>
+                      <img
+                        src={address}
+                        alt="item"
+                        className="item_previewImg"
+                      />
+                    </div>
+                  );
+                })
+                : null}
+
             </div>
           </div>
           <hr />
@@ -255,7 +269,7 @@ export default function Item() {
                 }
                 disabled={!showImages}
               >
-                {iID ? "수정" : "등록"}
+                {iid ? "수정" : "등록"}
               </button>
             </div>
           </div>

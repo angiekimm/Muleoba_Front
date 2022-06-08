@@ -14,6 +14,7 @@ export default function Content() {
       <Routes>
         <Route exact path="/" element={<Mainlist />} />
         <Route path="/mypage/*" element={<Mypage />} />
+        <Route path="/item/:iid" element={<Item />} />
         <Route path="/item" element={<Item />} />
         <Route exact path="/detail/:iid" element={<DetailPost />} />
       </Routes>
