@@ -171,7 +171,6 @@
   justify-content: flex-start;
   align-self: center;
   align-content: center;
-  /* background-color: black; */
 }
 .text p {
   font-size: 1.5rem;
@@ -255,7 +254,7 @@
   line-height: 70px;
 }
 
-.welcome_background3 .welcome_modal_btn{
+.welcome_background3 .welcome_modal_btn {
   margin-top: 50px;
 }
 
@@ -265,20 +264,74 @@
     flex-direction: column;
     flex-wrap: wrap;
   }
+  .welcome_navbar {
+    padding: 25px 0;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    position: relative;
+    z-index: 1;
+  }
+  .welcome_navbar_flex {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .welcome_main {
+    width: 100%;
+    margin-top: -100px;
+    background-size: cover;
+    align-items: center;
+    overflow-x: hidden;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    background-position: center;
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+      url("../image/muleoba_main.gif");
+  }
+  .welcome_area {
+    display: flex;
+    flex-direction: column;
+  }
   .welcome_container1 {
     display: flex;
     flex-direction: column;
   }
-
+  .welcome_container1 .text {
+    margin-top: 50px;
+  }
   .welcome_area h1 {
-    font-size: 40px;
-    line-height: 60px;
+    font-size: 50px;
+    line-height: 80px;
   }
 
-  .welcome_area h3 {
+  .welcome_area h2 {
     margin-top: 10px;
+    font-size: 30px;
   }
 
+  .welcome_modal_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    width: 220px;
+    height: 50px;
+    border: none;
+    background-color: rgb(148, 80, 255);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .welcome_arrowBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .welcome_container1 img {
     width: 70%;
   }
@@ -300,16 +353,76 @@
     margin-left: 10px;
     margin-right: 10px;
   }
-
-  .text h1 {
-    font-size: 2rem;
-    margin-left: 10px;
-    margin-right: 10px;
+  .welcome_background1 .image {
+    width: 700px;
+  }
+  .welcome_background1 img {
+    margin-top: 80px;
+    margin-bottom: 100px;
+  }
+  .welcome_background1 .text h1 {
+    font-size: 50px;
+    margin: auto;
+    line-height: 70px;
   }
 
-  .text p {
-    font-size: 1.2rem;
+  .welcome_background2 .image {
+    margin-top: -80px;
+    height: 700px;
+  }
+
+  .welcome_background2 img {
+    height: 700px;
+  }
+
+  .welcome_background2 .text {
+    margin-top: -200px;
+    margin-bottom: 100px;
+  }
+  .welcome_background2 .text h1 {
+    font-size: 50px;
+    margin: auto;
+    line-height: 50px;
+  }
+  .welcome_background1 .text p,
+  .welcome_background2 .text p {
+    font-size: 20px;
     margin-left: 10px;
     margin-right: 10px;
+    margin-top: 60px;
+  }
+
+  .welcome_area3 h1 {
+    font-size: 45px;
+    line-height: 30px;
+  }
+}
+
+@media (min-width: 980px) and (max-width: 1300px) {
+  .welcome_background1 .image {
+    width: 600px;
+  }
+  .welcome_background1 img {
+    margin-top: 80px;
+    margin-bottom: 100px;
+  }
+  .welcome_background1 .text h1 {
+    font-size: 82px;
+    line-height: 82px;
+  }
+  .welcome_background1 .text p {
+    font-size: 25px;
+  }
+  .welcome_background2 .text h1 {
+    font-size: 65px;
+    line-height: 65px;
+  }
+  .welcome_background2 .text p {
+    font-size: 20px;
+  }
+
+  .welcome_background2 img {
+    width: 500px;
+    margin-top: -500px;
   }
 }

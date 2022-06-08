@@ -9,9 +9,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { connect } from "react-redux";
 import { setID } from "../redux/Action";
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    setID: uid => dispatch(setID(uid)),
+    setID: (uid) => dispatch(setID(uid)),
   };
 };
 
@@ -80,7 +80,6 @@ function Modal({ closeModal, signupModal, setID }) {
         console.log(response.data);
         setID(response.data);
         if (response.data) {
-          
           navigate("/main");
         } else {
           toast.error("이메일과 비밀번호를 확인해주세요.", {
@@ -143,8 +142,6 @@ function Modal({ closeModal, signupModal, setID }) {
             </span>
           </div>
           <div className="modal_logininfo">
-            <div>아이디 찾기 /&nbsp;</div>
-            <div>비밀번호 찾기 /&nbsp;</div>
             <div>
               <button
                 className="modal_signupBtn"
