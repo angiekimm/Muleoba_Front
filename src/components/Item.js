@@ -4,8 +4,8 @@ import axios from "axios";
 import "../css/Item.css";
 import SelectBox from "./SelectBox";
 import data from "../db/data.json";
-import { FaTrashAlt, FaCamera } from "react-icons/fa";
-import { NavLink, useNavigate } from "react-router-dom";
+import { FaCamera } from "react-icons/fa";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { uID } from "../redux/idReducer";
@@ -13,7 +13,10 @@ import { uID } from "../redux/idReducer";
 export default function Item() {
   const uID = useSelector((state) => state.idReducer.uID);
 
-  const iID = ""; // itemID 구현하면 이 줄 삭제
+  // let location = useLocation();
+  // console.log("location: ", location);
+
+  const iID = "49"; // itemID 구현하면 이 줄 삭제
   const navigate = useNavigate();
 
   const [category, setCategory] = useState("");
@@ -140,7 +143,8 @@ export default function Item() {
           .then((response) => {
             console.log(response.data);
             // 데이터 저장
-            setShowImages();
+            
+            setShowImages(response.data.photo.split(" "));
             setItemName(response.data.item);
             setCategory(response.data.category);
             setContent(response.data.content);
@@ -153,8 +157,8 @@ export default function Item() {
   }, []);
 
   // useEffect(() => {
-  //   console.log("category: ", category);
-  // }, []);
+  //   console.log("images: ", showImages);
+  // }, [showImages]);
 
   return (
     <div className="item">
@@ -186,11 +190,20 @@ export default function Item() {
               </div>
             </div>
             <div className="item_preview">
-              {showImages.map((image, index) => (
-                <div key={index}>
-                  <img src={image} alt="item" className="item_previewImg" />
-                </div>
-              ))}
+              {showImages
+                ? showImages.map((image, index) => {
+                    let address = "/img/" + showImages;
+                    return (
+                      <div key={index}>
+                        <img
+                          src={address}
+                          alt="item"
+                          className="item_previewImg"
+                        />
+                      </div>
+                    );
+                  })
+                : null}
             </div>
           </div>
           <hr />
