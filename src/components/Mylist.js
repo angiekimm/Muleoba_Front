@@ -43,42 +43,48 @@ export default function Mylist() {
     <div className="mylist">
       <div className="mylist_content">
         {lists
-          ? lists.map((list) => {
-            let address = "/img/" + list.photo;
-            return (
-              <NavLink to={`/main/detail/${list.iid}`} style={{ textDecoration: "none", color: "black" }} >
-                <div className="mylist_detailbox" key={list.item}>
-                  <div className="mylist_detail">
-                    <div className="mylist_detail_photo">
-                      <img src={address} />
-                    </div>
-                    <div className="mylist_detail_text">
-                      <div className="mylist_detail_cate">{list.category}</div>
-                      <div className="mylist_detail_item">{list.item}</div>
-                    </div>
-                    <div className="mylist_detail_requestnum_box">
-                      <div className="mylist_detail_requestnum">
-                        <FaRegHandPaper className="mylist_detail_requesticon" />
-                        {list.requestNum}
+          ? lists.map((list, index) => {
+              let first_photo = list.photo.split(" ");
+              let address = "/img/" + first_photo[0];
+              return (
+                <NavLink
+                  to={`/main/detail/${list.iid}`}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <div className="mylist_detailbox" key={list.item}>
+                    <div className="mylist_detail">
+                      <div className="mylist_detail_photo">
+                        <img src={address} />
+                      </div>
+                      <div className="mylist_detail_text">
+                        <div className="mylist_detail_cate">
+                          {list.category}
+                        </div>
+                        <div className="mylist_detail_item">{list.item}</div>
+                      </div>
+                      <div className="mylist_detail_requestnum_box">
+                        <div className="mylist_detail_requestnum">
+                          <FaRegHandPaper className="mylist_detail_requesticon" />
+                          {list.requestNum}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </NavLink>
-            );
-          })
+                </NavLink>
+              );
+            })
           : null}
       </div>
-      {
-        itemcount == 0 ? null :
-          (itemcount / pages) > 1 ?
-            <div className="detailpost_plus_box" onClick={(e) => onClickPlusPage(e)}>
-              더보기
-            </div> :
-            <div className="mainlist_plus_box_not" >
-              더 이상 물품이 없습니다.
-            </div>
-      }
+      {itemcount == 0 ? null : itemcount / pages > 1 ? (
+        <div
+          className="detailpost_plus_box"
+          onClick={(e) => onClickPlusPage(e)}
+        >
+          더보기
+        </div>
+      ) : (
+        <div className="mainlist_plus_box_not">더 이상 물품이 없습니다.</div>
+      )}
     </div>
   );
 }

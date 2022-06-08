@@ -362,7 +362,7 @@ function Header({ setPosts }) {
           </div>
           <div className="header_sideMenu_text">
             <NavLink to="/main" onClick={() => setSidebar(!sidebar)}>
-              <div>Main</div>
+              <div>Home</div>
             </NavLink>
           </div>
           <div className="header_sideMenu_text">

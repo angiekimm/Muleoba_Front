@@ -1,18 +1,16 @@
 const initState = {
-  uID: '1',
+  uID: "",
 };
 
-
 export default function idreducer(currentState = initState, action) {
-
   switch (action.type) {
     case "SET_ID":
-      return { ...currentState ,uID: action.payload };
+      return { ...currentState, uID: action.payload };
     default:
       return currentState;
   }
 
-/*     if (currentState === undefined) {
+  /*     if (currentState === undefined) {
       return {
         uID: '2'
       };
@@ -22,4 +20,4 @@ export default function idreducer(currentState = initState, action) {
       newState.uID = 'none';
     }
     return newState; */
-  }
+}
