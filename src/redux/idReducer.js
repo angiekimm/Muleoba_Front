@@ -1,5 +1,5 @@
 const initState = {
-  uID: "",
+  uID: "1",
 };
 
 export default function idreducer(currentState = initState, action) {

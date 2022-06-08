@@ -46,6 +46,7 @@ export default function Mylist() {
           ? lists.map((list, index) => {
               let first_photo = list.photo.split(" ");
               let address = "/img/" + first_photo[0];
+              //let address = '/img/' + list.photo;
               return (
                 <NavLink
                   to={`/main/detail/${list.iid}`}
