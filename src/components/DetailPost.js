@@ -11,8 +11,6 @@ import RequestModal from "../components/RequestModal";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
-import styled from "styled-components";
 
 export default function DetailPost() {
   const uID = useSelector((state) => state.idReducer.uID);
@@ -73,7 +71,7 @@ export default function DetailPost() {
           alert("삭제완료");
           window.setTimeout(() => {
             navigate("/main");
-          }, 2000);
+          }, 500);
         })
         .catch((error) => {
           console.log(error);
@@ -89,11 +87,11 @@ export default function DetailPost() {
     await axios
       .get("/muleoba/detail/accept", { params: { iid, urliid } })
       .then((response) => {
-        console.log(response.data);
         alert("교환이 완료되었습니다.");
+        console.log(response.data);
         window.setTimeout(() => {
           navigate("/main/mypage/successlist");
-        }, 1000);
+        }, 500);
       })
       .catch((error) => {
         console.log(error);

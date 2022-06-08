@@ -8,9 +8,8 @@ import "react-toastify/dist/ReactToastify.css";
 import "../css/RequestModal.css";
 
 
-export default function RequestModal({ closeModal}) {
+export default function MainRequestModal({ closeModal, iid}) {
 
-  const { iid } = useParams();
   console.log(iid);
   const uID = useSelector((state) => state.idReducer.uID);
 
@@ -42,17 +41,17 @@ export default function RequestModal({ closeModal}) {
       .then((response) => {
         toast.success("신청 완료!", {
           position: "top-center",
-          autoClose: 2000,
+          autoClose: 1000,
           hideProgressBar: true,
           closeOnClick: true,
           pauseOnHover: true,
           progress: undefined,
         });
-        console.log(uID);
-        console.log(response.data);
         window.setTimeout(() => {
           navigate("/main");
         }, 1000);
+        console.log(uID);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);

@@ -83,12 +83,13 @@ export default function Mychangelist() {
                     {
                         lists
                             ? lists.map((list) => {
-                                let address = "/img/" + list.photo;
+                                let first_photo = list.photo.split(" ");
+                                let address = "/img/" + first_photo[0];
                                 return (
-                                    <NavLink to={`/main/detail/${list.iid}`} style={{ textDecoration: "none", color: "black" }} >
-                                        <div className="mychangelist_two_box">
-                                            <div className="mychangelist_detailbox" key={list.item}>
-                                                <div className="mychangelist_detail">
+                                    <div className="mychangelist_two_box">
+                                        <div className="mychangelist_detailbox" key={list.item}>
+                                            <div className="mychangelist_detail">
+                                                <NavLink to={`/main/detail/${list.iid}`} style={{ textDecoration: "none", color: "black" }} >
                                                     <div className="mychangelist_detail_photo">
                                                         <img src={address} />
                                                     </div>
@@ -106,13 +107,13 @@ export default function Mychangelist() {
                                                             {list.requestNum}
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div className="mychangelist_arrow_box">
-                                                <FaArrowCircleRight className="mychangelist_arrow" />
+                                                </NavLink>
                                             </div>
                                         </div>
-                                    </NavLink>
+                                        <div className="mychangelist_arrow_box">
+                                            <FaArrowCircleRight className="mychangelist_arrow" />
+                                        </div>
+                                    </div>
                                 )
                             })
                             : null
@@ -123,12 +124,13 @@ export default function Mychangelist() {
                     {
                         responselists
                             ? responselists.map((list) => {
-                                let address = "/img/" + list.photo;
+                                let first_photo = list.photo.split(" ");
+                                let address = "/img/" + first_photo[0];
                                 return (
-                                    <NavLink to={`/main/detail/${list.iid}`} style={{ textDecoration: "none", color: "black" }} >
-                                        <div className="mychangelist_two_box">
-                                            <div className="mychangelist_detailbox_two" key={list.item}>
-                                                <div className="mychangelist_detail_two">
+                                    <div className="mychangelist_two_box">
+                                        <div className="mychangelist_detailbox_two" key={list.item}>
+                                            <div className="mychangelist_detail_two">
+                                                <NavLink to={`/main/detail/${list.iid}`} style={{ textDecoration: "none", color: "black" }} >
                                                     <div className="mychangelist_detail_photo_two">
                                                         <img src={address} />
                                                     </div>
@@ -146,16 +148,24 @@ export default function Mychangelist() {
                                                             {list.requestNum}
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </NavLink>
                                             </div>
-                                            <div className="mychangelist_cancel_box">
-                                                <div className="mychangelist_cancel_box_icon" onClick={() => CancelRequest(list.iid, list.requestiID)}>
-                                                    <FaTimes className="mychangelist_cancel" />
-                                                </div>
-                                            </div>
-
+                                            {
+                                                list.sstatus == "Complete" ?
+                                                <div className="successlist_detail_stamp_box">
+                                                    <div className="successlist_detail_stamp">
+                                                        거래완료
+                                                    </div>
+                                                </div> : null
+                                            }
                                         </div>
-                                    </NavLink>
+                                        <div className="mychangelist_cancel_box">
+                                            <div className="mychangelist_cancel_box_icon" onClick={() => CancelRequest(list.iid, list.requestiID)}>
+                                                <FaTimes className="mychangelist_cancel" />
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 )
                             })
                             : null
