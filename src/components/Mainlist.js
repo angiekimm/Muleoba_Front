@@ -63,7 +63,7 @@ function Mainlist({ searchData, setPosts }) {
         // console.log(pages);
         // console.log(uID);
         // console.log(category);
-        // console.log(response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -149,12 +149,12 @@ function Mainlist({ searchData, setPosts }) {
               let address = "/img/" + first_photo[0];
               return (
                 <div key={index}>
-                  <NavLink
-                    to={`detail/${list.iid}`}
-                    style={{ textDecoration: "none", color: "black" }}
-                  >
-                    <div className="mainlist_detailbox">
-                      <div className="mainlist_detail">
+                  <div className="mainlist_detailbox">
+                    <div className="mainlist_detail">
+                      <NavLink
+                        to={`detail/${list.iid}`}
+                        style={{ textDecoration: "none", color: "black" }}
+                      >
                         <div className="mainlist_detail_photo">
                           <img src={address} />
                         </div>
@@ -162,30 +162,31 @@ function Mainlist({ searchData, setPosts }) {
                           <div className="mainlist_detail_cate">
                             {list.category}
                           </div>
+
                           <div className="mainlist_detail_item">
                             {list.item}
                           </div>
                         </div>
-                        <div className="mainlist_detail_requestnum_box">
-                          <div
-                            className="mainlist_detail_requestnum"
-                            onClick={() => {
-                              setOpenModal(true);
-                            }}
-                          >
-                            <FaRegHandPaper className="mainlist_detail_requesticon" />
-                            {list.requestNum}
-                          </div>
+                      </NavLink>
+                      <div className="mainlist_detail_requestnum_box">
+                        <div
+                          className="mainlist_detail_requestnum"
+                          onClick={() => {
+                            setOpenModal(true);
+                          }}
+                        >
+                          <FaRegHandPaper className="mainlist_detail_requesticon" />
+                          {list.requestNum}
                         </div>
                       </div>
                     </div>
-                  </NavLink>
+                  </div>
                 </div>
               );
             })
           : null}
       </div>
-      {itemcount == 0 ? null : itemcount / pages >= 1 ? (
+      {itemcount == 0 ? null : itemcount / pages > 1 ? (
         <div className="mainlist_plus_box" onClick={(e) => onClickPlusPage(e)}>
           더보기
         </div>

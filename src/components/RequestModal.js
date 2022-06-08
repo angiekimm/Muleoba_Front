@@ -50,6 +50,9 @@ export default function RequestModal({ closeModal}) {
         });
         console.log(uID);
         console.log(response.data);
+        window.setTimeout(() => {
+          navigate("/main");
+        }, 2000);
       })
       .catch((error) => {
         console.log(error);
@@ -61,7 +64,6 @@ export default function RequestModal({ closeModal}) {
     console.log("박스value"+e.target.value);
   };
 
-  // 외부 영역 감지
   useEffect(() => {
     document.addEventListener("mousedown", clickModalOutside);
     return () => {

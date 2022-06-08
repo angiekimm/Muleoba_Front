@@ -87,6 +87,7 @@
 .mychangelist_detail_photo{
     display: flex;
     margin-top: 10px;
+    justify-content: center;
     background-color: rgb(226, 221, 236);
     width: 200px;
     height: 150px;
@@ -169,6 +170,7 @@
 .mychangelist_detail_photo_two{
     display: flex;
     margin-top: 10px;
+    justify-content: center;
     background-color: rgb(214, 216, 240);
     width: 200px;
     height: 150px;
