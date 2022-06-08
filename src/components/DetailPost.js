@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { FaRegHandPaper } from "react-icons/fa";
 import "../css/Mypage.css";
@@ -20,6 +20,7 @@ export default function DetailPost() {
     const [itemcount, setItemcount] = useState(0);
     const [pages, setPages] = useState(6);
     const [openModal, setOpenModal] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         getList();
@@ -59,14 +60,13 @@ export default function DetailPost() {
         
             if(window.confirm('게시글을 삭제하시겠습니까?')){
                 await axios
-                .get("/muleoba/detail/request", { params: { iid } })
+                .get("/muleoba/detail/deletepost", { params: { iid } })
                 .then((response) => {
-                setLists(response.data.slice(0, pages));
-                setItemcount(response.data.length);
-                console.log(pages);
                 console.log(response.data);
-                console.log(response.data.length);
                 alert("삭제완료");
+                window.setTimeout(() => {
+                    navigate("/main");
+                }, 2000);
             })
             .catch((error) => {
                 console.log(error)
@@ -75,7 +75,24 @@ export default function DetailPost() {
             }else{
                 alert("취소되었습니다.");
             }
-        }
+    }
+
+    async function onClickAccept(iid) {
+        console.log(iid);
+        await axios
+            .get("/muleoba/detail/accept", { params: { iid } })
+            .then((response) => {
+                console.log(response.data);
+                alert("교환이 완료되었습니다.");
+                window.setTimeout(() => {
+                    navigate("/main/mypage/successlist");
+                }, 2000);
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
 
     const onClickPlusPage = (e) => {
         console.log(pages);
@@ -154,9 +171,9 @@ export default function DetailPost() {
                             ? lists.map((list) => {
                                 let address = "/img/" + list.photo;
                                 return (
-                                    <NavLink to={`/main/detail/${list.iid}`} style={{ textDecoration: "none", color: "black" }} >
-                                        <div className="detailpost_detailbox" key={list.item}>
+                                    <div className="detailpost_detailbox" key={list.item}>
                                             <div className="detailpost_detail">
+                                            <NavLink to={`/main/detail/${list.iid}`} style={{ textDecoration: "none", color: "black" }} >
                                                 <div className="detailpost_detail_photo">
                                                     <img src={address} />
                                                 </div>
@@ -168,15 +185,29 @@ export default function DetailPost() {
                                                         {list.item}
                                                     </div>
                                                 </div>
-                                                <div className="detailpost_detail_requestnum_box">
-                                                    <div className="detailpost_detail_requestnum">
-                                                        <FaRegHandPaper className="detailpost_detail_requesticon" />
+                                                </NavLink>
+                                                    {
+                                                        items.itemUid == uID ? 
+                                                        <div className="detailpost_detail_requestnum_box">
+                                                        <div className="detailpost_detail_requestnum_uid">
+                                                        <FaRegHandPaper className="detailpost_detail_requesticon_uid" />
                                                         {list.requestNum}
-                                                    </div>
-                                                </div>
+                                                        </div> 
+                                                        <div className="detailpost_item_ok" onClick={() => { onClickAccept(list.iid) }}>
+                                                            수 락
+                                                        </div>
+                                                        </div>
+                                                        : 
+                                                        <div className="detailpost_detail_requestnum_box">
+                                                            <div className="detailpost_detail_requestnum">
+                                                                <FaRegHandPaper className="detailpost_detail_requesticon" />
+                                                                {list.requestNum}
+                                                            </div>
+                                                        </div>
+                                                    }    
                                             </div>
                                         </div>
-                                    </NavLink>
+                                    
                                 )
                             })
                             : null
@@ -184,7 +215,7 @@ export default function DetailPost() {
                 </div>
                 {
                     itemcount == 0 ? null :
-                        (itemcount / pages) >= 1 ?
+                        (itemcount / pages) > 1 ?
                             <div className="detailpost_plus_box" onClick={(e) => onClickPlusPage(e)}>
                                 더보기
                             </div> : null

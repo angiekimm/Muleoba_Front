@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { FaRegHandPaper } from "react-icons/fa";
 import "../css/Mypage.css";
@@ -11,6 +12,7 @@ export default function Mylist() {
 
   const [lists, setLists] = useState([]);
   const [pages, setPages] = useState(9);
+  const [itemcount, setItemcount] = useState(0);
 
   useEffect(() => {
     getList();
@@ -21,6 +23,7 @@ export default function Mylist() {
       .get("/muleoba/mylist", { params: { uID } })
       .then((response) => {
         setLists(response.data.slice(0, pages));
+        setItemcount(response.data.length);
         console.log(pages);
         console.log(uID);
         console.log(response.data);
@@ -41,8 +44,9 @@ export default function Mylist() {
       <div className="mylist_content">
         {lists
           ? lists.map((list) => {
-              let address = "/img/" + list.photo;
-              return (
+            let address = "/img/" + list.photo;
+            return (
+              <NavLink to={`/main/detail/${list.iid}`} style={{ textDecoration: "none", color: "black" }} >
                 <div className="mylist_detailbox" key={list.item}>
                   <div className="mylist_detail">
                     <div className="mylist_detail_photo">
@@ -60,13 +64,21 @@ export default function Mylist() {
                     </div>
                   </div>
                 </div>
-              );
-            })
+              </NavLink>
+            );
+          })
           : null}
       </div>
-      <div className="mylist_plus_box" onClick={(e) => onClickPlusPage(e)}>
-        더보기
-      </div>
+      {
+        itemcount == 0 ? null :
+          (itemcount / pages) > 1 ?
+            <div className="detailpost_plus_box" onClick={(e) => onClickPlusPage(e)}>
+              더보기
+            </div> :
+            <div className="mainlist_plus_box_not" >
+              더 이상 물품이 없습니다.
+            </div>
+      }
     </div>
   );
 }

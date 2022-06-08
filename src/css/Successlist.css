@@ -41,6 +41,7 @@
 .successlist_detail_photo{
     display: flex;
     margin-top: 10px;
+    justify-content: center;
     background-color: rgb(226, 221, 236);
     width: 200px;
     height: 150px;
