@@ -280,9 +280,8 @@ function Header({ setPosts }) {
                         return (
                           <div className="header_alarm_inner_box" key={index}>
                             {inalarm.isRead == true ? (
-                              <div
-                                onClick={() => onClickisRead(inalarm.alarmNum)}
-                              >
+                              <div onClick={() => onClickisRead(inalarm.alarmNum)}>
+                                <NavLink to={`detail/${inalarm.itemNum}`} style={{ textDecoration: "none", color: "black" }} >
                                 <div className="header_alarm_inner_firstline">
                                   <div className="header_alarm_inner_title">
                                     거래요청
@@ -309,8 +308,10 @@ function Header({ setPosts }) {
                                   </div>
                                 </div>
                                 <hr />
+                              </NavLink>
                               </div>
                             ) : (
+                              <NavLink to={`detail/${inalarm.itemNum}`} style={{ textDecoration: "none", color: "black" }} >
                               <div className="header_alarm_isread">
                                 <div className="header_alarm_inner_firstline">
                                   <div className="header_alarm_inner_title">
@@ -339,6 +340,7 @@ function Header({ setPosts }) {
                                 </div>
                                 <hr />
                               </div>
+                              </NavLink>
                             )}
                           </div>
                         );

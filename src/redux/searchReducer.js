@@ -8,6 +8,6 @@ export default function searchReducer(state = initState, action){
     case "SET_POST":
       return { ...state, searchData: action.payload };
     default:
-      return state;
+      return initState;
   }
 };
