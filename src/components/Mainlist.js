@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 import "../css/Mainlist.css";
 import { FaRegHandPaper, FaRegEdit } from "react-icons/fa";
-import RequestModal from "../components/RequestModal";
+import MainRequestModal from "../components/MainRequestModal";
 import { connect } from "react-redux";
 import { uID } from "../redux/idReducer";
 import { SET_POST } from "../redux/searchReducer";
@@ -24,6 +24,7 @@ function Mainlist({ searchData, setPosts }) {
   const [category, setCategory] = useState(null);
   const [user, setUser] = useState([]);
   const [openModal, setOpenModal] = useState(false);
+  const [modalvalue, setModalValue] = useState(false);
 
   useEffect(() => {
     // console.log(searchData.length);
@@ -183,6 +184,7 @@ function Mainlist({ searchData, setPosts }) {
                             className="mainlist_detail_requestnum"
                             onClick={() => {
                               setOpenModal(true);
+                              setModalValue(list.iid);
                             }}
                           >
                             <FaRegHandPaper className="mainlist_detail_requesticon" />
@@ -204,10 +206,7 @@ function Mainlist({ searchData, setPosts }) {
       ) : (
         <div className="mainlist_plus_box_not">더 이상 물품이 없습니다.</div>
       )}
-      {/* <div className="mainlist_plus_box" onClick={(e) => onClickPlusPage(e)}>
-        더보기
-      </div> */}
-      {openModal && <RequestModal closeModal={setOpenModal} />}
+      {openModal && <MainRequestModal closeModal={setOpenModal} iid={modalvalue} />}
     </div>
   );
 }

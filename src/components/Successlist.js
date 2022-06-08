@@ -45,7 +45,8 @@ export default function Successlist() {
                 {
                     lists
                         ? lists.map((list) => {
-                            let address = "/img/" + list.photo;
+                            let first_photo = list.photo.split(" ");
+                            let address = "/img/" + first_photo[0];
                             return (
                                 <div className="successlist_detailbox" key={list.item}>
                                     <div className="successlist_detail">
