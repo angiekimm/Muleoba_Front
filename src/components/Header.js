@@ -307,13 +307,13 @@ function Header({ setPosts }) {
                                     | {inalarm.timeAl}
                                   </div>
                                 </div>
-                                <hr />
                               </NavLink>
+                                <hr />
                               </div>
                             ) : (
-                              <NavLink to={`detail/${inalarm.itemNum}`} style={{ textDecoration: "none", color: "black" }} >
                               <div className="header_alarm_isread">
-                                <div className="header_alarm_inner_firstline">
+                                <NavLink to={`detail/${inalarm.itemNum}`} style={{ textDecoration: "none", color: "black" }} >
+                                <div className="header_alarm_inner_firstline_isread">
                                   <div className="header_alarm_inner_title">
                                     거래요청
                                   </div>
@@ -338,9 +338,9 @@ function Header({ setPosts }) {
                                     | {inalarm.timeAl}
                                   </div>
                                 </div>
-                                <hr />
-                              </div>
                               </NavLink>
+                              <hr />
+                              </div>
                             )}
                           </div>
                         );

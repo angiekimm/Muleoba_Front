@@ -15,6 +15,8 @@ export default function DetailPost() {
 
     const { iid } = useParams();
     console.log(iid);
+    const [urliid, setUrliid] = useState(iid);
+    console.log(urliid);
     const [items, setItems] = useState([]);
     const [lists, setLists] = useState([]);
     const [itemcount, setItemcount] = useState(0);
@@ -79,14 +81,15 @@ export default function DetailPost() {
 
     async function onClickAccept(iid) {
         console.log(iid);
+        console.log(urliid);
         await axios
-            .get("/muleoba/detail/accept", { params: { iid } })
+            .get("/muleoba/detail/accept", { params: { iid , urliid} })
             .then((response) => {
                 console.log(response.data);
                 alert("교환이 완료되었습니다.");
                 window.setTimeout(() => {
                     navigate("/main/mypage/successlist");
-                }, 2000);
+                }, 1000);
             })
             .catch((error) => {
                 console.log(error)

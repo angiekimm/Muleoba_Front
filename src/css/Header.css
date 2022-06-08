@@ -276,6 +276,12 @@
   white-space:nowrap;
 }
 
+
+.header_alarm_inner_firstline_isread{
+  display: flex;
+  color :rgb(180, 180, 180);
+}
+
 .header_alarm_isread{
   color :rgb(180, 180, 180);
 }
