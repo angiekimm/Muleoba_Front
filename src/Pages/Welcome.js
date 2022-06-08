@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 import Footer from "../components/Footer";
 import Modal from "../components/Modal";
 import SignupModal from "../components/SignupModal";
@@ -8,10 +8,9 @@ import logo from "../image/muleoba_logo.png";
 import { FaAngleRight } from "react-icons/fa";
 import { CgMouse } from "react-icons/cg";
 import bubble from "../image/bubble.jpg";
-import graph from "../image/graph.jpg";
+import graph from "../image/main_graph.png";
 
 export default function Welcome() {
-
   const uID = useSelector((state) => state.idReducer.uID);
 
   const [openModal, setOpenModal] = useState(false);
@@ -114,25 +113,10 @@ export default function Welcome() {
             <br />
             <br />
             <br />
-            데이터 분석을 통해 사용자에게 랭킹 서비스를 제공하면서,
+            사용자에게 사용친화적인 인터페이스를 제공하면서,
             <br />
-            사용자에게 사용친화적인 인터페이스를 제공하고 <br />
+            데이터 분석을 통한 랭킹 서비스를 통해 <br />
             환경보호에 대한 의지를 높여줍니다.
-            {/* 우리가 흔히 일상생활 속에서 사용하는 물건들 때문에 <br />
-            환경이 오염되고 있다는 사실을 알고 있을까? <br />
-            나도 모르는 사이에 우리가 살고 있는 토양과 바다를 오염시키고 있었던
-            것이다.
-            <br />
-            <br />
-            수십 년간 환경오염으로 인한 이상 현상을 우리는 목격해왔다. <br />
-            기상이변으로 인한 재산, 인명 피해가 발생하고 있으며 해가 갈수록
-            악화되고 있다.
-            <br />
-            <br />
-            환경, 자연 파괴로 인한 부작용은 곳곳에서 나타나고 있고 이로 인해
-            <br />
-            우리 생존까지도 위협받고 있는 상황에서 이를 타계하고자 곳곳에서
-            방안을 모색하고 있다. */}
             <br />
           </p>
           <br />

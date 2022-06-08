@@ -13,22 +13,24 @@ import { uID } from "../redux/idReducer";
 export default function Item() {
   const uID = useSelector((state) => state.idReducer.uID);
 
-
   const { iid } = useParams();
   console.log(iid);
 
-  const iID = { iid }; // itemID 구현하면 이 줄 삭제
-  const naviate = useNavigate();
+  // const iID = { iid }; // itemID 구현하면 이 줄 삭제
+  const navigate = useNavigate();
 
   const [category, setCategory] = useState("");
   const [itemName, setItemName] = useState("");
   const [content, setContent] = useState("");
   const [showImages, setShowImages] = useState([]);
 
+  const [flag, setFlag] = useState(true);
+
   let formData = new FormData(); // formData 객체를 생성한다.
 
   // 이미지 업로드
   const handleAddImages = (e) => {
+    setFlag(false);
     const imageLists = e.target.files;
     let imageUrlLists = [];
 
@@ -82,7 +84,6 @@ export default function Item() {
         data: formData,
       })
         .then((response) => {
-          console.log("등록완료 후", response.data);
           toast.success("물품 등록 완료!", {
             position: "top-center",
             autoClose: 2000,
@@ -91,8 +92,8 @@ export default function Item() {
             pauseOnHover: true,
             progress: undefined,
           });
-          window.setTimeout(() => {
-            naviate("/main/mypage/mylist");
+          setTimeout(() => {
+            navigate("/main/mypage/mylist");
           }, 2000);
         })
         .catch((error) => {
@@ -114,8 +115,8 @@ export default function Item() {
             autoClose: 2000,
             hideProgressBar: true,
           });
-          window.setTimeout(() => {
-            naviate("/main"); // 상세페이지로 이동
+          setTimeout(() => {
+            navigate("/main"); // 상세페이지로 이동
           }, 2000);
         })
         .catch((error) => {
@@ -158,8 +159,8 @@ export default function Item() {
   }, []);
 
   // useEffect(() => {
-  //   console.log("category: ", category);
-  // }, []);
+  //   console.log("images: ", showImages);
+  // }, [showImages]);
 
   return (
     <div className="item">
@@ -191,21 +192,50 @@ export default function Item() {
               </div>
             </div>
             <div className="item_preview">
-              {showImages
+              {/* {showImages.map((image, index) => (
+                <div key={index}>
+                  <img src={image} alt="item" className="item_previewImg" />
+                </div>
+              ))} */}
+              {!iid
                 ? showImages.map((image, index) => {
-                  let address = "/img/" + showImages;
-                  return (
-                    <div key={index}>
-                      <img
-                        src={address}
-                        alt="item"
-                        className="item_previewImg"
-                      />
-                    </div>
-                  );
-                })
-                : null}
-
+                    console.log("showImages", showImages);
+                    return (
+                      <div key={index}>
+                        <img
+                          src={image}
+                          alt="item"
+                          className="item_previewImg"
+                        />
+                      </div>
+                    );
+                  })
+                : flag
+                ? // 수정 페이지 들어왔을 때 이미지 미리보기
+                  showImages.map((image, index) => {
+                    let address = "/img/" + image;
+                    return (
+                      <div key={index}>
+                        <img
+                          src={address}
+                          alt="item"
+                          className="item_previewImg"
+                        />
+                      </div>
+                    );
+                  })
+                : // 이미지 변경해서 올릴때
+                  showImages.map((image, index) => {
+                    return (
+                      <div key={index}>
+                        <img
+                          src={image}
+                          alt="item"
+                          className="item_previewImg"
+                        />
+                      </div>
+                    );
+                  })}
             </div>
           </div>
           <hr />
@@ -254,7 +284,7 @@ export default function Item() {
           </div>
           <hr />
           <div className="item_btn">
-            <NavLink to="/main/mypage/mylist">
+            <NavLink to="/main">
               <button className="item_cancelBtn">취소</button>
             </NavLink>
             <div

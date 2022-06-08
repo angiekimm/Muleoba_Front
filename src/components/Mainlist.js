@@ -16,8 +16,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-
-
 function Mainlist({ searchData, setPosts }) {
   const uID = useSelector((state) => state.idReducer.uID);
   const [lists, setLists] = useState([]);
@@ -146,54 +144,59 @@ function Mainlist({ searchData, setPosts }) {
       <hr />
       <div className="mainlist_content">
         {lists
-          ? lists.map((list) => {
-            let address = "/img/" + list.photo;
-            return (
-              <div key={list.index}>
-                <div className="mainlist_detailbox">
-                  <div className="mainlist_detail">
-                    <NavLink to={`detail/${list.iid}`} style={{ textDecoration: "none", color: "black" }} >
-                      <div className="mainlist_detail_photo">
-                        <img src={address} />
-                      </div>
-                      <div className="mainlist_detail_text">
-                        <div className="mainlist_detail_cate">
-                          {list.category}
+          ? lists.map((list, index) => {
+              let first_photo = list.photo.split(" ");
+              let address = "/img/" + first_photo[0];
+              return (
+                <div key={index}>
+                  <div className="mainlist_detailbox">
+                    <div className="mainlist_detail">
+                      <NavLink
+                        to={`detail/${list.iid}`}
+                        style={{ textDecoration: "none", color: "black" }}
+                      >
+                        <div className="mainlist_detail_photo">
+                          <img src={address} />
                         </div>
-                        <div className="mainlist_detail_item">
-                          {list.item}
+                        <div className="mainlist_detail_text">
+                          <div className="mainlist_detail_cate">
+                            {list.category}
+                          </div>
+
+                          <div className="mainlist_detail_item">
+                            {list.item}
+                          </div>
                         </div>
-                      </div>
-                    </NavLink>
-                    <div className="mainlist_detail_requestnum_box">
-                      <div className="mainlist_detail_requestnum" onClick={() => { setOpenModal(true); }}>
-                        <FaRegHandPaper className="mainlist_detail_requesticon" />
-                        {list.requestNum}
+                      </NavLink>
+                      <div className="mainlist_detail_requestnum_box">
+                        <div
+                          className="mainlist_detail_requestnum"
+                          onClick={() => {
+                            setOpenModal(true);
+                          }}
+                        >
+                          <FaRegHandPaper className="mainlist_detail_requesticon" />
+                          {list.requestNum}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-
-              </div>
-            );
-          })
+              );
+            })
           : null}
       </div>
-      {itemcount == 0 ? null :
-        (itemcount / pages) > 1 ?
-          <div className="mainlist_plus_box" onClick={(e) => onClickPlusPage(e)}>
-            더보기
-          </div> :
-          <div className="mainlist_plus_box_not" >
-            더 이상 물품이 없습니다.
-          </div>
-      }
+      {itemcount == 0 ? null : itemcount / pages > 1 ? (
+        <div className="mainlist_plus_box" onClick={(e) => onClickPlusPage(e)}>
+          더보기
+        </div>
+      ) : (
+        <div className="mainlist_plus_box_not">더 이상 물품이 없습니다.</div>
+      )}
       {/* <div className="mainlist_plus_box" onClick={(e) => onClickPlusPage(e)}>
         더보기
       </div> */}
-      {openModal && (
-        <RequestModal closeModal={setOpenModal} />
-      )}
+      {openModal && <RequestModal closeModal={setOpenModal} />}
     </div>
   );
 }
