@@ -14,7 +14,7 @@ export default function Item() {
   const uID = useSelector((state) => state.idReducer.uID);
 
   const { iid } = useParams();
-  console.log(iid);
+  // console.log(iid);
 
   // const iID = { iid }; // itemID 구현하면 이 줄 삭제
   const navigate = useNavigate();
@@ -71,9 +71,9 @@ export default function Item() {
       new Blob([JSON.stringify(dataSet)], { type: "application/json" })
     ); // JSON 형식으로 파싱 후 추가
 
-    for (let value of formData.values()) {
-      console.log(value);
-    }
+    // for (let value of formData.values()) {
+    //   console.log(value);
+    // }
     if (!iid) {
       const uploadItem = await axios({
         method: "POST",
@@ -92,7 +92,7 @@ export default function Item() {
             pauseOnHover: true,
             progress: undefined,
           });
-          setTimeout(() => {
+          window.setTimeout(() => {
             navigate("/main/mypage/mylist");
           }, 2000);
         })
@@ -109,13 +109,13 @@ export default function Item() {
         data: formData,
       })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           toast.success("물품 수정 완료!", {
             position: "top-center",
             autoClose: 2000,
             hideProgressBar: true,
           });
-          setTimeout(() => {
+          window.setTimeout(() => {
             navigate("/main"); // 상세페이지로 이동
           }, 2000);
         })
@@ -144,7 +144,7 @@ export default function Item() {
             params: { iid },
           })
           .then((response) => {
-            console.log(response.data);
+            // console.log(response.data);
             // 데이터 저장
             setShowImages(response.data.photo.split(" "));
             setItemName(response.data.item);
@@ -199,7 +199,7 @@ export default function Item() {
               ))} */}
               {!iid
                 ? showImages.map((image, index) => {
-                    console.log("showImages", showImages);
+                    // console.log("showImages", showImages);
                     return (
                       <div key={index}>
                         <img
@@ -246,7 +246,7 @@ export default function Item() {
               </div>
               <input
                 type="text"
-                maxLength="30"
+                maxLength="60"
                 autoFocus
                 placeholder="물품명을 입력하세요."
                 defaultValue={itemName}

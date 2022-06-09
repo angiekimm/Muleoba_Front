@@ -16,9 +16,9 @@ export default function DetailPost() {
   const uID = useSelector((state) => state.idReducer.uID);
 
   const { iid } = useParams();
-  console.log(iid);
+  // console.log(iid);
   const [urliid, setUrliid] = useState(iid);
-  console.log(urliid);
+  // console.log(urliid);
   const [items, setItems] = useState([]);
   const [lists, setLists] = useState([]);
   const [itemcount, setItemcount] = useState(0);
@@ -27,6 +27,7 @@ export default function DetailPost() {
   const navigate = useNavigate();
 
   const [photos, setPhotos] = useState([]);
+  const [listsPhotos, setListsPhotos] = useState([]);
 
   useEffect(() => {
     getList();
@@ -38,8 +39,8 @@ export default function DetailPost() {
       .get("/muleoba/detail", { params: { iid } })
       .then((response) => {
         setItems(response.data);
-        console.log(response.data);
-        console.log(response.data.photo);
+        // console.log(response.data);
+        // console.log(response.data.photo);
         setPhotos(response.data.photo.split(" "));
       })
       .catch((error) => {
@@ -53,9 +54,10 @@ export default function DetailPost() {
       .then((response) => {
         setLists(response.data.slice(0, pages));
         setItemcount(response.data.length);
-        console.log(pages);
-        console.log(response.data);
-        console.log(response.data.length);
+        // console.log(pages);
+        // console.log(response.data);
+        // console.log(response.data.length);
+        setListsPhotos(response.data.photo.split(" "));
       })
       .catch((error) => {
         console.log(error);
@@ -67,7 +69,7 @@ export default function DetailPost() {
       await axios
         .get("/muleoba/detail/deletepost", { params: { iid } })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           alert("삭제완료");
           window.setTimeout(() => {
             navigate("/main");
@@ -82,13 +84,13 @@ export default function DetailPost() {
   }
 
   async function onClickAccept(iid) {
-    console.log(iid);
-    console.log(urliid);
+    // console.log(iid);
+    // console.log(urliid);
     await axios
       .get("/muleoba/detail/accept", { params: { iid, urliid } })
       .then((response) => {
         alert("교환이 완료되었습니다.");
-        console.log(response.data);
+        // console.log(response.data);
         window.setTimeout(() => {
           navigate("/main/mypage/successlist");
         }, 500);
@@ -99,7 +101,7 @@ export default function DetailPost() {
   }
 
   const onClickPlusPage = (e) => {
-    console.log(pages);
+    // console.log(pages);
     setPages(pages + 6);
     getList();
   };
@@ -121,7 +123,7 @@ export default function DetailPost() {
           <div className="detailpost_item_Photo_container">
             <Slider {...settings}>
               {photos.map((photo, index) => {
-                console.log(photo);
+                // console.log(photo);
                 let address = "/img/" + photo;
                 return (
                   <img
@@ -192,6 +194,8 @@ export default function DetailPost() {
         <div className="detailpost_content">
           {lists
             ? lists.map((list) => {
+                console.log(listsPhotos);
+                console.log(list.photo);
                 let address = "/img/" + list.photo;
                 return (
                   <div className="detailpost_detailbox" key={list.item}>

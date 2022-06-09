@@ -27,9 +27,9 @@ export default function Mychangelist() {
             .then((response) => {
                 setLists(response.data.slice(0, pages));
                 setItemcount(response.data.length);
-                console.log(pages);
-                console.log(uID);
-                console.log(response.data);
+                // console.log(pages);
+                // console.log(uID);
+                // console.log(response.data);
             })
             .catch((error) => {
                 console.log(error)
@@ -42,9 +42,9 @@ export default function Mychangelist() {
             .then((response) => {
                 setresponseLists(response.data.slice(0, pages));
                 setItemcount(response.data.length);
-                console.log(pages);
-                console.log(uID);
-                console.log(response.data);
+                // console.log(pages);
+                // console.log(uID);
+                // console.log(response.data);
             })
             .catch((error) => {
                 console.log(error)
@@ -58,7 +58,7 @@ export default function Mychangelist() {
                 iID: iid
             })
             .then((response) => {
-                console.log(response.data);
+                // console.log(response.data);
                 getList();
                 getResponseList();
             })
@@ -68,7 +68,7 @@ export default function Mychangelist() {
     }
 
     const onClickPlusPage = (e) => {
-        console.log(pages);
+        // console.log(pages);
         setPages(pages + 4);
         getList();
     };

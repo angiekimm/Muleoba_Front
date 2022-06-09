@@ -401,7 +401,7 @@ export default function SignupModal({ closeModal, loginModal }) {
         address: address,
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         if (response.data === 1) {
           toast.success("회원 가입 완료!", {
             position: "top-center",
@@ -447,7 +447,7 @@ export default function SignupModal({ closeModal, loginModal }) {
         params: { nickName },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setIsNickname(response.data);
       })
       .catch((error) => {
@@ -483,7 +483,7 @@ export default function SignupModal({ closeModal, loginModal }) {
         params: { email },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         if (response.data) {
           setIsEmail(response.data);
           setEmailMsg("");

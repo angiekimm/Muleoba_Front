@@ -77,7 +77,7 @@ function Modal({ closeModal, signupModal, setID }) {
     await axios
       .post("/muleoba/login", { email: email, password: password })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setID(response.data);
         if (response.data) {
           navigate("/main");

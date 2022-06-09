@@ -16,7 +16,7 @@ export default function Rank() {
       .get("/muleoba/bestuser")
       .then((response) => {
         setRank(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
         console.log(error)

@@ -11,7 +11,7 @@ import "../css/RequestModal.css";
 export default function RequestModal({ closeModal}) {
 
   const { iid } = useParams();
-  console.log(iid);
+  // console.log(iid);
   const uID = useSelector((state) => state.idReducer.uID);
 
   const navigate = useNavigate();
@@ -28,8 +28,8 @@ export default function RequestModal({ closeModal}) {
       .get("/muleoba/mylist", { params: { uID } })
       .then((response) => {
         setLists(response.data);
-        console.log(uID);
-        console.log(response.data);
+        // console.log(uID);
+        // console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -48,8 +48,8 @@ export default function RequestModal({ closeModal}) {
           pauseOnHover: true,
           progress: undefined,
         });
-        console.log(uID);
-        console.log(response.data);
+        // console.log(uID);
+        // console.log(response.data);
         window.setTimeout(() => {
           navigate("/main");
         }, 1000);
@@ -61,7 +61,7 @@ export default function RequestModal({ closeModal}) {
 
   const onChangeCate = (e) => {
     setRequestiid(e.target.value === "전체" ? null : e.target.value);
-    console.log("박스value"+e.target.value);
+    // console.log("박스value"+e.target.value);
   };
 
   useEffect(() => {

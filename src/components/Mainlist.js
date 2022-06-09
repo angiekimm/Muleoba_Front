@@ -47,10 +47,10 @@ function Mainlist({ searchData, setPosts }) {
 
   useEffect(() => {
     if (searchData.length >= 1) {
-      console.log("검색구역");
+      // console.log("검색구역");
       setLists(searchData);
     } else {
-      console.log("전체구역");
+      // console.log("전체구역");
       getList();
     }
   }, [pages]);
@@ -64,7 +64,7 @@ function Mainlist({ searchData, setPosts }) {
         // console.log(pages);
         // console.log(uID);
         // console.log(category);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -88,11 +88,11 @@ function Mainlist({ searchData, setPosts }) {
     // console.log(pages);
 
     if (searchData.length >= 1) {
-      console.log("검색구역");
+      // console.log("검색구역");
       setLists(searchData);
       setPages(pages + 9);
     } else {
-      console.log("전체구역");
+      // console.log("전체구역");
       //setItemcount(0);
       getList();
       setPages(pages + 9);
@@ -146,7 +146,7 @@ function Mainlist({ searchData, setPosts }) {
       <div className="mainlist_content">
         {lists
           ? lists.map((list, index) => {
-            console.log(list.photo);
+            // console.log(list.photo);
                let first_photo = list.photo.split(" ");
                let address = "/img/" + first_photo[0];
             return (

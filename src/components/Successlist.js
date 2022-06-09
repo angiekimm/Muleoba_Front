@@ -24,9 +24,9 @@ export default function Successlist() {
             .then((response) => {
                 setLists(response.data.slice(0, pages));
                 setItemcount(response.data.length);
-                console.log(pages);
-                console.log(uID);
-                console.log(response.data);
+                // console.log(pages);
+                // console.log(uID);
+                // console.log(response.data);
             })
             .catch((error) => {
                 console.log(error)
@@ -34,7 +34,7 @@ export default function Successlist() {
     }
 
     const onClickPlusPage = (e) => {
-        console.log(pages);
+        // console.log(pages);
         setPages(pages + 9);
         getList();
     };

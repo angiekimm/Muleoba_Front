@@ -46,7 +46,7 @@ function Header({ setPosts }) {
         searchString: input,
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setPosts(response.data);
         setInput("");
       })
@@ -62,7 +62,7 @@ function Header({ setPosts }) {
       })
       .then((response) => {
         setInalarm(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -75,8 +75,8 @@ function Header({ setPosts }) {
       .get("/muleoba/bestuser")
       .then((response) => {
         setRank(response.data);
-        console.log(response.data);
-        console.log(uID);
+        // console.log(response.data);
+        // console.log(uID);
       })
       .catch((error) => {
         console.log(error);
@@ -87,7 +87,7 @@ function Header({ setPosts }) {
     await axios
       .get("/muleoba/alarm/isread", { params: { alarmNum } })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -98,7 +98,7 @@ function Header({ setPosts }) {
     await axios
       .get("/muleoba/alarm/alldelete", { params: { uID } })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -109,7 +109,7 @@ function Header({ setPosts }) {
     await axios
       .get("/muleoba/alarm/selectdelete", { params: { uID } })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -179,7 +179,7 @@ function Header({ setPosts }) {
   function changeText(e) {
     e.preventDefault();
     setInput(e.target.value);
-    console.log(input);
+    // console.log(input);
   }
 
   function onKeyPress(e) {
@@ -280,66 +280,80 @@ function Header({ setPosts }) {
                         return (
                           <div className="header_alarm_inner_box" key={index}>
                             {inalarm.isRead == true ? (
-                              <div onClick={() => onClickisRead(inalarm.alarmNum)}>
-                                <NavLink to={`detail/${inalarm.itemNum}`} style={{ textDecoration: "none", color: "black" }} >
-                                <div className="header_alarm_inner_firstline">
-                                  <div className="header_alarm_inner_title">
-                                    거래요청
+                              <div
+                                onClick={() => onClickisRead(inalarm.alarmNum)}
+                              >
+                                <NavLink
+                                  to={`detail/${inalarm.itemNum}`}
+                                  style={{
+                                    textDecoration: "none",
+                                    color: "black",
+                                  }}
+                                >
+                                  <div className="header_alarm_inner_firstline">
+                                    <div className="header_alarm_inner_title">
+                                      거래요청
+                                    </div>
+                                    <div className="header_alarm_inner_my">
+                                      나의
+                                    </div>
+                                    <div className="header_alarm_inner_myitem">
+                                      {inalarm.itemName}
+                                    </div>
                                   </div>
-                                  <div className="header_alarm_inner_my">
-                                    나의
+                                  <div className="header_alarm_inner_secondline">
+                                    <div className="header_alarm_inner_applynickname">
+                                      '{inalarm.requestNickName}'
+                                    </div>
+                                    <div className="header_alarm_inner_my">
+                                      님의
+                                    </div>
+                                    <div className="header_alarm_inner_applyitem">
+                                      {inalarm.requestItem}
+                                    </div>
+                                    <div className="header_alarm_inner_date">
+                                      | {inalarm.timeAl}
+                                    </div>
                                   </div>
-                                  <div className="header_alarm_inner_myitem">
-                                    {inalarm.itemName}
-                                  </div>
-                                </div>
-                                <div className="header_alarm_inner_secondline">
-                                  <div className="header_alarm_inner_applynickname">
-                                    '{inalarm.requestNickName}'
-                                  </div>
-                                  <div className="header_alarm_inner_my">
-                                    님의
-                                  </div>
-                                  <div className="header_alarm_inner_applyitem">
-                                    {inalarm.requestItem}
-                                  </div>
-                                  <div className="header_alarm_inner_date">
-                                    | {inalarm.timeAl}
-                                  </div>
-                                </div>
-                              </NavLink>
+                                </NavLink>
                                 <hr />
                               </div>
                             ) : (
                               <div className="header_alarm_isread">
-                                <NavLink to={`detail/${inalarm.itemNum}`} style={{ textDecoration: "none", color: "black" }} >
-                                <div className="header_alarm_inner_firstline_isread">
-                                  <div className="header_alarm_inner_title">
-                                    거래요청
+                                <NavLink
+                                  to={`detail/${inalarm.itemNum}`}
+                                  style={{
+                                    textDecoration: "none",
+                                    color: "black",
+                                  }}
+                                >
+                                  <div className="header_alarm_inner_firstline_isread">
+                                    <div className="header_alarm_inner_title">
+                                      거래요청
+                                    </div>
+                                    <div className="header_alarm_inner_my_isread">
+                                      나의
+                                    </div>
+                                    <div className="header_alarm_inner_myitem">
+                                      {inalarm.itemName}
+                                    </div>
                                   </div>
-                                  <div className="header_alarm_inner_my_isread">
-                                    나의
+                                  <div className="header_alarm_inner_secondline">
+                                    <div className="header_alarm_inner_applynickname_isread">
+                                      '{inalarm.requestNickName}'
+                                    </div>
+                                    <div className="header_alarm_inner_my_isread">
+                                      님의
+                                    </div>
+                                    <div className="header_alarm_inner_applyitem_isread">
+                                      {inalarm.requestItem}
+                                    </div>
+                                    <div className="header_alarm_inner_date_isread">
+                                      | {inalarm.timeAl}
+                                    </div>
                                   </div>
-                                  <div className="header_alarm_inner_myitem">
-                                    {inalarm.itemName}
-                                  </div>
-                                </div>
-                                <div className="header_alarm_inner_secondline">
-                                  <div className="header_alarm_inner_applynickname_isread">
-                                    '{inalarm.requestNickName}'
-                                  </div>
-                                  <div className="header_alarm_inner_my_isread">
-                                    님의
-                                  </div>
-                                  <div className="header_alarm_inner_applyitem_isread">
-                                    {inalarm.requestItem}
-                                  </div>
-                                  <div className="header_alarm_inner_date_isread">
-                                    | {inalarm.timeAl}
-                                  </div>
-                                </div>
-                              </NavLink>
-                              <hr />
+                                </NavLink>
+                                <hr />
                               </div>
                             )}
                           </div>
