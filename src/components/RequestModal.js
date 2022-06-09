@@ -51,7 +51,7 @@ export default function RequestModal({ closeModal}) {
         console.log(uID);
         console.log(response.data);
         window.setTimeout(() => {
-          navigate("/main");
+          navigate("/main/mypage/mychangelist");
         }, 1000);
       })
       .catch((error) => {

@@ -246,7 +246,7 @@ export default function Item() {
               </div>
               <input
                 type="text"
-                maxLength="30"
+                maxLength="60"
                 autoFocus
                 placeholder="물품명을 입력하세요."
                 defaultValue={itemName}

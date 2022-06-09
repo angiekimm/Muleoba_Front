@@ -68,7 +68,7 @@ export default function DetailPost() {
         .get("/muleoba/detail/deletepost", { params: { iid } })
         .then((response) => {
           console.log(response.data);
-          alert("삭제완료");
+          alert("삭제가 완료되었습니다.");
           window.setTimeout(() => {
             navigate("/main");
           }, 500);
@@ -192,7 +192,8 @@ export default function DetailPost() {
         <div className="detailpost_content">
           {lists
             ? lists.map((list) => {
-                let address = "/img/" + list.photo;
+              let first_photo = list.photo.split(" ");
+              let address = "/img/" + first_photo[0];
                 return (
                   <div className="detailpost_detailbox" key={list.item}>
                     <div className="detailpost_detail">
