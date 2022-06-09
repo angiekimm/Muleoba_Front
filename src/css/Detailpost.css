@@ -37,10 +37,9 @@
     height :500px;
     border : 1px solid black;
     overflow: hidden;
-    justify-content: center;
 }
 .detailpost_item_Photo_container {
-  width: 400px;
+  width: 100%;
   margin: auto;
 }
 .detailpost_item_Photo_container img {
