@@ -94,6 +94,13 @@ function Modal({ closeModal, signupModal, setID }) {
       });
   }
 
+  //enter keydown 시 로그인
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13 && isEmail && password) {
+      checkUser();
+    }
+  };
+
   return (
     <div className="modal_background">
       <ToastContainer className="Toastify__toast-container" theme="dark" />
@@ -113,7 +120,7 @@ function Modal({ closeModal, signupModal, setID }) {
         <div className="modal_title">
           <h1>로그인</h1>
         </div>
-        <div className="modal_body">
+        <div className="modal_body" onKeyDown={handleKeyDown}>
           <div className="modal_emailinput">
             <input
               type="email"
